@@ -13,4 +13,11 @@ The public folder contains mostly static files we wish to include with the build
 we are in the process of uploading these.
 
 # test drive
-Go to dev.bitfari.com and take it for a spin
+- Go to dev.bitfari.com and take it for a spin
+- Download the build folder and open index.html
+
+# build it
+- update your dependencies and then run:
+  - yarn install
+  - yarn build
+  - yarn start
