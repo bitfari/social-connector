@@ -1,8 +1,14 @@
+// ** React Imports
 import { useState } from 'react'
+
+// ** Third Party Components
 import Nouislider from 'nouislider-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, Input, Row, Col } from 'reactstrap'
 
 const SliderWithInput = ({ direction }) => {
+  // ** States
   const [upperConnect, setUpperConnect] = useState(10)
   const [lowerConnect, setLowerConnect] = useState(30.0)
 
@@ -25,7 +31,7 @@ const SliderWithInput = ({ direction }) => {
         <Row>
           <Col md='3' sm='12' className='d-sm-flex d-block'>
             <Input
-              className='mr-1 mt-2'
+              className='me-1 mt-2'
               type='select'
               name='selectUpper'
               value={upperConnect}

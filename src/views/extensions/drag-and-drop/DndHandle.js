@@ -1,5 +1,10 @@
+// ** React Imports
 import { useState } from 'react'
+
+// ** Third Party Components
 import { ReactSortable } from 'react-sortablejs'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col, ListGroupItem } from 'reactstrap'
 
 const array = {
@@ -50,6 +55,7 @@ const array = {
 }
 
 const DndMultiple = () => {
+  // ** States
   const [listArr1, setListArr1] = useState(array.list1)
   const [listArr2, setListArr2] = useState(array.list2)
 
@@ -75,7 +81,7 @@ const DndMultiple = () => {
             >
               {listArr1.map(item => {
                 return (
-                  <ListGroupItem className='draggable' key={item.id}>
+                  <ListGroupItem key={item.id}>
                     <span className='handle'>+</span>
                     {item.content}
                   </ListGroupItem>

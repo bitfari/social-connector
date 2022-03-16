@@ -29,12 +29,6 @@ export default [
         icon: <Info />,
         navLink: '/pages/knowledge-base',
         parentOf: ['/pages/knowledge-base/category/questions', '/pages/knowledge-base/category']
-      },
-      {
-        id: 'pricing',
-        title: 'Pricing',
-        icon: <DollarSign />,
-        navLink: '/pages/pricing'
       }
     ]
   }

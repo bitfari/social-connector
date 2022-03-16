@@ -1,0 +1,1 @@
+export declare type Direction = 'up' | 'down' | 'left' | 'right';

@@ -1,8 +1,15 @@
+// ** React Imports
 import { Fragment } from 'react'
+
+// ** Custom Components
 import Avatar from '@components/avatar'
-import { toast } from 'react-toastify'
+
+// ** Third Party Components
 import { Check } from 'react-feather'
+import { toast } from 'react-toastify'
 import { Menu, Item, Submenu, useContextMenu } from 'react-contexify'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardBody, CardTitle, Button } from 'reactstrap'
 
 const ToastContent = ({ text }) => (
@@ -10,7 +17,7 @@ const ToastContent = ({ text }) => (
     <div className='toastify-header pb-0'>
       <div className='title-wrapper'>
         <Avatar size='sm' color='success' icon={<Check />} />
-        <h6 className='toast-title'>Clicked {text}</h6>
+        <h6 className='toast-title'>{`Clicked ${text}`}</h6>
       </div>
     </div>
   </Fragment>
@@ -22,7 +29,7 @@ const ContextSubMenu = () => {
   })
 
   const handleClick = text => {
-    toast.success(<ToastContent text={text} />, { hideProgressBar: true, closeButton: false })
+    toast.success(<ToastContent text={text} />, { icon: false, hideProgressBar: true, closeButton: false })
   }
 
   return (

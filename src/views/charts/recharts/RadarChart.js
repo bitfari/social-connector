@@ -1,6 +1,10 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Third Party Components
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts'
 
+// ** Chart Data
 const data = [
   {
     subject: 'Battery',
@@ -65,13 +69,13 @@ const SimpleRadarChart = ({ series1, series3 }) => {
           </ResponsiveContainer>
         </div>
         <div className='d-flex align-items-center justify-content-center'>
-          <div className='mr-2'>
-            <span className='bullet bullet-sm bullet-primary bullet-bordered mr-50'></span>
-            <span className='align-middle mr-75'>Replies</span>
+          <div className='me-2'>
+            <span className='bullet bullet-sm bullet-primary bullet-bordered me-50'></span>
+            <span className='align-middle me-75'>Replies</span>
           </div>
           <div>
-            <span className='bullet bullet-sm bullet-bordered mr-50' style={{ backgroundColor: '#ffe700' }}></span>
-            <span className='align-middle mr-75'>Shares</span>
+            <span className='bullet bullet-sm bullet-bordered me-50' style={{ backgroundColor: '#ffe700' }}></span>
+            <span className='align-middle me-75'>Shares</span>
           </div>
         </div>
       </CardBody>

@@ -1,7 +1,14 @@
+// ** React Imports
 import { Fragment } from 'react'
-import { toast } from 'react-toastify'
+
+// ** Custom Components
 import Avatar from '@components/avatar'
+
+// ** Third Party Components
+import { toast } from 'react-toastify'
 import { Bell, Check, X, AlertTriangle, Info } from 'react-feather'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardBody, CardTitle, Button } from 'reactstrap'
 
 const PrimaryToast = () => (
@@ -107,12 +114,12 @@ const SuccessProgressToast = () => (
 )
 
 const ToastTypes = () => {
-  const notifyDefault = () => toast(<PrimaryToast />, { hideProgressBar: true })
-  const notifySuccess = () => toast.success(<SuccessToast />, { hideProgressBar: true })
-  const notifyError = () => toast.error(<ErrorToast />, { hideProgressBar: true })
-  const notifyWarning = () => toast.warning(<WarningToast />, { hideProgressBar: true })
-  const notifyInfo = () => toast.info(<InfoToast />, { hideProgressBar: true })
-  const notifySuccessProgress = () => toast.success(<SuccessProgressToast />)
+  const notifyDefault = () => toast(<PrimaryToast />, { icon: false, hideProgressBar: true })
+  const notifySuccess = () => toast.success(<SuccessToast />, { icon: false, hideProgressBar: true })
+  const notifyError = () => toast.error(<ErrorToast />, { icon: false, hideProgressBar: true })
+  const notifyWarning = () => toast.warning(<WarningToast />, { icon: false, hideProgressBar: true })
+  const notifyInfo = () => toast.info(<InfoToast />, { icon: false, hideProgressBar: true })
+  const notifySuccessProgress = () => toast.success(<SuccessProgressToast />, { icon: false })
 
   return (
     <Card>
@@ -121,24 +128,24 @@ const ToastTypes = () => {
       </CardHeader>
       <CardBody>
         <div className='demo-inline-spacing'>
-          <Button.Ripple color='primary' onClick={notifyDefault} outline>
+          <Button color='primary' onClick={notifyDefault} outline>
             Default
-          </Button.Ripple>
-          <Button.Ripple color='success' onClick={notifySuccess} outline>
+          </Button>
+          <Button color='success' onClick={notifySuccess} outline>
             Success
-          </Button.Ripple>
-          <Button.Ripple color='danger' onClick={notifyError} outline>
+          </Button>
+          <Button color='danger' onClick={notifyError} outline>
             Error
-          </Button.Ripple>
-          <Button.Ripple color='warning' onClick={notifyWarning} outline>
+          </Button>
+          <Button color='warning' onClick={notifyWarning} outline>
             Warning
-          </Button.Ripple>
-          <Button.Ripple color='info' onClick={notifyInfo} outline>
+          </Button>
+          <Button color='info' onClick={notifyInfo} outline>
             Info
-          </Button.Ripple>
-          <Button.Ripple color='success' onClick={notifySuccessProgress} outline>
+          </Button>
+          <Button color='success' onClick={notifySuccessProgress} outline>
             Success Progress Bar
-          </Button.Ripple>
+          </Button>
         </div>
       </CardBody>
     </Card>

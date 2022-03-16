@@ -1,6 +1,9 @@
+// ** Third Party Components
 import Swal from 'sweetalert2'
 import { ThumbsUp, ThumbsDown } from 'react-feather'
 import withReactContent from 'sweetalert2-react-content'
+
+// ** Reactstrap Imports'
 import { Card, CardHeader, CardBody, CardTitle, Button, CardText } from 'reactstrap'
 
 const MySwal = withReactContent(Swal)
@@ -32,7 +35,7 @@ const BasicSweetAlert = () => {
       icon: 'error',
       title: 'Oops...',
       text: 'Something went wrong!',
-      footer: '<a href="javascript:void(0);">Why do I have this issue?</a>',
+      footer: '<a href="#">Why do I have this issue?</a>',
       customClass: {
         confirmButton: 'btn btn-primary'
       },
@@ -53,14 +56,14 @@ const BasicSweetAlert = () => {
       focusConfirm: false,
       confirmButtonText: (
         <span className='align-middle'>
-          <ThumbsUp className='mr-50' size={15} />
+          <ThumbsUp className='me-50' size={15} />
           <span className='align-middle'>Great!</span>
         </span>
       ),
       cancelButtonText: <ThumbsDown size={15} />,
       customClass: {
         confirmButton: 'btn btn-primary',
-        cancelButton: 'btn btn-outline-danger ml-1'
+        cancelButton: 'btn btn-outline-danger ms-1'
       },
       buttonsStyling: false
     })

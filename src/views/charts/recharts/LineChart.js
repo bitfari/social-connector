@@ -1,7 +1,11 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, Badge } from 'reactstrap'
+
+// ** Third Party Components
 import { ArrowDown } from 'react-feather'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
+// ** Chart Data
 const data = [
   {
     name: '7/12',
@@ -86,9 +90,9 @@ const SimpleLineChart = ({ warning }) => {
           <small className='text-muted'>Commercial networks & enterprises</small>
         </div>
         <div className='d-flex align-items-center flex-wrap mt-sm-0 mt-1'>
-          <h5 className='font-weight-bold mb-0 mr-1'>$ 100,000</h5>
+          <h5 className='fw-bold mb-0 me-1'>$ 100,000</h5>
           <Badge className='badge-md' color='light-secondary'>
-            <ArrowDown className='text-danger mr-50' size={15} />
+            <ArrowDown className='text-danger me-50' size={15} />
             20%
           </Badge>
         </div>

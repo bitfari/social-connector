@@ -1,5 +1,8 @@
+// ** Third Party Components
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, Button } from 'reactstrap'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
 const SwiperVirtual = ({ isRtl }) => {
   const slides = []
@@ -46,7 +49,7 @@ const SwiperVirtual = ({ isRtl }) => {
           <Button color='primary' outline onClick={appendSlide}>
             Append Slide
           </Button>
-          <Button className='mr-0' color='primary' outline onClick={removeSlide}>
+          <Button className='me-0' color='primary' outline onClick={removeSlide}>
             Remove All Slides
           </Button>
         </div>

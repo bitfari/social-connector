@@ -1,8 +1,12 @@
-import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+// ** Third Party Components
 import { Calendar } from 'react-feather'
 import Flatpickr from 'react-flatpickr'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
+// ** Reactstrap Imports
+import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Chart Data
 const data = [
   {
     name: '7/12',
@@ -80,19 +84,19 @@ const CustomTooltip = data => {
   if (data.active && data.payload) {
     return (
       <div className='recharts-custom-tooltip'>
-        <p className='font-weight-bold mb-0'>{data.label}</p>
+        <p className='fw-bold mb-0'>{data.label}</p>
         <hr />
         <div className='active'>
           {data.payload.map(i => {
             return (
               <div className='d-flex align-items-center' key={i.dataKey}>
                 <span
-                  className='bullet  bullet-sm bullet-bordered mr-50'
+                  className='bullet  bullet-sm bullet-bordered me-50'
                   style={{
                     backgroundColor: i.fill
                   }}
                 ></span>
-                <span className='align-middle text-capitalize mr-75'>
+                <span className='align-middle text-capitalize me-75'>
                   {i.dataKey} : {i.payload[i.dataKey]}
                 </span>
               </div>
@@ -114,31 +118,32 @@ const SimpleBarChart = () => {
         <div className='d-flex align-items-center'>
           <Calendar size={15} />
           <Flatpickr
+            className='form-control flat-picker bg-transparent border-0 shadow-none'
             options={{
               mode: 'range',
-              defaultDate: ['2019-05-01', '2019-05-10']
+              // eslint-disable-next-line no-mixed-operators
+              defaultDate: [new Date(), new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000)]
             }}
-            className='form-control flat-picker bg-transparent border-0 shadow-none'
           />
         </div>
       </CardHeader>
 
       <CardBody>
         <div className='d-flex align-items-center flex-wrap mb-2'>
-          <div className='mr-1'>
-            <span className='bullet bullet-sm bullet-bordered mr-50' style={{ backgroundColor: '#826af9' }}></span>
-            <span className='align-middle mr-75'>Apple</span>
+          <div className='me-1'>
+            <span className='bullet bullet-sm bullet-bordered me-50' style={{ backgroundColor: '#826af9' }}></span>
+            <span className='align-middle me-75'>Apple</span>
           </div>
-          <div className='mr-1'>
-            <span className='bullet bullet-sm bullet-bordered mr-50' style={{ backgroundColor: '#9f87ff' }}></span>
-            <span className='align-middle mr-75'>Samsung</span>
+          <div className='me-1'>
+            <span className='bullet bullet-sm bullet-bordered me-50' style={{ backgroundColor: '#9f87ff' }}></span>
+            <span className='align-middle me-75'>Samsung</span>
           </div>
-          <div className='mr-1'>
-            <span className='bullet bullet-sm bullet-bordered mr-50' style={{ backgroundColor: '#d2b0ff' }}></span>
-            <span className='align-middle mr-75'>Oneplus</span>
+          <div className='me-1'>
+            <span className='bullet bullet-sm bullet-bordered me-50' style={{ backgroundColor: '#d2b0ff' }}></span>
+            <span className='align-middle me-75'>Oneplus</span>
           </div>
           <div>
-            <span className='bullet bullet-sm bullet-bordered mr-50' style={{ backgroundColor: '#f8d3ff' }}></span>
+            <span className='bullet bullet-sm bullet-bordered me-50' style={{ backgroundColor: '#f8d3ff' }}></span>
             <span className='align-middle'>Motorola</span>
           </div>
         </div>

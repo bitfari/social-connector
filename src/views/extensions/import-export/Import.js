@@ -1,15 +1,20 @@
+// ** React Imports
 import { Fragment, useState } from 'react'
+
+// ** Third Party Components
 import XLSX from 'xlsx'
-import Uppy from '@uppy/core'
-import { X } from 'react-feather'
-import { DragDrop } from '@uppy/react'
-import Avatar from '@components/avatar'
 import { toast } from 'react-toastify'
+import { useDropzone } from 'react-dropzone'
+import { X, DownloadCloud } from 'react-feather'
+
+// ** Custom Components
+import Avatar from '@components/avatar'
 import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import { Row, Col, Card, CardBody, Table, CardHeader, CardTitle, Input, Label } from 'reactstrap'
 
-import 'uppy/dist/uppy.css'
-import '@uppy/status-bar/dist/style.css'
+// ** Styles
 import '@styles/react/libs/file-uploader/file-uploader.scss'
 
 const ErrorToast = () => (
@@ -23,49 +28,43 @@ const ErrorToast = () => (
     </div>
     <div className='toastify-body'>
       <span role='img' aria-label='toast-text'>
-        👋 You can only upload <span className='font-weight-bolder'>.xlsx</span>,{' '}
-        <span className='font-weight-bolder'>.xls</span> & <span className='font-weight-bolder'>.csv</span> Files!.
+        👋 You can only upload <span className='fw-bolder'>.xlsx</span>, <span className='fw-bolder'>.xls</span> &{' '}
+        <span className='fw-bolder'>.csv</span> Files!.
       </span>
     </div>
   </Fragment>
 )
 
 const Import = () => {
+  // ** States
+  const [name, setName] = useState('')
+  const [value, setValue] = useState('')
   const [tableData, setTableData] = useState([])
   const [filteredData, setFilteredData] = useState([])
-  const [value, setValue] = useState('')
-  const [name, setName] = useState('')
-
-  const uppy = new Uppy({
-    restrictions: { maxNumberOfFiles: 1 },
-    autoProceed: true
-  })
 
   const getTableData = (arr, name) => {
     setTableData(arr)
     setName(name)
   }
 
-  uppy.on('complete', result => {
-    const reader = new FileReader()
-    reader.onload = function () {
-      const fileData = reader.result
-      const wb = XLSX.read(fileData, { type: 'binary' })
+  const { getRootProps, getInputProps } = useDropzone({
+    multiple: false,
+    onDrop: result => {
+      const reader = new FileReader()
+      reader.onload = function () {
+        const fileData = reader.result
+        const wb = XLSX.read(fileData, { type: 'binary' })
 
-      wb.SheetNames.forEach(function (sheetName) {
-        const rowObj = XLSX.utils.sheet_to_row_object_array(wb.Sheets[sheetName])
-        getTableData(rowObj, result.successful[0].data.name)
-      })
-    }
-
-    if (
-      result.successful[0].extension === 'xlsx' ||
-      result.successful[0].extension === 'csv' ||
-      result.successful[0].extension === 'xls'
-    ) {
-      reader.readAsBinaryString(result.successful[0].data)
-    } else {
-      toast.error(<ErrorToast />, { hideProgressBar: true })
+        wb.SheetNames.forEach(function (sheetName) {
+          const rowObj = XLSX.utils.sheet_to_row_object_array(wb.Sheets[sheetName])
+          getTableData(rowObj, result[0].name)
+        })
+      }
+      if (result.length && result[0].name.endsWith('xlsx')) {
+        reader.readAsBinaryString(result[0])
+      } else {
+        toast.error(<ErrorToast />, { icon: false, hideProgressBar: true })
+      }
     }
   })
 
@@ -132,7 +131,7 @@ const Import = () => {
       <ExtensionsHeader
         title='XLSX'
         subTitle='Xlsx is a parser and writer for various spreadsheet formats'
-        link='https://github.com/AdeleD/react-paginate'
+        link='https://github.com/SheetJS/sheetjs'
       />
       <Row className='import-component'>
         <Col sm='12'>
@@ -140,7 +139,20 @@ const Import = () => {
             <CardBody>
               <Row>
                 <Col sm='12'>
-                  <DragDrop uppy={uppy} />
+                  <div {...getRootProps({ className: 'dropzone' })}>
+                    <input {...getInputProps()} />
+                    <div className='d-flex align-items-center justify-content-center flex-column'>
+                      <DownloadCloud size={64} />
+                      <h5>Drop Files here or click to upload</h5>
+                      <p className='text-secondary'>
+                        Drop files here or click{' '}
+                        <a href='/' onClick={e => e.preventDefault()}>
+                          browse
+                        </a>{' '}
+                        thorough your machine
+                      </p>
+                    </div>
+                  </div>
                 </Col>
               </Row>
             </CardBody>
@@ -152,7 +164,7 @@ const Import = () => {
               <CardHeader className='justify-content-between flex-wrap'>
                 <CardTitle tag='h4'>{name}</CardTitle>
                 <div className='d-flex align-items-center justify-content-end'>
-                  <Label for='search-input' className='mr-1'>
+                  <Label for='search-input' className='me-1'>
                     Search
                   </Label>
                   <Input id='search-input' type='text' bsSize='sm' value={value} onChange={e => handleFilter(e)} />

@@ -1,6 +1,9 @@
-import { Card, CardHeader, CardBody, CardTitle, Button, Row, Col } from 'reactstrap'
+// ** Third Party Components
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+
+// ** Reactstrap Imports
+import { Card, CardHeader, CardBody, CardTitle, Button, Row, Col } from 'reactstrap'
 
 const MySwal = withReactContent(Swal)
 
@@ -14,7 +17,7 @@ const BasicSweetCallback = () => {
       confirmButtonText: 'Yes, delete it!',
       customClass: {
         confirmButton: 'btn btn-primary',
-        cancelButton: 'btn btn-outline-danger ml-1'
+        cancelButton: 'btn btn-outline-danger ms-1'
       },
       buttonsStyling: false
     }).then(function (result) {
@@ -40,7 +43,7 @@ const BasicSweetCallback = () => {
       confirmButtonText: 'Yes, delete it!',
       customClass: {
         confirmButton: 'btn btn-primary',
-        cancelButton: 'btn btn-danger ml-1'
+        cancelButton: 'btn btn-danger ms-1'
       },
       buttonsStyling: false
     }).then(function (result) {

@@ -1,13 +1,13 @@
 // ** React Imports
 import { Fragment, useContext } from 'react'
 
-// ** Third Party Components
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
 
 // ** Custom Components
 import Breadcrumbs from '@components/breadcrumbs'
 
-// ** Charts
+// ** Demo Charts
 import PieChart from './PieChart'
 import BarChart from './BarChart'
 import LineChart from './LineChart'

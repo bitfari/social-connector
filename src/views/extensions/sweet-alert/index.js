@@ -1,13 +1,21 @@
+// ** React Imports
 import { Fragment } from 'react'
+
+// ** Custom Components
 import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
-import SweetAlertBasic from './SweetAlertBasic'
-import SweetAlertPositions from './SweetAlertPositions'
-import SweetAlertAnimations from './SweetAlertAnimations'
+
+// ** Demo Components
 import SweetAlertTypes from './SweetAlertTypes'
+import SweetAlertBasic from './SweetAlertBasic'
 import SweetAlertOptions from './SweetAlertOptions'
 import SweetAlertCallback from './SweetAlertCallback'
+import SweetAlertPositions from './SweetAlertPositions'
+import SweetAlertAnimations from './SweetAlertAnimations'
 
+// ** Styles
 import 'animate.css/animate.css'
 import '@styles/base/plugins/extensions/ext-component-sweet-alerts.scss'
 

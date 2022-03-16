@@ -1,4 +1,4 @@
-import { Box, Mail, MessageSquare, CheckSquare, Calendar, FileText, Circle, ShoppingCart, User } from 'react-feather'
+import { Box, Mail, MessageSquare, CheckSquare, Calendar } from 'react-feather'
 
 export default [
   {
@@ -7,29 +7,36 @@ export default [
     icon: <Box />,
     children: [
       {
-        id: 'email',
+        id: 'focus',
+        title: 'Focus',
+        icon: <CheckSquare />,
+        navLink: '/apps/focus'
+      },
+      {
+        id: 'book',
+        title: 'Book Ads',
+        icon: <Calendar />,
+        navLink: '/apps/book'
+      },
+    {
+    id: 'soon',
+    title: 'Coming Soon...',
+    icon: <Box />,
+    children: [
+    {
+        id: 'tellfari',
         title: 'Tellfari',
         icon: <Mail />,
-        navLink: '/apps/email'
+        navLink: '/apps/tellfari'
       },
       {
-        id: 'chat',
+        id: 'instafriend',
         title: 'InstaFriend',
         icon: <MessageSquare />,
-        navLink: '/apps/chat'
-      },
-      {
-        id: 'todo',
-        title: 'Life Filter',
-        icon: <CheckSquare />,
-        navLink: '/apps/todo'
-      },
-      {
-        id: 'calendar',
-        title: 'Schedule Ads',
-        icon: <Calendar />,
-        navLink: '/apps/calendar'
+        navLink: '/apps/instafriend'
       }
+     ]
+  }
     ]
   }
 ]

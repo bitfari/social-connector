@@ -1,4 +1,7 @@
+// ** Third Party Components
 import Nouislider from 'nouislider-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const SliderBehaviour = ({ direction }) => {
@@ -10,10 +13,10 @@ const SliderBehaviour = ({ direction }) => {
       <CardBody>
         <h5 className='mb-2'>Tap</h5>
         <Nouislider
-          start={[20, 40]}
-          direction={direction}
-          behaviour={'tap'}
           connect={true}
+          start={[20, 40]}
+          behaviour={'tap'}
+          direction={direction}
           range={{
             min: 10,
             max: 50
@@ -21,10 +24,10 @@ const SliderBehaviour = ({ direction }) => {
         />
         <h5 className='my-2'>Drag</h5>
         <Nouislider
-          start={[40, 60]}
-          direction={direction}
-          behaviour={'drag'}
           connect={true}
+          start={[40, 60]}
+          behaviour={'drag'}
+          direction={direction}
           range={{
             min: 20,
             max: 80
@@ -32,10 +35,10 @@ const SliderBehaviour = ({ direction }) => {
         />
         <h5 className='my-2'>Fixed dragging</h5>
         <Nouislider
+          connect={true}
           start={[40, 60]}
           direction={direction}
           behaviour={'drag-fixed'}
-          connect={true}
           range={{
             min: 20,
             max: 80
@@ -43,10 +46,10 @@ const SliderBehaviour = ({ direction }) => {
         />
         <h5 className='my-2'>Combined options</h5>
         <Nouislider
+          connect={true}
           start={[40, 60]}
           direction={direction}
           behaviour={'drag-tap'}
-          connect={true}
           range={{
             min: 20,
             max: 80

@@ -1,23 +1,28 @@
+// ** React Imports
 import { Fragment, useState } from 'react'
+
+// ** Custom Components
 import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import {
   Row,
   Col,
   Card,
-  CardBody,
-  Button,
   Table,
   Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Input,
-  FormGroup,
-  CustomInput,
-  Label
+  Label,
+  Button,
+  CardBody,
+  ModalBody,
+  ModalHeader,
+  ModalFooter
 } from 'reactstrap'
-import classnames from 'classnames'
+
+// ** Third Party Components
 import XLSX from 'xlsx'
+import classnames from 'classnames'
 
 const initialData = [
   {
@@ -93,12 +98,13 @@ const initialData = [
 ]
 
 const ExportSelected = () => {
+  // ** States
   const [data] = useState(initialData)
-  const [filteredData, setFilteredData] = useState([])
-  const [dataToExport, setDataToExport] = useState([])
   const [value, setValue] = useState('')
   const [modal, setModal] = useState(false)
   const [fileName, setFileName] = useState('')
+  const [filteredData, setFilteredData] = useState([])
+  const [dataToExport, setDataToExport] = useState([])
   const [fileFormat, setFileFormat] = useState('xlsx')
   const [selectedRows, setSelectedRows] = useState([])
 
@@ -185,13 +191,14 @@ const ExportSelected = () => {
         })}
       >
         <td>
-          <CustomInput
-            type='checkbox'
-            id={col.id}
-            label=''
-            checked={!!selectedRows.includes(col.id)}
-            onChange={() => handleSelect(col.id)}
-          />
+          <div className='form-check'>
+            <Input
+              id={col.id}
+              type='checkbox'
+              onChange={() => handleSelect(col.id)}
+              checked={!!selectedRows.includes(col.id)}
+            />
+          </div>
         </td>
         <td>{col.email}</td>
         <td>{col.name}</td>
@@ -206,18 +213,18 @@ const ExportSelected = () => {
       <ExtensionsHeader
         title='XLSX'
         subTitle='Xlsx is a parser and writer for various spreadsheet formats'
-        link='https://github.com/AdeleD/react-paginate'
+        link='https://github.com/SheetJS/sheetjs'
       />
       <Row className='export-component'>
         <Col sm='12'>
           <Card>
             <CardBody className='pb-0'>
               <div className='d-flex flex-wrap justify-content-between'>
-                <Button.Ripple color='primary' onClick={() => toggleModal()}>
+                <Button color='primary' onClick={() => toggleModal()}>
                   Export Selected
-                </Button.Ripple>
+                </Button>
                 <div className='d-flex align-items-center justify-content-end'>
-                  <Label for='search-input' className='mr-1'>
+                  <Label for='search-input' className='me-1'>
                     Search
                   </Label>
                   <Input id='search-input' bsSize='sm' type='text' value={value} onChange={e => handleFilter(e)} />
@@ -228,13 +235,15 @@ const ExportSelected = () => {
               <thead>
                 <tr>
                   <th>
-                    <CustomInput
-                      type='checkbox'
-                      id='select-all'
-                      label=''
-                      checked={!!selectedRows.length}
-                      onChange={e => handleSelectAll()}
-                    />
+                    <div className='form-check'>
+                      <Input
+                        type='checkbox'
+                        id='select-all'
+                        label=''
+                        checked={!!selectedRows.length}
+                        onChange={() => handleSelectAll()}
+                      />
+                    </div>
                   </th>
                   <th>Email</th>
                   <th>Name</th>
@@ -255,16 +264,16 @@ const ExportSelected = () => {
       >
         <ModalHeader toggle={() => toggleModal()}>Export To Excel</ModalHeader>
         <ModalBody>
-          <FormGroup>
+          <div className='mb-2'>
             <Input
               type='text'
               value={fileName}
               onChange={e => setFileName(e.target.value)}
               placeholder='Enter File Name'
             />
-          </FormGroup>
-          <FormGroup>
-            <CustomInput
+          </div>
+          <div>
+            <Input
               type='select'
               id='selectFileFormat'
               name='customSelect'
@@ -276,8 +285,8 @@ const ExportSelected = () => {
               <option>xlsx</option>
               <option>csv</option>
               <option>txt</option>
-            </CustomInput>
-          </FormGroup>
+            </Input>
+          </div>
         </ModalBody>
         <ModalFooter>
           <Button color='primary' onClick={() => handleExport()}>

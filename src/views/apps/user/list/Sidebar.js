@@ -5,47 +5,120 @@ import { useState } from 'react'
 import Sidebar from '@components/sidebar'
 
 // ** Utils
-import { isObjEmpty } from '@utils'
+import { selectThemeColors } from '@utils'
 
 // ** Third Party Components
+import Select from 'react-select'
 import classnames from 'classnames'
-import { useForm } from 'react-hook-form'
-import { Button, FormGroup, Label, FormText, Form, Input } from 'reactstrap'
+import { useForm, Controller } from 'react-hook-form'
+
+// ** Reactstrap Imports
+import { Button, Label, FormText, Form, Input } from 'reactstrap'
 
 // ** Store & Actions
-import { addUser } from '../store/action'
+import { addUser } from '../store'
 import { useDispatch } from 'react-redux'
+
+const defaultValues = {
+  email: '',
+  contact: '',
+  company: '',
+  fullName: '',
+  username: '',
+  country: null
+}
+
+const countryOptions = [
+  { label: 'Australia', value: 'Australia' },
+  { label: 'Bangladesh', value: 'Bangladesh' },
+  { label: 'Belarus', value: 'Belarus' },
+  { label: 'Brazil', value: 'Brazil' },
+  { label: 'Canada', value: 'Canada' },
+  { label: 'China', value: 'China' },
+  { label: 'France', value: 'France' },
+  { label: 'Germany', value: 'Germany' },
+  { label: 'India', value: 'India' },
+  { label: 'Indonesia', value: 'Indonesia' },
+  { label: 'Israel', value: 'Israel' },
+  { label: 'Italy', value: 'Italy' },
+  { label: 'Japan', value: 'Japan' },
+  { label: 'Korea', value: 'Korea' },
+  { label: 'Mexico', value: 'Mexico' },
+  { label: 'Philippines', value: 'Philippines' },
+  { label: 'Russia', value: 'Russia' },
+  { label: 'South', value: 'South' },
+  { label: 'Thailand', value: 'Thailand' },
+  { label: 'Turkey', value: 'Turkey' },
+  { label: 'Ukraine', value: 'Ukraine' },
+  { label: 'United Arab Emirates', value: 'United Arab Emirates' },
+  { label: 'United Kingdom', value: 'United Kingdom' },
+  { label: 'United States', value: 'United States' }
+]
+
+const checkIsValid = data => {
+  return Object.values(data).every(field => (typeof field === 'object' ? field !== null : field.length > 0))
+}
 
 const SidebarNewUsers = ({ open, toggleSidebar }) => {
   // ** States
-  const [role, setRole] = useState('subscriber')
+  const [data, setData] = useState(null)
   const [plan, setPlan] = useState('basic')
+  const [role, setRole] = useState('subscriber')
 
   // ** Store Vars
   const dispatch = useDispatch()
 
   // ** Vars
-  const { register, errors, handleSubmit } = useForm()
+  const {
+    control,
+    setValue,
+    setError,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ defaultValues })
 
   // ** Function to handle form submit
-  const onSubmit = values => {
-    if (isObjEmpty(errors)) {
+  const onSubmit = data => {
+    setData(data)
+    if (checkIsValid(data)) {
       toggleSidebar()
       dispatch(
         addUser({
-          fullName: values['full-name'],
-          company: values.company,
           role,
-          username: values.username,
-          country: values.country,
-          contact: values.contact,
-          email: values.email,
-          currentPlan: plan,
+          avatar: '',
           status: 'active',
-          avatar: ''
+          email: data.email,
+          currentPlan: plan,
+          billing: 'auto debit',
+          company: data.company,
+          contact: data.contact,
+          fullName: data.fullName,
+          username: data.username,
+          country: data.country.value
         })
       )
+    } else {
+      for (const key in data) {
+        if (data[key] === null) {
+          setError('country', {
+            type: 'manual'
+          })
+        }
+        if (data[key] !== null && data[key].length === 0) {
+          setError(key, {
+            type: 'manual'
+          })
+        }
+      }
     }
+  }
+
+  const handleSidebarClosed = () => {
+    for (const key in defaultValues) {
+      setValue(key, '')
+    }
+    setRole('subscriber')
+    setPlan('basic')
   }
 
   return (
@@ -56,84 +129,101 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
       headerClassName='mb-1'
       contentClassName='pt-0'
       toggleSidebar={toggleSidebar}
+      onClosed={handleSidebarClosed}
     >
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormGroup>
-          <Label for='full-name'>
+        <div className='mb-1'>
+          <Label className='form-label' for='fullName'>
             Full Name <span className='text-danger'>*</span>
           </Label>
-          <Input
-            name='full-name'
-            id='full-name'
-            placeholder='John Doe'
-            innerRef={register({ required: true })}
-            className={classnames({ 'is-invalid': errors['full-name'] })}
+          <Controller
+            name='fullName'
+            control={control}
+            render={({ field }) => (
+              <Input id='fullName' placeholder='John Doe' invalid={errors.fullName && true} {...field} />
+            )}
           />
-        </FormGroup>
-        <FormGroup>
-          <Label for='username'>
+        </div>
+        <div className='mb-1'>
+          <Label className='form-label' for='username'>
             Username <span className='text-danger'>*</span>
           </Label>
-          <Input
+          <Controller
             name='username'
-            id='username'
-            placeholder='johnDoe99'
-            innerRef={register({ required: true })}
-            className={classnames({ 'is-invalid': errors['username'] })}
+            control={control}
+            render={({ field }) => (
+              <Input id='username' placeholder='johnDoe99' invalid={errors.username && true} {...field} />
+            )}
           />
-        </FormGroup>
-        <FormGroup>
-          <Label for='email'>
+        </div>
+        <div className='mb-1'>
+          <Label className='form-label' for='userEmail'>
             Email <span className='text-danger'>*</span>
           </Label>
-          <Input
-            type='email'
+          <Controller
             name='email'
-            id='email'
-            placeholder='john.doe@example.com'
-            innerRef={register({ required: true })}
-            className={classnames({ 'is-invalid': errors['email'] })}
+            control={control}
+            render={({ field }) => (
+              <Input
+                type='email'
+                id='userEmail'
+                placeholder='john.doe@example.com'
+                invalid={errors.email && true}
+                {...field}
+              />
+            )}
           />
           <FormText color='muted'>You can use letters, numbers & periods</FormText>
-        </FormGroup>
-        <FormGroup>
-          <Label for='company'>
-            Company <span className='text-danger'>*</span>
-          </Label>
-          <Input
-            name='company'
-            id='company'
-            placeholder='Company Pvt Ltd'
-            innerRef={register({ required: true })}
-            className={classnames({ 'is-invalid': errors['company'] })}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for='country'>
-            Country <span className='text-danger'>*</span>
-          </Label>
-          <Input
-            name='country'
-            id='country'
-            placeholder='Australia'
-            innerRef={register({ required: true })}
-            className={classnames({ 'is-invalid': errors['country'] })}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for='contact'>
+        </div>
+
+        <div className='mb-1'>
+          <Label className='form-label' for='contact'>
             Contact <span className='text-danger'>*</span>
           </Label>
-          <Input
+          <Controller
             name='contact'
-            id='contact'
-            placeholder='(397) 294-5153'
-            innerRef={register({ required: true })}
-            className={classnames({ 'is-invalid': errors['contact'] })}
+            control={control}
+            render={({ field }) => (
+              <Input id='contact' placeholder='(397) 294-5153' invalid={errors.contact && true} {...field} />
+            )}
           />
-        </FormGroup>
-        <FormGroup>
-          <Label for='user-role'>User Role</Label>
+        </div>
+        <div className='mb-1'>
+          <Label className='form-label' for='company'>
+            Company <span className='text-danger'>*</span>
+          </Label>
+          <Controller
+            name='company'
+            control={control}
+            render={({ field }) => (
+              <Input id='company' placeholder='Company Pvt Ltd' invalid={errors.company && true} {...field} />
+            )}
+          />
+        </div>
+        <div className='mb-1'>
+          <Label className='form-label' for='country'>
+            Country <span className='text-danger'>*</span>
+          </Label>
+          <Controller
+            name='country'
+            control={control}
+            render={({ field }) => (
+              // <Input id='country' placeholder='Australia' invalid={errors.country && true} {...field} />
+              <Select
+                isClearable={false}
+                classNamePrefix='select'
+                options={countryOptions}
+                theme={selectThemeColors}
+                className={classnames('react-select', { 'is-invalid': data !== null && data.country === null })}
+                {...field}
+              />
+            )}
+          />
+        </div>
+        <div className='mb-1'>
+          <Label className='form-label' for='user-role'>
+            User Role
+          </Label>
           <Input type='select' id='user-role' name='user-role' value={role} onChange={e => setRole(e.target.value)}>
             <option value='subscriber'>Subscriber</option>
             <option value='editor'>Editor</option>
@@ -141,17 +231,19 @@ const SidebarNewUsers = ({ open, toggleSidebar }) => {
             <option value='author'>Author</option>
             <option value='admin'>Admin</option>
           </Input>
-        </FormGroup>
-        <FormGroup className='mb-2' value={plan} onChange={e => setPlan(e.target.value)}>
-          <Label for='select-plan'>Select Plan</Label>
+        </div>
+        <div className='mb-1' value={plan} onChange={e => setPlan(e.target.value)}>
+          <Label className='form-label' for='select-plan'>
+            Select Plan
+          </Label>
           <Input type='select' id='select-plan' name='select-plan'>
             <option value='basic'>Basic</option>
             <option value='enterprise'>Enterprise</option>
             <option value='company'>Company</option>
             <option value='team'>Team</option>
           </Input>
-        </FormGroup>
-        <Button type='submit' className='mr-1' color='primary'>
+        </div>
+        <Button type='submit' className='me-1' color='primary'>
           Submit
         </Button>
         <Button type='reset' color='secondary' outline onClick={toggleSidebar}>

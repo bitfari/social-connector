@@ -1,40 +1,53 @@
+// ** React Imports
 import { Fragment } from 'react'
+
+// ** Hooks
 import { useRTL } from '@hooks/useRTL'
+
+// ** Third Party Components
 import SwiperCore, {
+  Grid,
+  Lazy,
+  Virtual,
+  Autoplay,
   Navigation,
   Pagination,
   EffectFade,
   EffectCube,
-  EffectCoverflow,
-  Autoplay,
-  Lazy,
-  Virtual
+  EffectCoverflow
 } from 'swiper'
+
+// ** Demo Components
+import SwiperCube from './3DEffect'
+import SwiperRows from './SwiperRows'
+import SwiperFade from './SwiperFade'
+import SwiperLazy from './SwiperLazyload'
+import SwiperGallery from './SwiperGallery'
+import SwiperVirtual from './SwiperVirtual'
 import SwiperDefault from './SwiperDefault'
+import SwiperAutoplay from './SwiperAutoplay'
+import SwiperProgress from './SwiperProgress'
+import SwiperCoverflow from './SwiperCoverflow'
+import SwiperResponsive from './SwiperResponsive'
 import SwiperNavigation from './SwiperNavigation'
 import SwiperPagination from './SwiperPagination'
-import SwiperProgress from './SwiperProgress'
 import SwiperMultiSlides from './SwiperMultiSlides'
-import SwiperRows from './SwiperRows'
 import CenterSlidesStyle1 from './CenteredSlidesStyle1'
 import CenterSlidesStyle2 from './CenteredSlidesStyle2'
-import SwiperFade from './SwiperFade'
-import SwiperCube from './3DEffect'
-import SwiperCoverflow from './SwiperCoverflow'
-import SwiperAutoplay from './SwiperAutoplay'
-import SwiperGallery from './SwiperGallery'
-import SwiperLazy from './SwiperLazyload'
-import SwiperResponsive from './SwiperResponsive'
-import SwiperVirtual from './SwiperVirtual'
 import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
 
+// ** Styles
 import '@styles/react/libs/swiper/swiper.scss'
 
-SwiperCore.use([Navigation, Pagination, EffectFade, EffectCube, EffectCoverflow, Autoplay, Lazy, Virtual])
+// ** Init Swiper Functions
+SwiperCore.use([Navigation, Grid, Pagination, EffectFade, EffectCube, EffectCoverflow, Autoplay, Lazy, Virtual])
 
 const Slider = () => {
-  const [isRtl, setIsRtl] = useRTL()
+  // ** Hooks
+  const [isRtl] = useRTL()
 
   return (
     <Fragment>

@@ -1,4 +1,7 @@
+// ** Third Party Components
 import Nouislider from 'nouislider-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const SliderScalePips = ({ direction }) => {
@@ -9,10 +12,10 @@ const SliderScalePips = ({ direction }) => {
       </CardHeader>
       <CardBody>
         <Nouislider
-          className='mt-1 mb-3'
-          start={10}
           step={10}
+          start={10}
           tooltips={true}
+          className='mt-1 mb-3'
           direction={direction}
           range={{
             min: 0,

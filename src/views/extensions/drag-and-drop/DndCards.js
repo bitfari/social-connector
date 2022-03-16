@@ -1,5 +1,10 @@
+// ** React Imports
 import { useState } from 'react'
+
+// ** Third Party Components
 import { ReactSortable } from 'react-sortablejs'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardBody, CardTitle, CardText, Col } from 'reactstrap'
 
 const dragItems = [
@@ -30,13 +35,14 @@ const dragItems = [
 ]
 
 const DndCards = () => {
+  // ** State
   const [cardsArr, setCardsArr] = useState(dragItems)
 
   return (
     <ReactSortable className='row sortable-row' list={cardsArr} setList={setCardsArr}>
       {cardsArr.map(item => (
         <Col className='draggable' xl='3' md='6' sm='12' key={item.id}>
-          <Card className={`draggable-cards ${item.id !== 4 ? 'mr-1' : null}`}>
+          <Card className={`draggable-cards ${item.id !== 4 ? 'me-1' : null}`}>
             <CardHeader>
               <CardTitle tag='h4'>{item.title}</CardTitle>
             </CardHeader>

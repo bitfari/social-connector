@@ -1,5 +1,10 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
+// ** Third Party Components
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Images
 import img1 from '@src/assets/images/banner/banner-7.jpg'
 import img2 from '@src/assets/images/banner/banner-4.jpg'
 import img3 from '@src/assets/images/banner/banner-14.jpg'
@@ -17,7 +22,7 @@ const SwiperNavigation = ({ isRtl }) => {
         <CardTitle tag='h4'>Navigation</CardTitle>
       </CardHeader>
       <CardBody>
-        <Swiper dir={isRtl ? 'rtl' : 'ltr'} {...params}>
+        <Swiper {...params} dir={isRtl ? 'rtl' : 'ltr'}>
           <SwiperSlide>
             <img src={img1} alt='swiper 1' className='img-fluid' />
           </SwiperSlide>

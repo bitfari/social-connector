@@ -1,85 +1,76 @@
+// ** Third Party Components
+import { Bar } from 'react-chartjs-2'
 import Flatpickr from 'react-flatpickr'
 import { Calendar } from 'react-feather'
-import { HorizontalBar } from 'react-chartjs-2'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardSubtitle } from 'reactstrap'
 
-const ChartjsHorizontalBarChart = ({ tooltipShadow, gridLineColor, labelColor, info }) => {
+const ChartjsHorizontalBarChart = ({ warning, gridLineColor, labelColor, info }) => {
+  // ** Chart Options
   const options = {
-      elements: {
-        rectangle: {
-          borderWidth: 2,
-          borderSkipped: 'right',
-          borderSkipped: 'top'
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 500 },
+    elements: {
+      bar: {
+        borderRadius: {
+          topRight: 15,
+          bottomRight: 15
         }
-      },
-      tooltips: {
-        // Updated default tooltip UI
-        shadowOffsetX: 1,
-        shadowOffsetY: 1,
-        shadowBlur: 8,
-        shadowColor: tooltipShadow,
-        backgroundColor: '#fff',
-        titleFontColor: '#000',
-        bodyFontColor: '#000'
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      responsiveAnimationDuration: 500,
-      legend: {
-        display: false
-      },
-      layout: {
-        padding: {
-          bottom: -30,
-          left: -25
-        }
-      },
-      scales: {
-        xAxes: [
-          {
-            display: true,
-            gridLines: {
-              zeroLineColor: gridLineColor,
-              borderColor: 'transparent',
-              color: gridLineColor,
-              drawTicks: false
-            },
-            scaleLabel: {
-              display: true
-            },
-            ticks: {
-              min: 0,
-              fontColor: labelColor
-            }
-          }
-        ],
-        yAxes: [
-          {
-            display: true,
-            gridLines: {
-              display: false
-            },
-            scaleLabel: {
-              display: true
-            },
-            ticks: {
-              fontColor: labelColor
-            }
-          }
-        ]
       }
     },
-    data = {
-      labels: ['MON', 'TUE', 'WED ', 'THU', 'FRI', 'SAT', 'SUN'],
-      datasets: [
-        {
-          data: [710, 350, 470, 580, 230, 460, 120],
-          backgroundColor: info,
-          borderColor: 'transparent',
-          barThickness: 15
-        }
-      ]
+    layout: {
+      padding: { top: -4 }
+    },
+    scales: {
+      x: {
+        min: 0,
+        grid: {
+          drawTicks: false,
+          color: gridLineColor,
+          borderColor: 'transparent'
+        },
+        ticks: { color: labelColor }
+      },
+      y: {
+        grid: {
+          display: false,
+          borderColor: gridLineColor
+        },
+        ticks: { color: labelColor }
+      }
+    },
+    plugins: {
+      legend: {
+        align: 'end',
+        position: 'top',
+        labels: { color: labelColor }
+      }
     }
+  }
+
+  // ** Chart Data
+  const data = {
+    labels: ['MON', 'TUE', 'WED ', 'THU', 'FRI'],
+    datasets: [
+      {
+        maxBarThickness: 15,
+        label: 'Market Data',
+        backgroundColor: warning,
+        borderColor: 'transparent',
+        data: [710, 350, 580, 460, 120]
+      },
+      {
+        maxBarThickness: 15,
+        backgroundColor: info,
+        label: 'Personal Data',
+        borderColor: 'transparent',
+        data: [430, 590, 510, 240, 360]
+      }
+    ]
+  }
 
   return (
     <Card>
@@ -91,17 +82,18 @@ const ChartjsHorizontalBarChart = ({ tooltipShadow, gridLineColor, labelColor, i
         <div className='d-flex align-items-center'>
           <Calendar size={14} />
           <Flatpickr
+            className='form-control flat-picker bg-transparent border-0 shadow-none'
             options={{
               mode: 'range',
-              defaultDate: ['2019-05-01', '2019-05-10']
+              // eslint-disable-next-line no-mixed-operators
+              defaultDate: [new Date(), new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000)]
             }}
-            className='form-control flat-picker bg-transparent border-0 shadow-none'
           />
         </div>
       </CardHeader>
       <CardBody>
         <div style={{ height: '400px' }}>
-          <HorizontalBar data={data} options={options} height={400} />
+          <Bar data={data} options={options} height={400} />
         </div>
       </CardBody>
     </Card>

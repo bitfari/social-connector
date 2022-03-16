@@ -1,7 +1,14 @@
+// ** React Imports
 import { useState } from 'react'
+
+// ** Third Party Components
 import SwiperCore, { Thumbs } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Images
 import img1 from '@src/assets/images/banner/banner-11.jpg'
 import img2 from '@src/assets/images/banner/banner-12.jpg'
 import img3 from '@src/assets/images/banner/banner-13.jpg'
@@ -28,7 +35,6 @@ const SwiperGallery = ({ isRtl }) => {
     spaceBetween: 10,
     slidesPerView: 4,
     freeMode: true,
-    watchSlidesVisibility: true,
     watchSlidesProgress: true,
     onSwiper: setThumbsSwiper
   }

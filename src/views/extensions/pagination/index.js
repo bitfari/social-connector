@@ -1,16 +1,23 @@
+// ** React Imports
 import { Fragment } from 'react'
-import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
+
+// ** Custom Components
+import ExtensionsHeader from '@components/extensions-header'
+
+// ** Demo Components
+import PaginationIcon from './PaginationIcon'
+import PaginationInfo from './PaginationInfo'
 import BasicPagination from './BasicPagination'
+import PaginationSizes from './PaginationSizes'
+import PaginationDanger from './PaginationDanger'
+import PaginationWarning from './PaginationWarning'
+import PaginationSuccess from './PaginationSuccess'
 import SepratedPagination from './SepratedPagination'
 import PaginationIconText from './PaginationIconText'
-import PaginationIcon from './PaginationIcon'
-import PaginationSuccess from './PaginationSuccess'
-import PaginationDanger from './PaginationDanger'
-import PaginationInfo from './PaginationInfo'
-import PaginationWarning from './PaginationWarning'
 import PaginationPositions from './PaginationPositions'
-import PaginationSizes from './PaginationSizes'
 
 const ReactPaginate = () => {
   return (

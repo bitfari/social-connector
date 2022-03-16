@@ -1,6 +1,13 @@
+// ** React Imports
 import { Fragment } from 'react'
+
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
+
+// ** Custom Hooks
 import { useRTL } from '@hooks/useRTL'
+
+// ** Demo Components
 import SliderColors from './SliderColors'
 import SliderValues from './SliderValues'
 import SliderVertical from './SliderVertical'
@@ -13,10 +20,12 @@ import SliderVerticalLimit from './SliderVerticalLimit'
 import SliderVerticalTooltip from './SliderVerticalTooltips'
 import ExtensionsHeader from '@components/extensions-header'
 
+// ** Styles
 import '@styles/react/libs/noui-slider/noui-slider.scss'
 
 const Slider = () => {
-  const [isRtl, setIsRtl] = useRTL()
+  // ** Hooks
+  const [isRtl] = useRTL()
 
   return (
     <Fragment>

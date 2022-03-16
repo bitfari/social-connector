@@ -1,8 +1,12 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
-import { Calendar } from 'react-feather'
+
+// ** Third Party Components
 import Flatpickr from 'react-flatpickr'
+import { Calendar } from 'react-feather'
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts'
 
+// ** Chart Data
 const angularData = [
   { x: 5.4, y: 170 },
   { x: 5.4, y: 100 },
@@ -59,27 +63,28 @@ const SimpleScatterChart = ({ primary, success, danger }) => {
         <div className='d-flex align-items-center'>
           <Calendar size={15} />
           <Flatpickr
+            className='form-control flat-picker bg-transparent border-0 shadow-none'
             options={{
               mode: 'range',
-              defaultDate: ['2019-05-01', '2019-05-10']
+              // eslint-disable-next-line no-mixed-operators
+              defaultDate: [new Date(), new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000)]
             }}
-            className='form-control flat-picker bg-transparent border-0 shadow-none'
           />
         </div>
       </CardHeader>
 
       <CardBody>
         <div className='d-flex align-items-center mb-2'>
-          <div className='mr-2'>
-            <span className='bullet bullet-sm bullet-primary bullet-bordered mr-50'></span>
-            <span className='align-middle mr-75'>React</span>
+          <div className='me-2'>
+            <span className='bullet bullet-sm bullet-primary bullet-bordered me-50'></span>
+            <span className='align-middle me-75'>React</span>
           </div>
-          <div className='mr-2'>
-            <span className='bullet bullet-sm bullet-success bullet-bordered mr-50'></span>
-            <span className='align-middle mr-75'>Vue</span>
+          <div className='me-2'>
+            <span className='bullet bullet-sm bullet-success bullet-bordered me-50'></span>
+            <span className='align-middle me-75'>Vue</span>
           </div>
           <div>
-            <span className='bullet bullet-sm bullet-danger bullet-bordered mr-50'></span>
+            <span className='bullet bullet-sm bullet-danger bullet-bordered me-50'></span>
             <span className='align-middle'>Angular</span>
           </div>
         </div>

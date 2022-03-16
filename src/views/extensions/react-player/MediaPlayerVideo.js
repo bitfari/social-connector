@@ -1,4 +1,7 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Third Party Components
 import ReactPlayer from 'react-player'
 
 const MediaPlayerVideo = () => {
@@ -9,10 +12,10 @@ const MediaPlayerVideo = () => {
       </CardHeader>
       <CardBody>
         <ReactPlayer
-          url='http://youtube.com/watch?v=FCPdIvXo2rU'
-          className='react-player-video'
           width='100%'
           controls={true}
+          className='react-player-video'
+          url='http://youtube.com/watch?v=FCPdIvXo2rU'
         />
       </CardBody>
     </Card>

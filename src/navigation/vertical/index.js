@@ -1,12 +1,13 @@
-// ** Navigation sections imports
+// ** Navigation imports
+import dashboards from './dashboards'
 import apps from './apps'
 import pages from './pages'
-import forms from './forms'
-import tables from './tables'
+import publish from './publish'
+import billboards from './billboards'
+import tools from './tools'
+import screens from './screens'
 import others from './others'
-import dashboards from './dashboards'
-import uiElements from './ui-elements'
-import chartsAndMaps from './charts-maps'
+import help from './help'
 
 // ** Merge & Export
-export default [...dashboards, ...apps, ...pages, ...others]
+export default [...dashboards, ...apps, ...publish, ...screens, ...billboards, ...tools, ...pages, ...others, ...help]

@@ -2,26 +2,26 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
-// ** Third Party Components
-import { Card, CardBody, Button, Input, CustomInput, Label } from 'reactstrap'
+// ** Reactstrap Imports
+import { Card, CardBody, Button, Input } from 'reactstrap'
 
-const EditActions = ({ setSendSidebarOpen, setAddPaymentOpen }) => {
+const EditActions = ({ id, setSendSidebarOpen, setAddPaymentOpen }) => {
   return (
     <Fragment>
       <Card className='invoice-action-wrapper'>
         <CardBody>
-          <Button.Ripple color='primary' block className='mb-75' onClick={() => setSendSidebarOpen(true)}>
+          <Button color='primary' block className='mb-75' onClick={() => setSendSidebarOpen(true)}>
             Send Invoice
-          </Button.Ripple>
-          <Button.Ripple tag={Link} to='/apps/invoice/preview' color='primary' block outline className='mb-75'>
+          </Button>
+          <Button tag={Link} to={`/apps/invoice/preview/${id}`} color='primary' block outline className='mb-75'>
             Preview
-          </Button.Ripple>
-          <Button.Ripple color='primary' block outline className='mb-75'>
+          </Button>
+          <Button color='primary' block outline className='mb-75'>
             Save
-          </Button.Ripple>
-          <Button.Ripple color='success' block onClick={() => setAddPaymentOpen(true)}>
+          </Button>
+          <Button color='success' block onClick={() => setAddPaymentOpen(true)}>
             Add Payment
-          </Button.Ripple>
+          </Button>
         </CardBody>
       </Card>
       <div className='mt-2'>
@@ -37,22 +37,28 @@ const EditActions = ({ setSendSidebarOpen, setAddPaymentOpen }) => {
         </div>
         <div className='invoice-terms mt-1'>
           <div className='d-flex justify-content-between'>
-            <Label className='mb-0' for='payment-terms'>
+            <label className='cursor-pointer mb-0' htmlFor='payment-terms'>
               Payment Terms
-            </Label>
-            <CustomInput type='switch' id='payment-terms' defaultChecked />
+            </label>
+            <div className='form-switch'>
+              <Input type='switch' id='payment-terms' defaultChecked />
+            </div>
           </div>
           <div className='d-flex justify-content-between py-1'>
-            <Label className='mb-0' for='client-notes'>
+            <label className='cursor-pointer mb-0' htmlFor='client-notes'>
               Client Notes
-            </Label>
-            <CustomInput type='switch' id='client-notes' defaultChecked />
+            </label>
+            <div className='form-switch'>
+              <Input type='switch' id='client-notes' defaultChecked />
+            </div>
           </div>
           <div className='d-flex justify-content-between'>
-            <Label className='mb-0' for='payment-stub'>
+            <label className='cursor-pointer mb-0' htmlFor='payment-stub'>
               Payment Stub
-            </Label>
-            <CustomInput type='switch' id='payment-stub' />
+            </label>
+            <div className='form-switch'>
+              <Input type='switch' id='payment-stub' />
+            </div>
           </div>
         </div>
       </div>

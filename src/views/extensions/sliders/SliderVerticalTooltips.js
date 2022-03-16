@@ -1,5 +1,8 @@
-import Nouislider from 'nouislider-react'
+// ** Third Party Components
 import wNumb from 'wnumb'
+import Nouislider from 'nouislider-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const SliderTooltips = ({ direction }) => {

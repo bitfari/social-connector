@@ -11,23 +11,10 @@ import Flatpickr from 'react-flatpickr'
 import { SlideDown } from 'react-slidedown'
 import { X, Plus, Hash } from 'react-feather'
 import Select, { components } from 'react-select'
+
+// ** Reactstrap Imports
 import { selectThemeColors } from '@utils'
-import {
-  Card,
-  CardBody,
-  CardText,
-  Row,
-  Col,
-  Form,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  FormGroup,
-  Label,
-  Button,
-  UncontrolledTooltip
-} from 'reactstrap'
+import { Row, Col, Card, Form, Input, Label, Button, CardBody, CardText, InputGroup, InputGroupText } from 'reactstrap'
 
 // ** Styles
 import 'react-slidedown/lib/slidedown.css'
@@ -66,10 +53,12 @@ const AddCard = () => {
     // ** Get Invoices & Set Invoice Number
     axios
       .get('/apps/invoice/invoices', {
+        q: '',
         page: 1,
-        perPage: 10,
         status: '',
-        q: ''
+        sort: 'asc',
+        perPage: 10,
+        sortColumn: 'id'
       })
       .then(response => {
         const lastInvoiceNumber = Math.max.apply(
@@ -107,8 +96,9 @@ const AddCard = () => {
   const OptionComponent = ({ data, ...props }) => {
     if (data.type === 'button') {
       return (
-        <Button className='text-left rounded-0' color={data.color} block onClick={() => setOpen(true)}>
-          <Plus size={14} /> <span className='align-middle ml-50'>{data.label}</span>
+        <Button className='text-start rounded-0 px-50' color={data.color} block onClick={() => setOpen(true)}>
+          <Plus className='font-medium-1 me-50' />
+          <span className='align-middle'>{data.label}</span>
         </Button>
       )
     } else {
@@ -127,7 +117,7 @@ const AddCard = () => {
 
   return (
     <Fragment>
-      <Card className='invoice-preview-card mb-0'>
+      <Card className='invoice-preview-card'>
         {/* Header */}
         <CardBody className='invoice-padding pb-0'>
           <div className='d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0'>
@@ -182,7 +172,7 @@ const AddCard = () => {
                     </g>
                   </g>
                 </svg>
-                <h3 className='text-primary invoice-logo'>Vuexy</h3>
+                <h3 className='text-primary invoice-logo'>Bitfari</h3>
               </div>
               <p className='card-text mb-25'>Office 149, 450 South Brand Brooklyn</p>
               <p className='card-text mb-25'>San Diego County, CA 91905, USA</p>
@@ -192,11 +182,9 @@ const AddCard = () => {
               <div className='d-flex align-items-center justify-content-md-end mb-1'>
                 <h4 className='invoice-title'>Invoice</h4>
                 <InputGroup className='input-group-merge invoice-edit-input-group disabled'>
-                  <InputGroupAddon addonType='prepend'>
-                    <InputGroupText>
-                      <Hash size={15} />
-                    </InputGroupText>
-                  </InputGroupAddon>
+                  <InputGroupText>
+                    <Hash size={15} />
+                  </InputGroupText>
                   <Input
                     type='number'
                     className='invoice-edit-input'
@@ -232,7 +220,7 @@ const AddCard = () => {
         {/* Address and Contact */}
         <CardBody className='invoice-padding pt-0'>
           <Row className='row-bill-to invoice-spacing'>
-            <Col className='col-bill-to pl-0' lg='8'>
+            <Col className='col-bill-to ps-0' xl='8'>
               <h6 className='invoice-to-title'>Invoice To:</h6>
               <div className='invoice-customer'>
                 {clients !== null ? (
@@ -263,30 +251,30 @@ const AddCard = () => {
                 ) : null}
               </div>
             </Col>
-            <Col className='pr-0 mt-xl-0 mt-2' lg='4'>
+            <Col className='pe-0 mt-xl-0 mt-2' xl='4'>
               <h6 className='mb-2'>Payment Details:</h6>
               <table>
                 <tbody>
                   <tr>
-                    <td className='pr-1'>Total Due:</td>
+                    <td className='pe-1'>Total Due:</td>
                     <td>
-                      <span className='font-weight-bolder'>$12,110.55</span>
+                      <span className='fw-bolder'>$12,110.55</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className='pr-1'>Bank name:</td>
+                    <td className='pe-1'>Bank name:</td>
                     <td>American Bank</td>
                   </tr>
                   <tr>
-                    <td className='pr-1'>Country:</td>
+                    <td className='pe-1'>Country:</td>
                     <td>United States</td>
                   </tr>
                   <tr>
-                    <td className='pr-1'>IBAN:</td>
+                    <td className='pe-1'>IBAN:</td>
                     <td>ETD95476213874685</td>
                   </tr>
                   <tr>
-                    <td className='pr-1'>SWIFT code:</td>
+                    <td className='pe-1'>SWIFT code:</td>
                     <td>BR91905</td>
                   </tr>
                 </tbody>
@@ -304,8 +292,8 @@ const AddCard = () => {
               return (
                 <Tag key={i} className='repeater-wrapper'>
                   <Row>
-                    <Col className='d-flex product-details-border position-relative pr-0' sm='12'>
-                      <Row className='w-100 pr-lg-0 pr-1 py-2'>
+                    <Col className='d-flex product-details-border position-relative pe-0' sm='12'>
+                      <Row className='w-100 pe-lg-0 pe-1 py-2'>
                         <Col className='mb-lg-0 mb-2 mt-lg-0 mt-2' lg='5' sm='12'>
                           <CardText className='col-title mb-md-50 mb-0'>Item</CardText>
                           <Input type='select' className='item-details'>
@@ -321,14 +309,6 @@ const AddCard = () => {
                           <Input type='number' defaultValue='24' placeholder='24' />
                           <div className='mt-2'>
                             <span>Discount:</span> <span>0%</span>
-                            <span id={`tax1-${i}`} className='ml-50'>
-                              0%
-                            </span>
-                            <span id={`tax2-${i}`} className='ml-50'>
-                              0%
-                            </span>
-                            <UncontrolledTooltip target={`tax1-${i}`}>Tax 1</UncontrolledTooltip>
-                            <UncontrolledTooltip target={`tax2-${i}`}>Tax 2</UncontrolledTooltip>
                           </div>
                         </Col>
                         <Col className='my-lg-0 my-2' lg='2' sm='12'>
@@ -340,7 +320,7 @@ const AddCard = () => {
                           <CardText className='mb-0'>$24.00</CardText>
                         </Col>
                       </Row>
-                      <div className='d-flex flex-column align-items-center justify-content-start border-left invoice-product-actions py-50 px-25'>
+                      <div className='d-flex justify-content-center border-start invoice-product-actions py-50 px-25'>
                         <X size={18} className='cursor-pointer' onClick={deleteForm} />
                       </div>
                     </Col>
@@ -351,10 +331,9 @@ const AddCard = () => {
           </Repeater>
           <Row className='mt-1'>
             <Col sm='12' className='px-0'>
-              <Button.Ripple color='primary' size='sm' className='btn-add-new' onClick={() => setCount(count + 1)}>
-                <Plus size={14} className='mr-25'></Plus>
-                <span className='align-middle'>Add Item</span>
-              </Button.Ripple>
+              <Button color='primary' size='sm' className='btn-add-new' onClick={() => setCount(count + 1)}>
+                <Plus size={14} className='me-25'></Plus> <span className='align-middle'>Add Item</span>
+              </Button>
             </Col>
           </Row>
         </CardBody>
@@ -369,7 +348,7 @@ const AddCard = () => {
                 <Label for='salesperson' className='form-label'>
                   Salesperson:
                 </Label>
-                <Input type='text' className='ml-50' id='salesperson' placeholder='Edward Crowley' />
+                <Input type='text' className='ms-50' id='salesperson' placeholder='Edward Crowley' />
               </div>
             </Col>
             <Col className='d-flex justify-content-end' md={{ size: '6', order: 2 }} xs={{ size: 12, order: 1 }}>
@@ -403,12 +382,12 @@ const AddCard = () => {
         <CardBody className='invoice-padding py-0'>
           <Row>
             <Col>
-              <FormGroup className='mb-2'>
-                <Label for='note' className='form-label font-weight-bold'>
+              <div className='mb-2'>
+                <Label for='note' className='form-label fw-bold'>
                   Note:
                 </Label>
                 <Input type='textarea' rows='2' id='note' defaultValue={note} />
-              </FormGroup>
+              </div>
             </Col>
           </Row>
         </CardBody>
@@ -424,25 +403,25 @@ const AddCard = () => {
         toggleSidebar={toggleSidebar}
       >
         <Form>
-          <FormGroup>
+          <div className='mb-2'>
             <Label for='customer-name' className='form-label'>
               Customer Name
             </Label>
             <Input id='customer-name' placeholder='John Doe' />
-          </FormGroup>
-          <FormGroup>
+          </div>
+          <div className='mb-2'>
             <Label for='customer-email' className='form-label'>
               Customer Email
             </Label>
             <Input type='email' id='customer-email' placeholder='example@domain.com' />
-          </FormGroup>
-          <FormGroup>
+          </div>
+          <div className='mb-2'>
             <Label for='customer-address' className='form-label'>
               Customer Address
             </Label>
             <Input type='textarea' cols='2' rows='2' id='customer-address' placeholder='1307 Lady Bug Drive New York' />
-          </FormGroup>
-          <FormGroup>
+          </div>
+          <div className='mb-2'>
             <Label for='country' className='form-label'>
               Country
             </Label>
@@ -453,21 +432,21 @@ const AddCard = () => {
               options={countryOptions}
               isClearable={false}
             />
-          </FormGroup>
-          <FormGroup>
+          </div>
+          <div className='mb-2'>
             <Label for='customer-contact' className='form-label'>
               Contact
             </Label>
             <Input type='number' id='customer-contact' placeholder='763-242-9206' />
-          </FormGroup>
-          <FormGroup className='d-flex flex-wrap mt-2'>
-            <Button className='mr-1' color='primary' onClick={() => setOpen(false)}>
+          </div>
+          <div className='d-flex flex-wrap my-2'>
+            <Button className='me-1' color='primary' onClick={() => setOpen(false)}>
               Add
             </Button>
             <Button color='secondary' onClick={() => setOpen(false)} outline>
               Cancel
             </Button>
-          </FormGroup>
+          </div>
         </Form>
       </Sidebar>
     </Fragment>

@@ -1,9 +1,16 @@
+// ** React Imports
 import { Fragment, useState } from 'react'
-import { toast } from 'react-toastify'
+
+// ** Third Party Components
 import { Check } from 'react-feather'
-import Avatar from '@components/avatar'
+import { toast } from 'react-toastify'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+
+// ** Custom Components
+import Avatar from '@components/avatar'
 import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import { Row, Col, Card, CardHeader, CardTitle, CardBody, Button, Input } from 'reactstrap'
 
 const ToastSuccess = () => (
@@ -17,20 +24,22 @@ const ToastSuccess = () => (
   </Fragment>
 )
 
-/*eslint-disable */
 const Clipboard = () => {
+  // ** State
   const [value, setValue] = useState('Copy Me!')
   const [copied, setCopied] = useState(false)
-  /*eslint-enable */
 
   const handleCopy = ({ target: { value } }) => {
     setValue(value)
-    setCopied(false)
+    if (copied) {
+      setCopied(false)
+    }
   }
 
   const onCopy = () => {
     setCopied(true)
     toast.success(<ToastSuccess />, {
+      icon: false,
       autoClose: 3000,
       hideProgressBar: true,
       closeButton: false
@@ -52,14 +61,14 @@ const Clipboard = () => {
             </CardHeader>
             <CardBody>
               <Row>
-                <Col xl='3' md='4' sm='6' className='pr-sm-0 mb-md-0 mb-1'>
+                <Col xl='3' md='4' sm='6' className='pe-sm-0 mb-md-0 mb-1'>
                   <Input value={value} onChange={handleCopy} />
                 </Col>
                 <Col md='2' sm='12'>
                   <CopyToClipboard onCopy={onCopy} text={value}>
-                    <Button.Ripple color='primary' outline>
+                    <Button color='primary' outline>
                       Copy!
-                    </Button.Ripple>
+                    </Button>
                   </CopyToClipboard>
                 </Col>
               </Row>

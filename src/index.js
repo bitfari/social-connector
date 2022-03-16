@@ -1,17 +1,23 @@
 // ** React Imports
-import { Suspense, lazy } from 'react'
+import React, { Suspense} from 'react'
 import ReactDOM from 'react-dom'
+import { Signin } from './components/Signin'
+import { Header } from './components/Header'
+import { Session } from './auth'
+ 
+// ** Router Import
+import Router from './router/Router'
 
 // ** Redux Imports
 import { Provider } from 'react-redux'
-import { store } from './redux/storeConfig/store'
+import { store } from './redux/store'
 
 // ** Intl, CASL & ThemeColors Context
-import ability from './configs/acl/ability'
 import { ToastContainer } from 'react-toastify'
-import { AbilityContext } from './utility/context/Can'
 import { ThemeContext } from './utility/context/ThemeColors'
-import { IntlProviderWrapper } from './utility/context/Internationalization'
+
+// ** i18n
+import './configs/i18n'
 
 // ** Spinner (Splash Screen)
 import Spinner from './@core/components/spinner/Fallback-spinner'
@@ -19,8 +25,8 @@ import Spinner from './@core/components/spinner/Fallback-spinner'
 // ** Ripple Button
 import './@core/components/ripple-button'
 
-// ** Base Options
-import './@fake-db'
+// ** Local Database
+import './@local-db'
 
 // ** PrismJS
 import 'prismjs'
@@ -40,27 +46,25 @@ import './assets/scss/style.scss'
 
 // ** Service Worker
 import * as serviceWorker from './serviceWorker'
+ 
+  function Display(props) {
+    const isLoggedIn = props.isLoggedIn
+    if (isLoggedIn) {
+     return <Router />
+    }
+     return <Signin />
+  }
 
-// ** Lazy load app
-const LazyApp = lazy(() => import('./App'))
-
-ReactDOM.render(
+  ReactDOM.render(
   <Provider store={store}>
     <Suspense fallback={<Spinner />}>
-      <AbilityContext.Provider value={ability}>
-        <ThemeContext>
-          <IntlProviderWrapper>
-            <LazyApp />
-            <ToastContainer newestOnTop />
-          </IntlProviderWrapper>
+          <ThemeContext>
+          <Display isLoggedIn = {Session.isUserSignedIn()}/>
+          <Header />
+          <ToastContainer newestOnTop />
         </ThemeContext>
-      </AbilityContext.Provider>
     </Suspense>
   </Provider>,
   document.getElementById('root')
 )
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister()

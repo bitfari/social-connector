@@ -2,7 +2,7 @@
 import AddCard from './AddCard'
 import AddActions from './AddActions'
 
-// ** Third Party Components
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
 
 // ** Styles

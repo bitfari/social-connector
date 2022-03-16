@@ -1,6 +1,8 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
-import ReactPaginate from 'react-paginate'
 
+// ** Third Party Components
+import ReactPaginate from 'react-paginate'
 const PaginationDanger = () => {
   return (
     <Card>
@@ -9,22 +11,22 @@ const PaginationDanger = () => {
       </CardHeader>
       <CardBody>
         <ReactPaginate
+          nextLabel=''
           pageCount={10}
-          nextLabel={''}
-          breakLabel={'...'}
+          breakLabel='...'
+          previousLabel=''
           pageRangeDisplayed={5}
           marginPagesDisplayed={2}
-          activeClassName={'active'}
-          pageClassName={'page-item'}
-          previousLabel={''}
+          activeClassName='active'
+          pageClassName='page-item'
           breakClassName='page-item'
+          pageLinkClassName='page-link'
+          nextLinkClassName='page-link'
           breakLinkClassName='page-link'
-          nextLinkClassName={'page-link'}
-          nextClassName={'page-item next'}
-          previousClassName={'page-item prev'}
-          previousLinkClassName={'page-link'}
-          pageLinkClassName={'page-link'}
-          containerClassName={'pagination react-paginate pagination-danger'}
+          nextClassName='page-item next'
+          previousLinkClassName='page-link'
+          previousClassName='page-item prev'
+          containerClassName='pagination react-paginate pagination-danger'
         />
       </CardBody>
     </Card>

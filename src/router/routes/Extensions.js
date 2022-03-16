@@ -38,14 +38,6 @@ const ExtensionsRoutes = [
     component: lazy(() => import('../../views/extensions/swiper'))
   },
   {
-    path: '/access-control',
-    component: lazy(() => import('../../views/extensions/access-control')),
-    meta: {
-      action: 'read',
-      resource: 'ACL'
-    }
-  },
-  {
     path: '/extensions/ratings',
     component: lazy(() => import('../../views/extensions/ratings'))
   },

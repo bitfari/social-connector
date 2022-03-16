@@ -1,6 +1,11 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardBody, CardTitle, Button } from 'reactstrap'
+
+// ** Third Party Components
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+
+// ** Images
 import alertImg from '@src/assets/images/slider/04.jpg'
 
 const MySwal = withReactContent(Swal)
@@ -11,7 +16,7 @@ const SweetAlertOptions = () => {
       title: 'Sweet!',
       text: 'Modal with a custom image.',
       imageUrl: alertImg,
-      imageWidth: 400,
+      imageWidth: 300,
       imageHeight: 200,
       imageAlt: 'Custom image',
       customClass: { confirmButton: 'btn btn-primary' },
@@ -23,15 +28,17 @@ const SweetAlertOptions = () => {
     let timerInterval
     Swal.fire({
       title: 'Auto close alert!',
-      html: 'I will close in <strong></strong> seconds.',
+      html: 'I will close in <b></b> seconds.',
+      timerProgressBar: true,
       timer: 2000,
-      onBeforeOpen() {
+      didOpen() {
         Swal.showLoading()
-        timerInterval = setInterval(function () {
-          Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()
         }, 100)
       },
-      onClose() {
+      willClose() {
         clearInterval(timerInterval)
       }
     }).then(function (result) {
@@ -43,6 +50,7 @@ const SweetAlertOptions = () => {
 
   const handleClickOutside = () => {
     return MySwal.fire({
+      backdrop: true,
       title: 'Click outside to close!',
       text: 'This is a cool message!',
       allowOutsideClick: true,
@@ -51,38 +59,14 @@ const SweetAlertOptions = () => {
     })
   }
 
-  const handleQuestions = () => {
-    return MySwal.mixin({
-      input: 'text',
-      confirmButtonText: 'Next &rarr;',
-      showCancelButton: true,
-      progressSteps: ['1', '2', '3'],
-      buttonsStyling: false,
-      customClass: {
-        confirmButton: 'btn btn-primary',
-        cancelButton: 'btn btn-danger ml-1'
-      }
-    })
-      .queue(['Question 1', 'Question 2', 'Question 3'])
-      .then(function (result) {
-        if (result.value) {
-          MySwal.fire({
-            title: 'All done!',
-            html: `Your answers: <pre><code>${JSON.stringify(result.value)}</code></pre>`,
-            confirmButtonText: 'Lovely!',
-            customClass: { confirmButton: 'btn btn-primary' }
-          })
-        }
-      })
-  }
-
   const handleAjax = () => {
     MySwal.fire({
       title: 'Search for a user',
       input: 'text',
       customClass: {
+        input: 'mx-3',
         confirmButton: 'btn btn-primary',
-        cancelButton: 'btn btn-danger ml-1'
+        cancelButton: 'btn btn-danger ms-1'
       },
       buttonsStyling: false,
       inputAttributes: {
@@ -131,9 +115,6 @@ const SweetAlertOptions = () => {
           </Button>
           <Button color='primary' onClick={handleClickOutside} outline>
             Click Outside
-          </Button>
-          <Button color='primary' onClick={handleQuestions} outline>
-            Question
           </Button>
           <Button color='primary' onClick={handleAjax} outline>
             Ajax

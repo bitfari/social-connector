@@ -1,4 +1,5 @@
-import { Type, Droplet, Eye, CreditCard, Circle, Briefcase, Box, Layout } from 'react-feather'
+// ** Icons Import
+import { Type, Eye, CreditCard, Circle, Briefcase, Box, Layout } from 'react-feather'
 
 export default [
   {
@@ -9,12 +10,6 @@ export default [
     title: 'Typography',
     icon: <Type size={12} />,
     navLink: '/ui-element/typography'
-  },
-  {
-    id: 'colors',
-    title: 'Colors',
-    icon: <Droplet size={20} />,
-    navLink: '/colors/colors'
   },
   {
     id: 'feather',
@@ -67,6 +62,12 @@ export default [
     icon: <Briefcase size={20} />,
     children: [
       {
+        id: 'accordion',
+        title: 'Accordion',
+        icon: <Circle size={12} />,
+        navLink: '/components/accordion'
+      },
+      {
         id: 'alerts',
         title: 'Alerts',
         icon: <Circle size={12} />,
@@ -109,12 +110,6 @@ export default [
         navLink: '/components/buttons'
       },
       {
-        id: 'carousel',
-        title: 'Carousel',
-        icon: <Circle size={12} />,
-        navLink: '/components/carousel'
-      },
-      {
         id: 'collapse',
         title: 'Collapse',
         icon: <Circle size={12} />,
@@ -139,12 +134,6 @@ export default [
         navLink: '/components/list-group'
       },
       {
-        id: 'mediaObjects',
-        title: 'Media Objects',
-        icon: <Circle size={12} />,
-        navLink: '/components/media-objects'
-      },
-      {
         id: 'modals',
         title: 'Modals',
         icon: <Circle size={12} />,
@@ -155,6 +144,12 @@ export default [
         title: 'Navs Component',
         icon: <Circle size={12} />,
         navLink: '/components/nav-component'
+      },
+      {
+        id: 'offCanvas',
+        title: 'OffCanvas',
+        icon: <Circle size={12} />,
+        navLink: '/components/offcanvas'
       },
       {
         id: 'pagination',

@@ -4,6 +4,8 @@ import { useParams, Link } from 'react-router-dom'
 
 // ** Third Party Components
 import axios from 'axios'
+
+// ** Reactstrap Imports
 import { Alert, Row, Col } from 'reactstrap'
 
 // ** Invoice Edit Components
@@ -13,7 +15,7 @@ import SendInvoiceSidebar from '../shared-sidebar/SidebarSendInvoice'
 import AddPaymentSidebar from '../shared-sidebar/SidebarAddPayment'
 
 const InvoiceEdit = () => {
-  // ** Vars
+  // ** Hooks
   const { id } = useParams()
 
   // ** States
@@ -39,7 +41,7 @@ const InvoiceEdit = () => {
           <EditCard data={data} />
         </Col>
         <Col xl={3} md={4} sm={12}>
-          <EditActions setSendSidebarOpen={setSendSidebarOpen} setAddPaymentOpen={setAddPaymentOpen} />
+          <EditActions id={id} setSendSidebarOpen={setSendSidebarOpen} setAddPaymentOpen={setAddPaymentOpen} />
         </Col>
       </Row>
       <SendInvoiceSidebar toggleSidebar={toggleSendSidebar} open={sendSidebarOpen} />
@@ -49,7 +51,8 @@ const InvoiceEdit = () => {
     <Alert color='danger'>
       <h4 className='alert-heading'>Invoice not found</h4>
       <div className='alert-body'>
-        Invoice with id: {id} doesn't exist. Check list of all invoices: <Link to='/invoice/list'>Invoice List</Link>
+        Invoice with id: {id} doesn't exist. Check list of all invoices:{' '}
+        <Link to='/apps/invoice/list'>Invoice List</Link>
       </div>
     </Alert>
   )

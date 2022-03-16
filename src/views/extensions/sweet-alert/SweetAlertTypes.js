@@ -1,4 +1,7 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardBody, CardTitle, Button, CardText } from 'reactstrap'
+
+// ** Third Party Components
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -53,6 +56,18 @@ const SweetAlertTypes = () => {
     })
   }
 
+  const handleQuestion = () => {
+    return MySwal.fire({
+      title: 'Question?',
+      text: ' You clicked the button!',
+      icon: 'question',
+      customClass: {
+        confirmButton: 'btn btn-primary'
+      },
+      buttonsStyling: false
+    })
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -75,6 +90,9 @@ const SweetAlertTypes = () => {
           </Button>
           <Button color='info' onClick={handleInfo} outline>
             Info
+          </Button>
+          <Button onClick={handleQuestion} outline>
+            Question
           </Button>
         </div>
       </CardBody>

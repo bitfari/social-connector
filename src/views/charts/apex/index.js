@@ -1,7 +1,7 @@
 // ** React Imports
 import { Fragment, useContext } from 'react'
 
-// ** Third Party Components
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
 
 // ** Custom Hooks
@@ -31,7 +31,7 @@ import '@styles/react/libs/flatpickr/flatpickr.scss'
 
 const ApexCharts = () => {
   // ** Hooks
-  const [isRtl, setIsRtl] = useRTL()
+  const [isRtl] = useRTL()
 
   // ** Theme Colors
   const { colors } = useContext(ThemeColors)

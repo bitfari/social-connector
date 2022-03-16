@@ -1,4 +1,7 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, Row, Col } from 'reactstrap'
+
+// ** Third Party Components
 import ReactPaginate from 'react-paginate'
 
 const PaginationSizes = () => {
@@ -11,56 +14,56 @@ const PaginationSizes = () => {
         <Row>
           <Col lg='4' sm='12'>
             <ReactPaginate
+              nextLabel=''
               pageCount={5}
-              nextLabel={''}
-              breakLabel={'...'}
-              activeClassName={'active'}
-              pageClassName={'page-item'}
-              previousLabel={''}
-              nextLinkClassName={'page-link'}
-              nextClassName={'page-item next'}
-              previousClassName={'page-item prev'}
-              previousLinkClassName={'page-link'}
-              pageLinkClassName={'page-link'}
+              breakLabel='...'
+              previousLabel=''
+              activeClassName='active'
+              pageClassName='page-item'
               breakClassName='page-item'
+              nextLinkClassName='page-link'
+              pageLinkClassName='page-link'
+              nextClassName='page-item next'
               breakLinkClassName='page-link'
-              containerClassName={'pagination react-paginate pagination-lg'}
+              previousLinkClassName='page-link'
+              previousClassName='page-item prev'
+              containerClassName='pagination react-paginate pagination-lg'
             />
           </Col>
           <Col lg='4' sm='12'>
             <ReactPaginate
+              nextLabel=''
               pageCount={5}
-              nextLabel={''}
-              breakLabel={'...'}
-              activeClassName={'active'}
-              pageClassName={'page-item'}
-              previousLabel={''}
-              nextLinkClassName={'page-link'}
-              nextClassName={'page-item next'}
-              previousClassName={'page-item prev'}
-              previousLinkClassName={'page-link'}
-              pageLinkClassName={'page-link'}
+              breakLabel='...'
+              previousLabel=''
+              activeClassName='active'
+              pageClassName='page-item'
               breakClassName='page-item'
+              nextLinkClassName='page-link'
+              pageLinkClassName='page-link'
               breakLinkClassName='page-link'
-              containerClassName={'pagination react-paginate'}
+              nextClassName='page-item next'
+              previousLinkClassName='page-link'
+              previousClassName='page-item prev'
+              containerClassName='pagination react-paginate'
             />
           </Col>
           <Col lg='4' sm='12'>
             <ReactPaginate
+              nextLabel=''
               pageCount={5}
-              nextLabel={''}
-              breakLabel={'...'}
-              activeClassName={'active'}
-              pageClassName={'page-item'}
-              previousLabel={''}
-              nextLinkClassName={'page-link'}
-              nextClassName={'page-item next'}
-              previousClassName={'page-item prev'}
-              previousLinkClassName={'page-link'}
-              pageLinkClassName={'page-link'}
+              breakLabel='...'
+              previousLabel=''
+              activeClassName='active'
+              pageClassName='page-item'
               breakClassName='page-item'
+              nextLinkClassName='page-link'
+              pageLinkClassName='page-link'
               breakLinkClassName='page-link'
-              containerClassName={'pagination react-paginate pagination-sm'}
+              nextClassName='page-item next'
+              previousLinkClassName='page-link'
+              previousClassName='page-item prev'
+              containerClassName='pagination react-paginate pagination-sm'
             />
           </Col>
         </Row>

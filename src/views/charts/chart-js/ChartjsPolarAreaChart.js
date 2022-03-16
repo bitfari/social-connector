@@ -1,5 +1,8 @@
-import { Polar } from 'react-chartjs-2'
+// ** Third Party Components
+import { PolarArea } from 'react-chartjs-2'
 import { MoreVertical } from 'react-feather'
+
+// ** Reactstrap Imports
 import {
   Card,
   CardHeader,
@@ -11,79 +14,52 @@ import {
   DropdownItem
 } from 'reactstrap'
 
-const ChartjsPolarAreaChart = ({
-  primary,
-  labelColor,
-  primaryColorShade,
-  warningColorShade,
-  infoColorShade,
-  greyColor,
-  successColorShade,
-  tooltipShadow
-}) => {
+const ChartjsPolarAreaChart = props => {
+  // ** Props
+  const { primary, greyColor, labelColor, yellowColor, infoColorShade, warningColorShade, successColorShade } = props
+
+  // ** Chart Options
   const options = {
-      responsive: true,
-      maintainAspectRatio: false,
-      responsiveAnimationDuration: 500,
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 500 },
+    layout: {
+      padding: {
+        top: -5,
+        bottom: -45
+      }
+    },
+    scales: {
+      r: {
+        grid: { display: false },
+        ticks: { display: false }
+      }
+    },
+    plugins: {
       legend: {
         position: 'right',
         labels: {
-          usePointStyle: true,
           padding: 25,
           boxWidth: 9,
-          fontColor: labelColor
+          color: labelColor,
+          usePointStyle: true
         }
-      },
-      layout: {
-        padding: {
-          top: -5,
-          bottom: -45
-        }
-      },
-      tooltips: {
-        // Updated default tooltip UI
-        shadowOffsetX: 1,
-        shadowOffsetY: 1,
-        shadowBlur: 8,
-        shadowColor: tooltipShadow,
-        backgroundColor: '#fff',
-        titleFontColor: '#000',
-        bodyFontColor: '#000'
-      },
-      scale: {
-        scaleShowLine: true,
-        scaleLineWidth: 1,
-        ticks: {
-          display: false,
-          fontColor: labelColor
-        },
-        reverse: false,
-        gridLines: {
-          display: false
-        }
-      },
-      animation: {
-        animateRotate: false
       }
-    },
-    data = {
-      labels: ['Africa', 'Asia', 'Europe', 'America', 'Antarctica', 'Australia'],
-      datasets: [
-        {
-          label: 'Population (millions)',
-          backgroundColor: [
-            primaryColorShade,
-            warningColorShade,
-            primary,
-            infoColorShade,
-            greyColor,
-            successColorShade
-          ],
-          data: [19, 17.5, 15, 13.5, 11, 9],
-          borderWidth: 0
-        }
-      ]
     }
+  }
+
+  // ** Chart Data
+  const data = {
+    labels: ['Africa', 'Asia', 'Europe', 'America', 'Antarctica', 'Australia'],
+    datasets: [
+      {
+        borderWidth: 0,
+        label: 'Population (millions)',
+        data: [19, 17.5, 15, 13.5, 11, 9],
+        backgroundColor: [primary, yellowColor, warningColorShade, infoColorShade, greyColor, successColorShade]
+      }
+    ]
+  }
 
   return (
     <Card>
@@ -93,7 +69,7 @@ const ChartjsPolarAreaChart = ({
           <DropdownToggle className='cursor-pointer' tag='span'>
             <MoreVertical size={14} />
           </DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem className='w-100'>Last 28 days</DropdownItem>
             <DropdownItem className='w-100'>Last Month</DropdownItem>
             <DropdownItem className='w-100'>Last Year</DropdownItem>
@@ -102,7 +78,7 @@ const ChartjsPolarAreaChart = ({
       </CardHeader>
       <CardBody>
         <div style={{ height: '350px' }}>
-          <Polar data={data} options={options} height={350} />
+          <PolarArea data={data} options={options} height={350} />
         </div>
       </CardBody>
     </Card>

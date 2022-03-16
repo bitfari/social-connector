@@ -1,8 +1,10 @@
+// ** Icons Import
 import { FileText, Circle } from 'react-feather'
+
 export default [
   {
     id: 'pages',
-    title: 'Guides',
+    title: 'Pages',
     icon: <FileText size={20} />,
     children: [
       {
@@ -26,7 +28,14 @@ export default [
         icon: <Circle size={12} />,
         permissions: ['admin', 'editor'],
         navLink: '/pages/pricing'
-      }
-    ]
-  }
+      },
+      {
+        id: 'api-key',
+        title: 'API Key',
+        icon: <Circle size={12} />,
+        permissions: ['admin', 'editor'],
+        navLink: '/pages/api-key'
+      } 
+        ]
+    }
 ]

@@ -1,5 +1,8 @@
+// ** Third Party Components
 import Rating from 'react-rating'
 import { Star } from 'react-feather'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const RatingSizes = ({ filledColor, dir }) => {

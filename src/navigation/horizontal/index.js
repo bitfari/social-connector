@@ -1,10 +1,11 @@
 // ** Navigation sections imports
-import apps from './apps'
-import dashboards from './dashboards'
-import misc from './others'
-import pages from './pages'
-import forms from './forms-tables.js'
+import home from './home.js'
+import apps from './apps.js'
+import billboards from './billboards.js'
+import help from './help.js'
+import publish from './publish.js'
+import tools from './tools.js'
 
 // ** Merge & Export
-export default [...dashboards, ...apps, ...forms, ...pages, ...misc]
+export default [...home, ...apps, ...billboards, ...publish, ...tools, ...help]
 

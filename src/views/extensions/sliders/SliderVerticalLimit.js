@@ -1,4 +1,7 @@
+// ** Third Party Components
 import Nouislider from 'nouislider-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const SliderLimit = ({ direction }) => {
@@ -9,12 +12,12 @@ const SliderLimit = ({ direction }) => {
       </CardHeader>
       <CardBody className='text-center'>
         <Nouislider
+          limit={40}
+          connect={true}
           start={[40, 60]}
+          behaviour={'drag'}
           direction={direction}
           orientation={'vertical'}
-          limit={40}
-          behaviour={'drag'}
-          connect={true}
           range={{
             min: 0,
             max: 100

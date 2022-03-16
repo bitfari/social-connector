@@ -1,4 +1,5 @@
-import { Copy, Circle, Box, Package, CheckCircle, RotateCw } from 'react-feather'
+// ** Icons Import
+import { Copy, Circle, Box, Package, RotateCw, AlertTriangle } from 'react-feather'
 
 export default [
   {
@@ -100,21 +101,8 @@ export default [
   {
     id: 'formValidation',
     title: 'Form Validation',
-    icon: <CheckCircle size={20} />,
-    children: [
-      {
-        id: 'reactHookForm',
-        title: 'React Hook Form',
-        icon: <Circle size={12} />,
-        navLink: '/forms/react-hook-form'
-      },
-      {
-        id: 'reactstrapVal',
-        title: 'Reactstrap',
-        icon: <Circle size={12} />,
-        navLink: '/forms/reactstrap-validation'
-      }
-    ]
+    icon: <AlertTriangle size={12} />,
+    navLink: '/forms/form-validation'
   },
   {
     id: 'formRepeater',

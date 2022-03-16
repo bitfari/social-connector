@@ -1,12 +1,20 @@
+// ** React Imports
 import { Fragment } from 'react'
-import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
+
+// ** Custom Components
+import ExtensionsHeader from '@components/extensions-header'
+
+// ** Demo Components
+import ContextSubMenu from './ContextSubmenu'
 import ContextMenuBasic from './ContextMenuBasic'
 import ContextMenuLeftClick from './ContextMenuLeftClick'
 import ContextMenuDoubleClick from './ContextMenuDoubleClick'
-import ContextSubMenu from './ContextSubmenu'
 import ContextMenuAnimation from './ContextMenuAnimation'
 
+// ** Styles
 import 'react-contexify/dist/ReactContexify.min.css'
 import '@styles/react/libs/context-menu/context-menu.scss'
 

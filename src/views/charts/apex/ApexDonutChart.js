@@ -1,4 +1,7 @@
+// ** Third Party Components
 import Chart from 'react-apexcharts'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardSubtitle } from 'reactstrap'
 
 const ApexRadiarChart = () => {
@@ -9,6 +12,8 @@ const ApexRadiarChart = () => {
     series4: '#2b9bf4',
     series5: '#FFA1A1'
   }
+
+  // ** Chart Options
   const options = {
     legend: {
       show: true,
@@ -19,7 +24,7 @@ const ApexRadiarChart = () => {
     colors: [donutColors.series1, donutColors.series5, donutColors.series3, donutColors.series2],
     dataLabels: {
       enabled: true,
-      formatter(val, opt) {
+      formatter(val) {
         return `${parseInt(val)}%`
       }
     },
@@ -43,7 +48,7 @@ const ApexRadiarChart = () => {
               show: true,
               fontSize: '1.5rem',
               label: 'Operational',
-              formatter(w) {
+              formatter() {
                 return '31%'
               }
             }
@@ -92,6 +97,7 @@ const ApexRadiarChart = () => {
     ]
   }
 
+  // ** Chart Series
   const series = [85, 16, 50, 50]
 
   return (

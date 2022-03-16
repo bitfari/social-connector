@@ -1,8 +1,16 @@
+// ** React Imports
 import { Fragment, useContext } from 'react'
+
+// ** Custom Components
 import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import { Row, Col, Card, CardHeader, CardTitle, CardBody, Button } from 'reactstrap'
+
+// ** Third Party Components
 import { ShepherdTour, ShepherdTourContext } from 'react-shepherd'
 
+// ** Styles
 import 'shepherd.js/dist/css/shepherd.css'
 import '@styles/react/libs/shepherd-tour/shepherd-tour.scss'
 

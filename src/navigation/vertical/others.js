@@ -1,7 +1,9 @@
-import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield } from 'react-feather'
+// ** Icons Import
+import { Folder, LifeBuoy } from 'react-feather'
+
 export default [
   {
-    header: 'Help'
+    header: 'Misc'
   },
   {
     id: 'documentation',
@@ -9,7 +11,7 @@ export default [
     icon: <Folder size={20} />,
     externalLink: true,
     newTab: true,
-    navLink: 'https://www.bitfari.org/docs'
+    navLink: 'https://www.bitfari.org/docs/'
   },
   {
     id: 'raiseSupport',

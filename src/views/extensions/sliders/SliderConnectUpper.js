@@ -1,4 +1,7 @@
+// ** Third Party Components
 import Nouislider from 'nouislider-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const SliderConnectUpper = ({ direction }) => {
@@ -9,8 +12,8 @@ const SliderConnectUpper = ({ direction }) => {
       </CardHeader>
       <CardBody className='text-center'>
         <Nouislider
-          connect='upper'
           start={30}
+          connect='upper'
           direction={direction}
           orientation='vertical'
           range={{

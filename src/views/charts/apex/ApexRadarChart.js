@@ -1,4 +1,7 @@
+// ** Third Party Components
 import Chart from 'react-apexcharts'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const ApexRadiarChart = () => {
@@ -6,6 +9,8 @@ const ApexRadiarChart = () => {
     series1: '#ffe700',
     series3: '#826bf8'
   }
+
+  // ** Chart Options
   const options = {
     chart: {
       toolbar: {
@@ -50,6 +55,7 @@ const ApexRadiarChart = () => {
     }
   }
 
+  // ** Chart Series
   const series = [
     {
       name: 'iPhone 11',

@@ -1,7 +1,10 @@
+// ** Third Party Components
 import Chart from 'react-apexcharts'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
-// heat chart data generator
+// ** heat chart data generator
 function generateDataHeat(count, yrange) {
   let i = 0
   const series = []
@@ -19,6 +22,7 @@ function generateDataHeat(count, yrange) {
 }
 
 const ApexHeatmapChart = () => {
+  // ** Chart Options
   const options = {
     chart: {
       parentHeightOffset: 0,
@@ -97,6 +101,7 @@ const ApexHeatmapChart = () => {
     }
   }
 
+  // ** Chart Series
   const series = [
     {
       name: 'SUN',

@@ -1,16 +1,25 @@
-import { Fragment, useContext } from 'react'
-import { Row, Col, Card, CardHeader, CardTitle, CardBody, CustomInput } from 'reactstrap'
+// ** React Imports
+import { Fragment } from 'react'
+
+// ** Third Party Components
+import { useTranslation } from 'react-i18next'
+
+// ** Custom Components
 import ExtensionsHeader from '@components/extensions-header'
-import { IntlContext } from '../../../utility/context/Internationalization'
-import { FormattedMessage } from 'react-intl'
+
+// ** Reactstrap Imports
+import { Row, Col, Card, CardHeader, CardTitle, CardBody, Input, Label } from 'reactstrap'
+
 const I18nExtension = () => {
-  const context = useContext(IntlContext)
+  // ** Hooks
+  const { i18n, t } = useTranslation()
+
   return (
     <Fragment>
       <ExtensionsHeader
-        title='React Intl'
-        subTitle='This library provides React components and an API to format dates, numbers, and strings, including pluralization and handling translations.'
-        link='https://www.npmjs.com/package/react-intl'
+        title='React i18next'
+        link='https://react.i18next.com/'
+        subTitle='The React i18next library provide hooks to use i18next'
       />
 
       <Row>
@@ -21,54 +30,58 @@ const I18nExtension = () => {
             </CardHeader>
             <CardBody>
               <div className='language-options'>
-                <CustomInput
-                  type='radio'
-                  id='radio-en'
-                  name='i18n-lang-radio'
-                  onClick={() => {
-                    context.switchLanguage('en')
-                  }}
-                  label='English'
-                  className='mb-1'
-                  defaultChecked={context.locale === 'en'}
-                />
-                <CustomInput
-                  type='radio'
-                  id='radio-fr'
-                  name='i18n-lang-radio'
-                  onClick={() => {
-                    context.switchLanguage('fr')
-                  }}
-                  label='French'
-                  className='mb-1'
-                  defaultChecked={context.locale === 'fr'}
-                />
-                <CustomInput
-                  type='radio'
-                  id='radio-de'
-                  name='i18n-lang-radio'
-                  onClick={() => {
-                    context.switchLanguage('de')
-                  }}
-                  label='German'
-                  className='mb-1'
-                  defaultChecked={context.locale === 'de'}
-                />
-                <CustomInput
-                  type='radio'
-                  id='radio-pt'
-                  name='i18n-lang-radio'
-                  onClick={() => {
-                    context.switchLanguage('pt')
-                  }}
-                  label='Portuguese'
-                  className='mb-1'
-                  defaultChecked={context.locale === 'pt'}
-                />
+                <div className='form-check mb-1'>
+                  <Input
+                    type='radio'
+                    id='radio-en'
+                    name='i18n-lang-radio'
+                    checked={i18n.language === 'en'}
+                    onChange={() => i18n.changeLanguage('en')}
+                  />
+                  <Label className='form-check-label' for='radio-en'>
+                    English
+                  </Label>
+                </div>
+                <div className='form-check mb-1'>
+                  <Input
+                    type='radio'
+                    id='radio-fr'
+                    name='i18n-lang-radio'
+                    checked={i18n.language === 'fr'}
+                    onChange={() => i18n.changeLanguage('fr')}
+                  />
+                  <Label className='form-check-label' for='radio-fr'>
+                    French
+                  </Label>
+                </div>
+                <div className='form-check mb-1'>
+                  <Input
+                    type='radio'
+                    id='radio-de'
+                    name='i18n-lang-radio'
+                    checked={i18n.language === 'de'}
+                    onChange={() => i18n.changeLanguage('de')}
+                  />
+                  <Label className='form-check-label' for='radio-de'>
+                    German
+                  </Label>
+                </div>
+                <div className='form-check mb-1'>
+                  <Input
+                    type='radio'
+                    id='radio-pt'
+                    name='i18n-lang-radio'
+                    onChange={() => i18n.changeLanguage('pt')}
+                    checked={i18n.language === 'pt'}
+                  />
+                  <Label className='form-check-label' for='radio-pt'>
+                    Portuguese
+                  </Label>
+                </div>
               </div>
               <div className='border p-2 mt-3'>
                 <h5 className='mb-1'>Title</h5>
-                <FormattedMessage id='text' />
+                {t('text')}
               </div>
             </CardBody>
           </Card>

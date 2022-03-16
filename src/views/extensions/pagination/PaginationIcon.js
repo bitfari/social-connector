@@ -1,4 +1,7 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Third Party Components
 import ReactPaginate from 'react-paginate'
 
 const IconPagination = () => {
@@ -9,22 +12,22 @@ const IconPagination = () => {
       </CardHeader>
       <CardBody>
         <ReactPaginate
+          nextLabel=''
           pageCount={10}
-          nextLabel={''}
-          breakLabel={'...'}
+          breakLabel='...'
+          previousLabel=''
           pageRangeDisplayed={5}
           marginPagesDisplayed={2}
-          activeClassName={'active'}
-          pageClassName={'page-item'}
-          previousLabel={''}
+          activeClassName='active'
+          pageClassName='page-item'
           breakClassName='page-item'
+          nextLinkClassName='page-link'
+          pageLinkClassName='page-link'
+          nextClassName='page-item next'
           breakLinkClassName='page-link'
-          nextLinkClassName={'page-link'}
-          nextClassName={'page-item next'}
-          previousClassName={'page-item prev'}
-          previousLinkClassName={'page-link'}
-          pageLinkClassName={'page-link'}
-          containerClassName={'pagination react-paginate'}
+          previousLinkClassName='page-link'
+          previousClassName='page-item prev'
+          containerClassName='pagination react-paginate'
         />
       </CardBody>
     </Card>

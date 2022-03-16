@@ -1,8 +1,20 @@
+// ** React Imports
 import { useState } from 'react'
+
+// ** Third Party Components
+import classnames from 'classnames'
 import { ReactSortable } from 'react-sortablejs'
+
+// ** Custom Hooks
+import { useRTL } from '@hooks/useRTL'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col, Badge } from 'reactstrap'
 
 const DndClone = () => {
+  // ** State
+  const [isRtl] = useRTL()
+
   const source1 = [
     {
       text: 'Youtube',
@@ -72,14 +84,16 @@ const DndClone = () => {
           <Col md='6' sm='12'>
             <h4 className='my-1'>Badge Source 1</h4>
             <ReactSortable
-              className='demo-inline-spacing sortable'
-              group={{ name: 'shared-badge-group', pull: 'clone' }}
               list={list}
               setList={setList}
+              group={{ name: 'shared-badge-group', pull: 'clone' }}
+              className={classnames('demo-inline-spacing sortable', {
+                'flex-row-reverse': isRtl
+              })}
             >
-              {list.map(item => {
+              {list.map((item, index) => {
                 return (
-                  <Badge className='draggable' key={item.text} color={item.color} pill>
+                  <Badge className='draggable' key={`${item.text}-${index}`} color={item.color} pill>
                     {item.text}
                   </Badge>
                 )
@@ -89,14 +103,16 @@ const DndClone = () => {
           <Col md='6' sm='12'>
             <h4 className='my-1'>Badge Source 2</h4>
             <ReactSortable
-              className='demo-inline-spacing sortable'
-              group={{ name: 'shared-badge-group', pull: 'clone' }}
               list={list2}
               setList={setList2}
+              group={{ name: 'shared-badge-group', pull: 'clone' }}
+              className={classnames('demo-inline-spacing sortable', {
+                'flex-row-reverse': isRtl
+              })}
             >
-              {list2.map(item => {
+              {list2.map((item, index) => {
                 return (
-                  <Badge className='draggable' key={item.text} color={item.color} pill>
+                  <Badge className='draggable' key={`${item.text}-${index}`} color={item.color} pill>
                     {item.text}
                   </Badge>
                 )

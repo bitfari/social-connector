@@ -1,6 +1,13 @@
+// ** Reactstrap Imports
 import { Fragment, useContext } from 'react'
+
+// ** Reactstrap Components
 import { Row, Col } from 'reactstrap'
+
+// ** Custom Hooks
 import { useRTL } from '@hooks/useRTL'
+
+// ** Demo Components
 import RatingBasic from './RatingBasic'
 import RatingSizes from './RatingSizes'
 import RatingEvents from './RatingEvents'
@@ -9,12 +16,20 @@ import RatingReadOnly from './RatingReadOnly'
 import RatingCustomSvg from './RatingCustomSvg'
 import RatingFractional from './RatingFractional'
 import RatingControlled from './RatingControlled'
+
+// ** Custom Header
 import ExtensionsHeader from '@components/extensions-header'
+
+// ** Context
 import { ThemeColors } from '@src/utility/context/ThemeColors'
 
 const Rating = () => {
-  const [isRtl, setIsRtl] = useRTL()
+  // ** Hooks
+  const [isRtl] = useRTL()
+
+  // ** Context
   const themeColors = useContext(ThemeColors)
+
   return (
     <Fragment>
       <ExtensionsHeader

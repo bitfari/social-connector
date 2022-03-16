@@ -1,10 +1,13 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+// ** Third Party Components
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
 import { Play, DollarSign, HelpCircle, FileText, Archive } from 'react-feather'
+
+// ** Reactstrap Imports
+import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const SwiperCenterSlidesStyle = ({ isRtl }) => {
   const params = {
-    className: 'swiper-centered-slides p-1',
+    className: 'swiper-centered-slides swiper-container p-1',
     slidesPerView: 'auto',
     spaceBetween: 30,
     centeredSlides: true,

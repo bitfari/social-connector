@@ -4,71 +4,160 @@ import { Fragment, useState, useEffect } from 'react'
 // ** Invoice List Sidebar
 import Sidebar from './Sidebar'
 
-// ** Columns
+// ** Table Columns
 import { columns } from './columns'
 
 // ** Store & Actions
-import { getAllData, getData } from '../store/action'
+import { getAllData, getData } from '../store'
 import { useDispatch, useSelector } from 'react-redux'
 
 // ** Third Party Components
 import Select from 'react-select'
 import ReactPaginate from 'react-paginate'
-import { ChevronDown } from 'react-feather'
 import DataTable from 'react-data-table-component'
+import { ChevronDown, Share, Printer, FileText, File, Grid, Copy } from 'react-feather'
+
+// ** Utils
 import { selectThemeColors } from '@utils'
-import { Card, CardHeader, CardTitle, CardBody, Input, Row, Col, Label, CustomInput, Button } from 'reactstrap'
+
+// ** Reactstrap Imports
+import {
+  Row,
+  Col,
+  Card,
+  Input,
+  Label,
+  Button,
+  CardBody,
+  CardTitle,
+  CardHeader,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle,
+  UncontrolledDropdown
+} from 'reactstrap'
 
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 
 // ** Table Header
-const CustomHeader = ({ toggleSidebar, handlePerPage, rowsPerPage, handleFilter, searchTerm }) => {
+const CustomHeader = ({ store, toggleSidebar, handlePerPage, rowsPerPage, handleFilter, searchTerm }) => {
+  // ** Converts table to CSV
+  function convertArrayOfObjectsToCSV(array) {
+    let result
+
+    const columnDelimiter = ','
+    const lineDelimiter = '\n'
+    const keys = Object.keys(store.data[0])
+
+    result = ''
+    result += keys.join(columnDelimiter)
+    result += lineDelimiter
+
+    array.forEach(item => {
+      let ctr = 0
+      keys.forEach(key => {
+        if (ctr > 0) result += columnDelimiter
+
+        result += item[key]
+
+        ctr++
+      })
+      result += lineDelimiter
+    })
+
+    return result
+  }
+
+  // ** Downloads CSV
+  function downloadCSV(array) {
+    const link = document.createElement('a')
+    let csv = convertArrayOfObjectsToCSV(array)
+    if (csv === null) return
+
+    const filename = 'export.csv'
+
+    if (!csv.match(/^data:text\/csv/i)) {
+      csv = `data:text/csv;charset=utf-8,${csv}`
+    }
+
+    link.setAttribute('href', encodeURI(csv))
+    link.setAttribute('download', filename)
+    link.click()
+  }
   return (
-    <div className='invoice-list-table-header w-100 mr-1 ml-50 mt-2 mb-75'>
+    <div className='invoice-list-table-header w-100 me-1 ms-50 mt-2 mb-75'>
       <Row>
         <Col xl='6' className='d-flex align-items-center p-0'>
           <div className='d-flex align-items-center w-100'>
-            <Label for='rows-per-page'>Show</Label>
-            <CustomInput
-              className='form-control mx-50'
+            <label htmlFor='rows-per-page'>Show</label>
+            <Input
+              className='mx-50'
               type='select'
               id='rows-per-page'
               value={rowsPerPage}
               onChange={handlePerPage}
-              style={{
-                width: '5rem',
-                padding: '0 0.8rem',
-                backgroundPosition: 'calc(100% - 3px) 11px, calc(100% - 20px) 13px, 100% 0'
-              }}
+              style={{ width: '5rem' }}
             >
               <option value='10'>10</option>
               <option value='25'>25</option>
               <option value='50'>50</option>
-            </CustomInput>
-            <Label for='rows-per-page'>Entries</Label>
+            </Input>
+            <label htmlFor='rows-per-page'>Entries</label>
           </div>
         </Col>
         <Col
           xl='6'
-          className='d-flex align-items-sm-center justify-content-lg-end justify-content-start flex-lg-nowrap flex-wrap flex-sm-row flex-column pr-lg-1 p-0 mt-lg-0 mt-1'
+          className='d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1'
         >
-          <div className='d-flex align-items-center mb-sm-0 mb-1 mr-1'>
-            <Label className='mb-0' for='search-invoice'>
+          <div className='d-flex align-items-center mb-sm-0 mb-1 me-1'>
+            <label className='mb-0' htmlFor='search-invoice'>
               Search:
-            </Label>
+            </label>
             <Input
               id='search-invoice'
-              className='ml-50 w-100'
+              className='ms-50 w-100'
               type='text'
               value={searchTerm}
               onChange={e => handleFilter(e.target.value)}
             />
           </div>
-          <Button.Ripple color='primary' onClick={toggleSidebar}>
-            Add New User
-          </Button.Ripple>
+
+          <div className='d-flex align-items-center table-header-actions'>
+            <UncontrolledDropdown className='me-1'>
+              <DropdownToggle color='secondary' caret outline>
+                <Share className='font-small-4 me-50' />
+                <span className='align-middle'>Export</span>
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem className='w-100'>
+                  <Printer className='font-small-4 me-50' />
+                  <span className='align-middle'>Print</span>
+                </DropdownItem>
+                <DropdownItem className='w-100' onClick={() => downloadCSV(store.data)}>
+                  <FileText className='font-small-4 me-50' />
+                  <span className='align-middle'>CSV</span>
+                </DropdownItem>
+                <DropdownItem className='w-100'>
+                  <Grid className='font-small-4 me-50' />
+                  <span className='align-middle'>Excel</span>
+                </DropdownItem>
+                <DropdownItem className='w-100'>
+                  <File className='font-small-4 me-50' />
+                  <span className='align-middle'>PDF</span>
+                </DropdownItem>
+                <DropdownItem className='w-100'>
+                  <Copy className='font-small-4 me-50' />
+                  <span className='align-middle'>Copy</span>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+
+            <Button className='add-new-user' color='primary' onClick={toggleSidebar}>
+              Add New User
+            </Button>
+          </div>
         </Col>
       </Row>
     </div>
@@ -81,8 +170,10 @@ const UsersList = () => {
   const store = useSelector(state => state.users)
 
   // ** States
+  const [sort, setSort] = useState('desc')
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const [sortColumn, setSortColumn] = useState('id')
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [currentRole, setCurrentRole] = useState({ value: '', label: 'Select Role' })
@@ -97,15 +188,17 @@ const UsersList = () => {
     dispatch(getAllData())
     dispatch(
       getData({
+        sort,
+        sortColumn,
+        q: searchTerm,
         page: currentPage,
         perPage: rowsPerPage,
         role: currentRole.value,
-        currentPlan: currentPlan.value,
         status: currentStatus.value,
-        q: searchTerm
+        currentPlan: currentPlan.value
       })
     )
-  }, [dispatch, store.data.length])
+  }, [dispatch, store.data.length, sort, sortColumn, currentPage])
 
   // ** User filter options
   const roleOptions = [
@@ -136,12 +229,14 @@ const UsersList = () => {
   const handlePagination = page => {
     dispatch(
       getData({
-        page: page.selected + 1,
+        sort,
+        sortColumn,
+        q: searchTerm,
         perPage: rowsPerPage,
+        page: page.selected + 1,
         role: currentRole.value,
-        currentPlan: currentPlan.value,
         status: currentStatus.value,
-        q: searchTerm
+        currentPlan: currentPlan.value
       })
     )
     setCurrentPage(page.selected + 1)
@@ -152,12 +247,14 @@ const UsersList = () => {
     const value = parseInt(e.currentTarget.value)
     dispatch(
       getData({
-        page: currentPage,
+        sort,
+        sortColumn,
+        q: searchTerm,
         perPage: value,
+        page: currentPage,
         role: currentRole.value,
         currentPlan: currentPlan.value,
-        status: currentStatus.value,
-        q: searchTerm
+        status: currentStatus.value
       })
     )
     setRowsPerPage(value)
@@ -168,12 +265,14 @@ const UsersList = () => {
     setSearchTerm(val)
     dispatch(
       getData({
+        sort,
+        q: val,
+        sortColumn,
         page: currentPage,
         perPage: rowsPerPage,
         role: currentRole.value,
-        currentPlan: currentPlan.value,
         status: currentStatus.value,
-        q: val
+        currentPlan: currentPlan.value
       })
     )
   }
@@ -196,7 +295,7 @@ const UsersList = () => {
         previousClassName={'page-item prev'}
         previousLinkClassName={'page-link'}
         pageLinkClassName={'page-link'}
-        containerClassName={'pagination react-paginate justify-content-end my-2 pr-1'}
+        containerClassName={'pagination react-paginate justify-content-end my-2 pe-1'}
       />
     )
   }
@@ -223,38 +322,59 @@ const UsersList = () => {
     }
   }
 
+  const handleSort = (column, sortDirection) => {
+    setSort(sortDirection)
+    setSortColumn(column.sortField)
+    dispatch(
+      getData({
+        sort,
+        sortColumn,
+        q: searchTerm,
+        page: currentPage,
+        perPage: rowsPerPage,
+        role: currentRole.value,
+        status: currentStatus.value,
+        currentPlan: currentPlan.value
+      })
+    )
+  }
+
   return (
     <Fragment>
       <Card>
         <CardHeader>
-          <CardTitle tag='h4'>Search Filter</CardTitle>
+          <CardTitle tag='h4'>Filters</CardTitle>
         </CardHeader>
         <CardBody>
           <Row>
             <Col md='4'>
+              <Label for='role-select'>Role</Label>
               <Select
                 isClearable={false}
-                theme={selectThemeColors}
+                value={currentRole}
+                options={roleOptions}
                 className='react-select'
                 classNamePrefix='select'
-                options={roleOptions}
-                value={currentRole}
+                theme={selectThemeColors}
                 onChange={data => {
                   setCurrentRole(data)
                   dispatch(
                     getData({
+                      sort,
+                      sortColumn,
+                      q: searchTerm,
+                      role: data.value,
                       page: currentPage,
                       perPage: rowsPerPage,
-                      role: data.value,
-                      currentPlan: currentPlan.value,
                       status: currentStatus.value,
-                      q: searchTerm
+                      currentPlan: currentPlan.value
                     })
                   )
                 }}
               />
             </Col>
             <Col className='my-md-0 my-1' md='4'>
+              <Label for='plan-select'>Plan</Label>
               <Select
                 theme={selectThemeColors}
                 isClearable={false}
@@ -266,18 +386,21 @@ const UsersList = () => {
                   setCurrentPlan(data)
                   dispatch(
                     getData({
+                      sort,
+                      sortColumn,
+                      q: searchTerm,
                       page: currentPage,
                       perPage: rowsPerPage,
                       role: currentRole.value,
                       currentPlan: data.value,
-                      status: currentStatus.value,
-                      q: searchTerm
+                      status: currentStatus.value
                     })
                   )
                 }}
               />
             </Col>
             <Col md='4'>
+              <Label for='status-select'>Status</Label>
               <Select
                 theme={selectThemeColors}
                 isClearable={false}
@@ -289,12 +412,14 @@ const UsersList = () => {
                   setCurrentStatus(data)
                   dispatch(
                     getData({
+                      sort,
+                      sortColumn,
+                      q: searchTerm,
                       page: currentPage,
+                      status: data.value,
                       perPage: rowsPerPage,
                       role: currentRole.value,
-                      currentPlan: currentPlan.value,
-                      status: data.value,
-                      q: searchTerm
+                      currentPlan: currentPlan.value
                     })
                   )
                 }}
@@ -304,28 +429,33 @@ const UsersList = () => {
         </CardBody>
       </Card>
 
-      <Card>
-        <DataTable
-          noHeader
-          pagination
-          subHeader
-          responsive
-          paginationServer
-          columns={columns}
-          sortIcon={<ChevronDown />}
-          className='react-dataTable'
-          paginationComponent={CustomPagination}
-          data={dataToRender()}
-          subHeaderComponent={
-            <CustomHeader
-              toggleSidebar={toggleSidebar}
-              handlePerPage={handlePerPage}
-              rowsPerPage={rowsPerPage}
-              searchTerm={searchTerm}
-              handleFilter={handleFilter}
-            />
-          }
-        />
+      <Card className='overflow-hidden'>
+        <div className='react-dataTable'>
+          <DataTable
+            noHeader
+            subHeader
+            sortServer
+            pagination
+            responsive
+            paginationServer
+            columns={columns}
+            onSort={handleSort}
+            sortIcon={<ChevronDown />}
+            className='react-dataTable'
+            paginationComponent={CustomPagination}
+            data={dataToRender()}
+            subHeaderComponent={
+              <CustomHeader
+                store={store}
+                searchTerm={searchTerm}
+                rowsPerPage={rowsPerPage}
+                handleFilter={handleFilter}
+                handlePerPage={handlePerPage}
+                toggleSidebar={toggleSidebar}
+              />
+            }
+          />
+        </div>
       </Card>
 
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />

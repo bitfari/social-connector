@@ -1,9 +1,11 @@
 // ** Custom Components
 import Sidebar from '@components/sidebar'
 
-// ** Third Party Components
+// ** Icons Imports
 import { Link } from 'react-feather'
-import { Form, FormGroup, Input, Label, Badge, Button } from 'reactstrap'
+
+// ** Reactstrap Imports
+import { Form, Input, Label, Badge, Button } from 'reactstrap'
 
 const SidebarSendInvoice = ({ open, toggleSidebar }) => {
   return (
@@ -17,19 +19,19 @@ const SidebarSendInvoice = ({ open, toggleSidebar }) => {
       toggleSidebar={toggleSidebar}
     >
       <Form>
-        <FormGroup>
+        <div className='mb-1'>
           <Label for='invoice-from' className='form-label'>
             From
           </Label>
           <Input id='invoice-from' defaultValue='shelbyComapny@email.com' placeholder='company@email.com' />
-        </FormGroup>
-        <FormGroup>
+        </div>
+        <div className='mb-1'>
           <Label for='invoice-to' className='form-label'>
             To
           </Label>
           <Input id='invoice-to' defaultValue='qConsolidated@email.com' placeholder='company@email.com' />
-        </FormGroup>
-        <FormGroup>
+        </div>
+        <div className='mb-1'>
           <Label for='invoice-subject' className='form-label'>
             Subject
           </Label>
@@ -38,8 +40,8 @@ const SidebarSendInvoice = ({ open, toggleSidebar }) => {
             defaultValue='Invoice of purchased Admin Templates'
             placeholder='Invoice regarding goods'
           />
-        </FormGroup>
-        <FormGroup>
+        </div>
+        <div className='mb-1'>
           <Label for='invoice-message' className='form-label'>
             Message
           </Label>
@@ -56,21 +58,21 @@ We have generated a new invoice in the amount of $95.59
 
 We would appreciate payment of this invoice by 05/11/2019`}
           />
-        </FormGroup>
-        <FormGroup>
+        </div>
+        <div className='mb-1'>
           <Badge color='light-primary'>
-            <Link className='mr-50' size={14} />
+            <Link className='me-50' size={14} />
             <span className='align-middle'>Invoice Attached</span>
           </Badge>
-        </FormGroup>
-        <FormGroup className='d-flex flex-wrap mt-2'>
-          <Button className='mr-1' color='primary' onClick={toggleSidebar}>
+        </div>
+        <div className='d-flex flex-wrap mt-2'>
+          <Button className='me-1' color='primary' onClick={toggleSidebar}>
             Send
           </Button>
           <Button color='secondary' outline onClick={toggleSidebar}>
             Cancel
           </Button>
-        </FormGroup>
+        </div>
       </Form>
     </Sidebar>
   )

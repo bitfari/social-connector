@@ -1,0 +1,23 @@
+import mock from './mock'
+
+import './pages/faq'
+import './apps/instafriend'
+import './apps/focus'
+import './apps/tellfari'
+import './apps/invoice'
+import './apps/book'
+import './apps/userList'
+import './pages/profile'
+import './apps/network'
+import './pages/blog-data'
+import './tables/datatables'
+import './pages/pricing-data'
+import './navbar/navbarSearch'
+import './pages/knowledge-base'
+import './apps/permissionsList'
+import './cards/card-development'
+import './cards/card-network'
+import './pages/account-settings'
+import './autoComplete/autoComplete'
+
+mock.onAny().passThrough()

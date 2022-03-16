@@ -3,7 +3,9 @@ import { useState } from 'react'
 
 // ** Third Party Components
 import Flatpickr from 'react-flatpickr'
-import { Form, FormGroup, Input, Label, Button } from 'reactstrap'
+
+// ** Reactstrap Imports
+import { Form, Input, Label, Button } from 'reactstrap'
 
 // ** Custom Components
 import Sidebar from '@components/sidebar'
@@ -26,22 +28,22 @@ const SidebarAddPayment = ({ open, toggleSidebar }) => {
       toggleSidebar={toggleSidebar}
     >
       <Form>
-        <FormGroup>
+        <div className='mb-1'>
           <Input id='balance' defaultValue='Invoice Balance: 5000.00' disabled />
-        </FormGroup>
-        <FormGroup>
+        </div>
+        <div className='mb-1'>
           <Label for='amount' className='form-label'>
             Payment Amount
           </Label>
           <Input type='number' id='amount' placeholder='$1000' />
-        </FormGroup>
-        <FormGroup>
+        </div>
+        <div className='mb-1'>
           <Label for='payment-amount' className='form-label'>
             Payment Date
           </Label>
           <Flatpickr id='payment-amount' value={picker} onChange={date => setPicker(date)} className='form-control' />
-        </FormGroup>
-        <FormGroup>
+        </div>
+        <div className='mb-1'>
           <Label for='payment-method' className='form-label'>
             Payment Method
           </Label>
@@ -55,21 +57,21 @@ const SidebarAddPayment = ({ open, toggleSidebar }) => {
             <option value='Credit'>Credit</option>
             <option value='Paypal'>Paypal</option>
           </Input>
-        </FormGroup>
-        <FormGroup>
+        </div>
+        <div className='mb-1'>
           <Label for='payment-note' className='form-label'>
             Internal Payment Note
           </Label>
           <Input type='textarea' rows='5' id='payment-note' placeholder='Internal Payment Note' />
-        </FormGroup>
-        <FormGroup className='d-flex flex-wrap mb-0'>
-          <Button className='mr-1' color='primary' onClick={toggleSidebar}>
+        </div>
+        <div className='d-flex flex-wrap mb-0'>
+          <Button className='me-1' color='primary' onClick={toggleSidebar}>
             Send
           </Button>
           <Button color='secondary' outline onClick={toggleSidebar}>
             Cancel
           </Button>
-        </FormGroup>
+        </div>
       </Form>
     </Sidebar>
   )

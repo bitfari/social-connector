@@ -6,10 +6,6 @@ const UiElementRoutes = [
     component: lazy(() => import('../../views/ui-elements/typography'))
   },
   {
-    path: '/colors/colors',
-    component: lazy(() => import('../../views/ui-elements/colors'))
-  },
-  {
     path: '/icons/reactfeather',
     component: lazy(() => import('../../views/ui-elements/icons'))
   },
@@ -22,16 +18,20 @@ const UiElementRoutes = [
     component: lazy(() => import('../../views/ui-elements/cards/advance'))
   },
   {
-    path: '/cards/statistics',
-    component: lazy(() => import('../../views/ui-elements/cards/statistics'))
+    path: '/cards/network',
+    component: lazy(() => import('../../views/ui-elements/cards/network'))
   },
   {
-    path: '/cards/analytics',
-    component: lazy(() => import('../../views/ui-elements/cards/analytics'))
+    path: '/cards/development',
+    component: lazy(() => import('../../views/ui-elements/cards/development'))
   },
   {
     path: '/cards/action',
     component: lazy(() => import('../../views/ui-elements/cards/actions'))
+  },
+  {
+    path: '/components/accordion',
+    component: lazy(() => import('../../views/components/accordion'))
   },
   {
     path: '/components/alerts',
@@ -82,16 +82,16 @@ const UiElementRoutes = [
     component: lazy(() => import('../../views/components/listGroup'))
   },
   {
-    path: '/components/media-objects',
-    component: lazy(() => import('../../views/components/media'))
-  },
-  {
     path: '/components/modals',
     component: lazy(() => import('../../views/components/modal'))
   },
   {
     path: '/components/nav-component',
     component: lazy(() => import('../../views/components/navComponent'))
+  },
+  {
+    path: '/components/offcanvas',
+    component: lazy(() => import('../../views/components/offcanvas'))
   },
   {
     path: '/components/pagination',

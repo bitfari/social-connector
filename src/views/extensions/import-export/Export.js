@@ -1,22 +1,27 @@
+// ** React Imports
 import { Fragment, useState, useRef } from 'react'
+
+// ** Custom Components
 import ExtensionsHeader from '@components/extensions-header'
+
+// ** Third Party Components
 import XLSX from 'xlsx'
 import * as FileSaver from 'file-saver'
+
+// ** Reactstrap Imports
 import {
   Row,
   Col,
   Card,
-  CardBody,
-  Button,
   Table,
   Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Input,
-  FormGroup,
-  CustomInput,
-  Label
+  Label,
+  Button,
+  CardBody,
+  ModalBody,
+  ModalHeader,
+  ModalFooter
 } from 'reactstrap'
 
 const initialData = [
@@ -93,13 +98,15 @@ const initialData = [
 ]
 
 const Export = () => {
+  // ** Ref
   const tableRef = useRef()
 
+  // ** States
   const [data] = useState(initialData)
-  const [filteredData, setFilteredData] = useState([])
   const [value, setValue] = useState('')
   const [modal, setModal] = useState(false)
   const [fileName, setFileName] = useState('')
+  const [filteredData, setFilteredData] = useState([])
   const [fileFormat, setFileFormat] = useState('xlsx')
 
   const toggleModal = () => {
@@ -167,18 +174,18 @@ const Export = () => {
       <ExtensionsHeader
         title='XLSX'
         subTitle='Xlsx is a parser and writer for various spreadsheet formats'
-        link='https://github.com/AdeleD/react-paginate'
+        link='https://github.com/SheetJS/sheetjs'
       />
       <Row className='export-component'>
         <Col sm='12'>
           <Card>
             <CardBody className='pb-0'>
               <div className='d-flex justify-content-between flex-wrap flex-sm-row flex-column'>
-                <Button.Ripple color='primary' onClick={() => toggleModal()}>
+                <Button color='primary' onClick={() => toggleModal()}>
                   Export
-                </Button.Ripple>
+                </Button>
                 <div className='d-flex align-items-center justify-content-end mt-sm-0 mt-1'>
-                  <Label for='search-input' className='mr-1'>
+                  <Label for='search-input' className='me-1'>
                     Search
                   </Label>
                   <Input id='search-input' bsSize='sm' type='text' value={value} onChange={e => handleFilter(e)} />
@@ -207,16 +214,16 @@ const Export = () => {
       >
         <ModalHeader toggle={() => toggleModal()}>Export To Excel</ModalHeader>
         <ModalBody>
-          <FormGroup>
+          <div className='mb-2'>
             <Input
               type='text'
               value={fileName}
               onChange={e => setFileName(e.target.value)}
               placeholder='Enter File Name'
             />
-          </FormGroup>
-          <FormGroup>
-            <CustomInput
+          </div>
+          <div>
+            <Input
               type='select'
               id='selectFileFormat'
               name='customSelect'
@@ -226,8 +233,8 @@ const Export = () => {
               <option>xlsx</option>
               <option>csv</option>
               <option>txt</option>
-            </CustomInput>
-          </FormGroup>
+            </Input>
+          </div>
         </ModalBody>
         <ModalFooter>
           <Button color='primary' onClick={() => handleExport()}>

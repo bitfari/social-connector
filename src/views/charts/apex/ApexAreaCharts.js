@@ -1,6 +1,9 @@
+// ** Third Party Components
 import Chart from 'react-apexcharts'
 import Flatpickr from 'react-flatpickr'
 import { Calendar } from 'react-feather'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardSubtitle } from 'reactstrap'
 
 const areaColors = {
@@ -10,6 +13,7 @@ const areaColors = {
 }
 
 const ApexAreaCharts = ({ direction }) => {
+  // ** Chart Options
   const options = {
     chart: {
       parentHeightOffset: 0,
@@ -66,6 +70,7 @@ const ApexAreaCharts = ({ direction }) => {
     }
   }
 
+  // ** Chart Series
   const series = [
     {
       name: 'Visits',
@@ -80,7 +85,6 @@ const ApexAreaCharts = ({ direction }) => {
       data: [20, 40, 30, 70, 40, 60, 50, 140, 120, 100, 140, 180, 220]
     }
   ]
-
   return (
     <Card>
       <CardHeader className='d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start'>
@@ -93,11 +97,12 @@ const ApexAreaCharts = ({ direction }) => {
         <div className='d-flex align-items-center mt-md-0 mt-1'>
           <Calendar size={17} />
           <Flatpickr
+            className='form-control flat-picker bg-transparent border-0 shadow-none'
             options={{
               mode: 'range',
-              defaultDate: ['2019-05-01', '2019-05-10']
+              // eslint-disable-next-line no-mixed-operators
+              defaultDate: [new Date(), new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000)]
             }}
-            className='form-control flat-picker bg-transparent border-0 shadow-none'
           />
         </div>
       </CardHeader>

@@ -1,5 +1,10 @@
+// ** React Imports
 import { useState, useEffect, useRef } from 'react'
-import { Card, CardTitle, CardHeader, CardBody, Row, Col, Table, Button, Progress, CustomInput } from 'reactstrap'
+
+// ** Reactstrap Imports
+import { Card, CardTitle, CardHeader, CardBody, Row, Col, Table, Button, Progress, Input } from 'reactstrap'
+
+// ** Third Party Components
 import Prism from 'prismjs'
 import ReactPlayer from 'react-player'
 
@@ -18,21 +23,25 @@ const format = seconds => {
 }
 
 const MediaPlayerAudio = () => {
+  // ** Ref
+  const audioRef = useRef(null)
+
+  // ** Vars
+  const urlLink = 'https://soundcloud.com/2ghost/we-will-rock-you'
+
+  // ** States
+  const [url, setUrl] = useState(urlLink)
+  const [played, setPlayed] = useState(0)
+  const [loaded, setLoaded] = useState(0)
+  const [muted, setMuted] = useState(false)
+  const [volume, setVolume] = useState(0.75)
+  const [duration, setDuration] = useState(0)
+  const [seeking, setSeeking] = useState(null)
+  const [playing, setPlaying] = useState(false)
+
   useEffect(() => {
     Prism.highlightAll()
   })
-
-  const audioRef = useRef(null)
-
-  const urlLink = 'https://soundcloud.com/2ghost/we-will-rock-you'
-  const [url, setUrl] = useState(urlLink)
-  const [playing, setPlaying] = useState(false)
-  const [volume, setVolume] = useState(0.75)
-  const [muted, setMuted] = useState(false)
-  const [played, setPlayed] = useState(0)
-  const [loaded, setLoaded] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [seeking, setSeeking] = useState(null)
 
   const load = url => {
     setUrl(url)
@@ -109,9 +118,9 @@ const MediaPlayerAudio = () => {
             <Table borderless className='mt-2'>
               <tbody>
                 <tr>
-                  <td className='text-right'>Controls</td>
+                  <td className='text-end'>Controls</td>
                   <td>
-                    <Button variant='primary' outline onClick={handleStop} className='my-25 mr-50'>
+                    <Button variant='primary' outline onClick={handleStop} className='my-25 me-50'>
                       Stop
                     </Button>
                     <Button variant='primary' outline onClick={handlePlayPause} className='my-25'>
@@ -120,7 +129,7 @@ const MediaPlayerAudio = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td className='text-right'>Seek</td>
+                  <td className='text-end'>Seek</td>
                   <td>
                     <input
                       type='range'
@@ -135,25 +144,27 @@ const MediaPlayerAudio = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td className='text-right'>Volume</td>
+                  <td className='text-end'>Volume</td>
                   <td>
                     <input type='range' min={0} max={1} step='any' value={volume} onChange={handleVolumeChange} />
                   </td>
                 </tr>
                 <tr>
-                  <td className='text-right'>Muted</td>
+                  <td className='text-end'>Muted</td>
                   <td>
-                    <CustomInput type='checkbox' id='audioMuted' checked={muted} onChange={handleToggleMuted} />
+                    <div className='form-check'>
+                      <Input type='checkbox' id='audioMuted' checked={muted} onChange={handleToggleMuted} />
+                    </div>
                   </td>
                 </tr>
                 <tr>
-                  <td className='text-right'>Played</td>
+                  <td className='text-end'>Played</td>
                   <td>
                     <Progress value={played} max={1} />
                   </td>
                 </tr>
                 <tr>
-                  <td className='text-right'>Loaded</td>
+                  <td className='text-end'>Loaded</td>
                   <td>
                     <Progress value={loaded} max={1} />
                   </td>

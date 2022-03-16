@@ -1,13 +1,17 @@
+// ** Third Party Components
 import Nouislider from 'nouislider-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const SliderValues = ({ direction }) => {
   const colorOptions = {
-    start: [40, 60],
-    connect: true,
-    behaviour: 'drag',
     step: 10,
+    direction,
+    connect: true,
     tooltips: true,
+    start: [40, 60],
+    behaviour: 'drag',
     range: {
       min: 0,
       max: 100
@@ -16,8 +20,7 @@ const SliderValues = ({ direction }) => {
       mode: 'steps',
       stepped: true,
       density: 5
-    },
-    direction
+    }
   }
 
   return (

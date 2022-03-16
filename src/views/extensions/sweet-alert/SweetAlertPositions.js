@@ -1,4 +1,7 @@
+// ** Reactstrap Imports
 import { Card, CardHeader, CardBody, CardTitle, Button, CardText } from 'reactstrap'
+
+// ** Third Party Components
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -52,7 +55,7 @@ const SweetAlertPositions = () => {
       </CardHeader>
       <CardBody>
         <CardText className='mb-0'>
-          You can specify position of your alert with
+          You can specify position of your alert with{' '}
           <code>{'position : top-start | top-end | bottom-start | bottom-end '}</code>{' '}
         </CardText>
         <div className='demo-inline-spacing'>

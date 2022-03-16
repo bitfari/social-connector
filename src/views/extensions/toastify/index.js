@@ -1,10 +1,17 @@
+// ** React Imports
 import { Fragment } from 'react'
-import ExtensionsHeader from '@components/extensions-header'
+
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
+
+// ** Demo Components
 import ToastrTypes from './ToastTypes'
+import ToastrOptions from './ToastifyOptions'
 import ToastrPositions from './ToastPositions'
 import ToastrAnimations from './ToastrAnimations'
-import ToastrOptions from './ToastifyOptions'
+
+// ** Custom Components
+import ExtensionsHeader from '@components/extensions-header'
 
 const Toastr = () => {
   return (

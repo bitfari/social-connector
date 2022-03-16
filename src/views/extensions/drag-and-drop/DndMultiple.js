@@ -1,5 +1,13 @@
+// ** React Imports
 import { useState } from 'react'
+
+// ** Third Party Components
 import { ReactSortable } from 'react-sortablejs'
+
+// ** Reactstrap Imports
+import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col, ListGroupItem } from 'reactstrap'
+
+// ** Images
 import img1 from '@src/assets/images/portrait/small/avatar-s-12.jpg'
 import img2 from '@src/assets/images/portrait/small/avatar-s-1.jpg'
 import img3 from '@src/assets/images/portrait/small/avatar-s-2.jpg'
@@ -10,7 +18,6 @@ import img7 from '@src/assets/images/portrait/small/avatar-s-6.jpg'
 import img8 from '@src/assets/images/portrait/small/avatar-s-7.jpg'
 import img9 from '@src/assets/images/portrait/small/avatar-s-8.jpg'
 import img10 from '@src/assets/images/portrait/small/avatar-s-9.jpg'
-import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col, ListGroupItem, Media } from 'reactstrap'
 
 const array = {
   list1: [
@@ -80,6 +87,7 @@ const array = {
 }
 
 const DndMultiple = () => {
+  // ** States
   const [listArr1, setListArr1] = useState(array.list1)
   const [listArr2, setListArr2] = useState(array.list2)
 
@@ -105,22 +113,21 @@ const DndMultiple = () => {
               {listArr1.map(item => {
                 return (
                   <ListGroupItem className='draggable' key={item.id}>
-                    <Media>
-                      <Media left tag='div'>
-                        <Media
-                          object
+                    <div className='d-flex align-items-center'>
+                      <div>
+                        <img
                           src={item.img}
-                          className='rounded-circle mr-2'
+                          className='rounded-circle me-2'
                           alt='Generic placeholder image'
                           height='50'
                           width='50'
                         />
-                      </Media>
-                      <Media body>
+                      </div>
+                      <div>
                         <h5 className='mt-0'>{item.name}</h5>
                         {item.content}
-                      </Media>
-                    </Media>
+                      </div>
+                    </div>
                   </ListGroupItem>
                 )
               })}
@@ -138,22 +145,21 @@ const DndMultiple = () => {
               {listArr2.map(item => {
                 return (
                   <ListGroupItem className='draggable' key={item.id}>
-                    <Media>
-                      <Media left tag='div'>
-                        <Media
-                          object
+                    <div className='d-flex align-items-center'>
+                      <div>
+                        <img
                           src={item.img}
-                          className='rounded-circle mr-2'
+                          className='rounded-circle me-2'
                           alt='Generic placeholder image'
                           height='50'
                           width='50'
                         />
-                      </Media>
-                      <Media body>
+                      </div>
+                      <div>
                         <h5 className='mt-0'>{item.name}</h5>
                         {item.content}
-                      </Media>
-                    </Media>
+                      </div>
+                    </div>
                   </ListGroupItem>
                 )
               })}

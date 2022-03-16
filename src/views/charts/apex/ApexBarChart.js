@@ -1,9 +1,13 @@
+// ** Third Party Components
 import Chart from 'react-apexcharts'
 import Flatpickr from 'react-flatpickr'
 import { Calendar } from 'react-feather'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardSubtitle } from 'reactstrap'
 
 const ApexBarChart = ({ info, direction }) => {
+  // ** Chart Options
   const options = {
     chart: {
       parentHeightOffset: 0,
@@ -15,7 +19,7 @@ const ApexBarChart = ({ info, direction }) => {
       bar: {
         horizontal: true,
         barHeight: '30%',
-        endingShape: 'rounded'
+        borderRadius: [10]
       }
     },
     grid: {
@@ -37,6 +41,7 @@ const ApexBarChart = ({ info, direction }) => {
     }
   }
 
+  // ** Chart Series
   const series = [
     {
       data: [700, 350, 480, 600, 210, 550, 150]
@@ -48,18 +53,19 @@ const ApexBarChart = ({ info, direction }) => {
       <CardHeader className='d-flex flex-sm-row flex-column justify-content-md-between align-items-start justify-content-start'>
         <div>
           <CardSubtitle className='text-muted mb-25'>Balance</CardSubtitle>
-          <CardTitle className='font-weight-bolder' tag='h4'>
+          <CardTitle className='fw-bolder' tag='h4'>
             $74,382.72
           </CardTitle>
         </div>
         <div className='d-flex align-items-center mt-md-0 mt-1'>
           <Calendar size={17} />
           <Flatpickr
+            className='form-control flat-picker bg-transparent border-0 shadow-none'
             options={{
               mode: 'range',
-              defaultDate: ['2019-05-01', '2019-05-10']
+              // eslint-disable-next-line no-mixed-operators
+              defaultDate: [new Date(), new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000)]
             }}
-            className='form-control flat-picker bg-transparent border-0 shadow-none'
           />
         </div>
       </CardHeader>

@@ -1,38 +1,39 @@
 // ** React Imports
 import { Fragment } from 'react'
-
 import { Link } from 'react-router-dom'
 
 // ** Custom Components
 import Avatar from '@components/avatar'
 
 // ** Store & Actions
-import { deleteInvoice } from '../store/actions'
-import { store } from '@store/storeConfig/store'
+import { store } from '@store/store'
+import { deleteInvoice } from '../store'
+
+// ** Reactstrap Imports
+import {
+  Badge,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledTooltip,
+  UncontrolledDropdown
+} from 'reactstrap'
 
 // ** Third Party Components
 import {
-  Badge,
-  UncontrolledDropdown,
-  DropdownMenu,
-  DropdownToggle,
-  DropdownItem,
-  UncontrolledTooltip
-} from 'reactstrap'
-import {
   Eye,
-  TrendingUp,
   Send,
-  MoreVertical,
-  Download,
   Edit,
-  Trash,
   Copy,
-  CheckCircle,
   Save,
-  ArrowDownCircle,
   Info,
-  PieChart
+  Trash,
+  PieChart,
+  Download,
+  TrendingUp,
+  CheckCircle,
+  MoreVertical,
+  ArrowDownCircle
 } from 'react-feather'
 
 // ** Vars
@@ -52,9 +53,9 @@ const renderClient = row => {
     color = states[stateNum]
 
   if (row.avatar.length) {
-    return <Avatar className='mr-50' img={row.avatar} width='32' height='32' />
+    return <Avatar className='me-50' img={row.avatar} width='32' height='32' />
   } else {
-    return <Avatar color={color} className='mr-50' content={row.client ? row.client.name : 'John Doe'} initials />
+    return <Avatar color={color} className='me-50' content={row.client ? row.client.name : 'John Doe'} initials />
   }
 }
 
@@ -62,15 +63,18 @@ const renderClient = row => {
 export const columns = [
   {
     name: '#',
+    sortable: true,
+    sortField: 'id',
     minWidth: '107px',
-    selector: 'id',
+    // selector: row => row.id,
     cell: row => <Link to={`/apps/invoice/preview/${row.id}`}>{`#${row.id}`}</Link>
   },
   {
-    name: <TrendingUp size={14} />,
-    minWidth: '102px',
-    selector: 'invoiceStatus',
     sortable: true,
+    minWidth: '102px',
+    sortField: 'invoiceStatus',
+    name: <TrendingUp size={14} />,
+    // selector: row => row.invoiceStatus,
     cell: row => {
       const color = invoiceStatusObj[row.invoiceStatus] ? invoiceStatusObj[row.invoiceStatus].color : 'primary',
         Icon = invoiceStatusObj[row.invoiceStatus] ? invoiceStatusObj[row.invoiceStatus].icon : Edit
@@ -78,11 +82,11 @@ export const columns = [
         <Fragment>
           <Avatar color={color} icon={<Icon size={14} />} id={`av-tooltip-${row.id}`} />
           <UncontrolledTooltip placement='top' target={`av-tooltip-${row.id}`}>
-            <span className='font-weight-bold'>{row.invoiceStatus}</span>
+            <span className='fw-bold'>{row.invoiceStatus}</span>
             <br />
-            <span className='font-weight-bold'>Balance:</span> {row.balance}
+            <span className='fw-bold'>Balance:</span> {row.balance}
             <br />
-            <span className='font-weight-bold'>Due Date:</span> {row.dueDate}
+            <span className='fw-bold'>Due Date:</span> {row.dueDate}
           </UncontrolledTooltip>
         </Fragment>
       )
@@ -90,9 +94,10 @@ export const columns = [
   },
   {
     name: 'Client',
-    minWidth: '350px',
-    selector: 'client',
     sortable: true,
+    minWidth: '350px',
+    sortField: 'client.name',
+    // selector: row => row.client.name,
     cell: row => {
       const name = row.client ? row.client.name : 'John Doe',
         email = row.client ? row.client.companyEmail : 'johnDoe@email.com'
@@ -109,23 +114,26 @@ export const columns = [
   },
   {
     name: 'Total',
-    selector: 'total',
     sortable: true,
     minWidth: '150px',
+    sortField: 'total',
+    // selector: row => row.total,
     cell: row => <span>${row.total || 0}</span>
   },
   {
-    name: 'Issued Date',
-    selector: 'dueDate',
     sortable: true,
     minWidth: '200px',
+    name: 'Issued Date',
+    sortField: 'dueDate',
     cell: row => row.dueDate
+    // selector: row => row.dueDate
   },
   {
-    name: 'Balance',
-    selector: 'balance',
     sortable: true,
+    name: 'Balance',
     minWidth: '164px',
+    sortField: 'balance',
+    // selector: row => row.balance,
     cell: row => {
       return row.balance !== 0 ? (
         <span>{row.balance}</span>
@@ -139,11 +147,9 @@ export const columns = [
   {
     name: 'Action',
     minWidth: '110px',
-    selector: '',
-    sortable: true,
     cell: row => (
       <div className='column-action d-flex align-items-center'>
-        <Send size={17} id={`send-tooltip-${row.id}`} />
+        <Send className='cursor-pointer' size={17} id={`send-tooltip-${row.id}`} />
         <UncontrolledTooltip placement='top' target={`send-tooltip-${row.id}`}>
           Send Mail
         </UncontrolledTooltip>
@@ -157,13 +163,13 @@ export const columns = [
           <DropdownToggle tag='span'>
             <MoreVertical size={17} className='cursor-pointer' />
           </DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
-              <Download size={14} className='mr-50' />
+              <Download size={14} className='me-50' />
               <span className='align-middle'>Download</span>
             </DropdownItem>
             <DropdownItem tag={Link} to={`/apps/invoice/edit/${row.id}`} className='w-100'>
-              <Edit size={14} className='mr-50' />
+              <Edit size={14} className='me-50' />
               <span className='align-middle'>Edit</span>
             </DropdownItem>
             <DropdownItem
@@ -175,11 +181,11 @@ export const columns = [
                 store.dispatch(deleteInvoice(row.id))
               }}
             >
-              <Trash size={14} className='mr-50' />
+              <Trash size={14} className='me-50' />
               <span className='align-middle'>Delete</span>
             </DropdownItem>
             <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
-              <Copy size={14} className='mr-50' />
+              <Copy size={14} className='me-50' />
               <span className='align-middle'>Duplicate</span>
             </DropdownItem>
           </DropdownMenu>

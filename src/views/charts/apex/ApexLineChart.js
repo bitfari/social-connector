@@ -1,8 +1,12 @@
+// ** Third Party Components
 import Chart from 'react-apexcharts'
 import { ArrowDown } from 'react-feather'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardSubtitle, Badge } from 'reactstrap'
 
 const ApexLineChart = ({ direction, warning }) => {
+  // ** Chart Options
   const options = {
     chart: {
       zoom: {
@@ -65,6 +69,7 @@ const ApexLineChart = ({ direction, warning }) => {
     }
   }
 
+  // ** Chart Series
   const series = [
     {
       data: [280, 200, 220, 180, 270, 250, 70, 90, 200, 150, 160, 100, 150, 100, 50]
@@ -81,10 +86,10 @@ const ApexLineChart = ({ direction, warning }) => {
           <CardSubtitle className='text-muted'>Commercial networks & enterprises</CardSubtitle>
         </div>
         <div className='d-flex align-items-center flex-wrap mt-sm-0 mt-1'>
-          <h5 className='font-weight-bolder mb-0 mr-1'>$ 100,000</h5>
+          <h5 className='fw-bolder mb-0 me-1'>$ 100,000</h5>
           <Badge color='light-secondary'>
             <ArrowDown size={13} className='text-danger' />
-            <span className='align-middle ml-25'>20%</span>
+            <span className='align-middle ms-25'>20%</span>
           </Badge>
         </div>
       </CardHeader>

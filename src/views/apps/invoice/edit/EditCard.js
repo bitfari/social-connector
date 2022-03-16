@@ -2,25 +2,13 @@
 import { useState } from 'react'
 
 // ** Third Party Components
-import {
-  Card,
-  CardBody,
-  CardText,
-  Row,
-  Col,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  UncontrolledTooltip,
-  FormGroup,
-  Label,
-  Button
-} from 'reactstrap'
 import Flatpickr from 'react-flatpickr'
 import Repeater from '@components/repeater'
 import { SlideDown } from 'react-slidedown'
 import { X, Plus, Hash } from 'react-feather'
+
+// ** Reactstrap Imports
+import { Row, Col, Card, Input, Label, Button, CardBody, CardText, InputGroup, InputGroupText } from 'reactstrap'
 
 // ** Styles
 import 'react-slidedown/lib/slidedown.css'
@@ -43,7 +31,7 @@ const InvoiceEditCard = ({ data }) => {
     'It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!'
 
   return (
-    <Card className='invoice-preview-card mb-0'>
+    <Card className='invoice-preview-card'>
       {/* Header */}
       <CardBody className='invoice-padding pb-0'>
         <div className='d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0'>
@@ -98,7 +86,7 @@ const InvoiceEditCard = ({ data }) => {
                   </g>
                 </g>
               </svg>
-              <h3 className='text-primary invoice-logo'>Vuexy</h3>
+              <h3 className='text-primary invoice-logo'>Bitfari</h3>
             </div>
             <p className='card-text mb-25'>Office 149, 450 South Brand Brooklyn</p>
             <p className='card-text mb-25'>San Diego County, CA 91905, USA</p>
@@ -108,11 +96,9 @@ const InvoiceEditCard = ({ data }) => {
             <div className='d-flex align-items-center justify-content-md-end mb-1'>
               <h4 className='invoice-title'>Invoice</h4>
               <InputGroup className='input-group-merge invoice-edit-input-group disabled'>
-                <InputGroupAddon addonType='prepend'>
-                  <InputGroupText>
-                    <Hash size={15} />
-                  </InputGroupText>
-                </InputGroupAddon>
+                <InputGroupText>
+                  <Hash size={15} />
+                </InputGroupText>
                 <Input
                   type='number'
                   className='invoice-edit-input'
@@ -148,7 +134,7 @@ const InvoiceEditCard = ({ data }) => {
       {/* Address and Contact */}
       <CardBody className='invoice-padding pt-0'>
         <Row className='invoice-spacing'>
-          <Col className='p-0' lg='8'>
+          <Col className='p-0' xl='8'>
             <h6 className='mb-2'>Invoice To:</h6>
             <h6 className='mb-25'>{data.invoice.client.name}</h6>
             <CardText className='mb-25'>{data.invoice.client.company}</CardText>
@@ -156,30 +142,30 @@ const InvoiceEditCard = ({ data }) => {
             <CardText className='mb-25'>{data.invoice.client.contact}</CardText>
             <CardText className='mb-0'>{data.invoice.client.companyEmail}</CardText>
           </Col>
-          <Col className='p-0 mt-xl-0 mt-2' lg='4'>
+          <Col className='p-0 mt-xl-0 mt-2' xl='4'>
             <h6 className='mb-2'>Payment Details:</h6>
             <table>
               <tbody>
                 <tr>
-                  <td className='pr-1'>Total Due:</td>
+                  <td className='pe-1'>Total Due:</td>
                   <td>
-                    <span className='font-weight-bolder'>{data.paymentDetails.totalDue}</span>
+                    <span className='fw-bolder'>{data.paymentDetails.totalDue}</span>
                   </td>
                 </tr>
                 <tr>
-                  <td className='pr-1'>Bank name:</td>
+                  <td className='pe-1'>Bank name:</td>
                   <td>{data.paymentDetails.bankName}</td>
                 </tr>
                 <tr>
-                  <td className='pr-1'>Country:</td>
+                  <td className='pe-1'>Country:</td>
                   <td>{data.paymentDetails.country}</td>
                 </tr>
                 <tr>
-                  <td className='pr-1'>IBAN:</td>
+                  <td className='pe-1'>IBAN:</td>
                   <td>{data.paymentDetails.iban}</td>
                 </tr>
                 <tr>
-                  <td className='pr-1'>SWIFT code:</td>
+                  <td className='pe-1'>SWIFT code:</td>
                   <td>{data.paymentDetails.swiftCode}</td>
                 </tr>
               </tbody>
@@ -197,8 +183,8 @@ const InvoiceEditCard = ({ data }) => {
             return (
               <Tag key={i} className='repeater-wrapper'>
                 <Row>
-                  <Col className='d-flex product-details-border position-relative pr-0' sm='12'>
-                    <Row className='w-100 pr-lg-0 pr-1 py-2'>
+                  <Col className='d-flex product-details-border position-relative pe-0' sm='12'>
+                    <Row className='w-100 pe-lg-0 pe-1 py-2'>
                       <Col className='mb-lg-0 mb-2 mt-lg-0 mt-2' lg='5' sm='12'>
                         <CardText className='col-title mb-md-50 mb-0'>Item</CardText>
                         <Input type='select' className='item-details'>
@@ -214,14 +200,6 @@ const InvoiceEditCard = ({ data }) => {
                         <Input type='number' defaultValue='24' placeholder='24' />
                         <div className='mt-2'>
                           <span>Discount:</span> <span>0%</span>
-                          <span id={`tax1-${i}`} className='ml-50'>
-                            0%
-                          </span>
-                          <span id={`tax2-${i}`} className='ml-50'>
-                            0%
-                          </span>
-                          <UncontrolledTooltip target={`tax1-${i}`}>Tax 1</UncontrolledTooltip>
-                          <UncontrolledTooltip target={`tax2-${i}`}>Tax 2</UncontrolledTooltip>
                         </div>
                       </Col>
                       <Col className='my-lg-0 my-2' lg='2' sm='12'>
@@ -233,7 +211,7 @@ const InvoiceEditCard = ({ data }) => {
                         <CardText className='mb-0'>$24.00</CardText>
                       </Col>
                     </Row>
-                    <div className='d-flex flex-column align-items-center justify-content-start border-left invoice-product-actions py-50 px-25'>
+                    <div className='d-flex justify-content-center border-start invoice-product-actions py-50 px-25'>
                       <X size={18} className='cursor-pointer' onClick={deleteForm} />
                     </div>
                   </Col>
@@ -245,10 +223,9 @@ const InvoiceEditCard = ({ data }) => {
 
         <Row className='mt-1'>
           <Col sm='12' className='px-0'>
-            <Button.Ripple color='primary' size='sm' className='btn-add-new' onClick={() => setCount(count + 1)}>
-              <Plus size={14} className='mr-25'></Plus>
-              <span className='align-middle'>Add Item</span>
-            </Button.Ripple>
+            <Button color='primary' size='sm' className='btn-add-new' onClick={() => setCount(count + 1)}>
+              <Plus size={14} className='me-25' /> <span className='align-middle'>Add Item</span>
+            </Button>
           </Col>
         </Row>
       </CardBody>
@@ -262,7 +239,7 @@ const InvoiceEditCard = ({ data }) => {
               <Label for='salesperson' className='form-label'>
                 Salesperson:
               </Label>
-              <Input type='text' className='ml-50' id='salesperson' placeholder='Edward Crowley' />
+              <Input type='text' className='ms-50' id='salesperson' placeholder='Edward Crowley' />
             </div>
           </Col>
           <Col className='d-flex justify-content-end' md={{ size: '6', order: 2 }} xs={{ size: 12, order: 1 }}>
@@ -296,12 +273,12 @@ const InvoiceEditCard = ({ data }) => {
       <CardBody className='invoice-padding py-0'>
         <Row>
           <Col>
-            <FormGroup className='mb-2'>
-              <Label for='note' className='form-label font-weight-bold'>
+            <div className='mb-2'>
+              <Label for='note' className='form-label fw-bold'>
                 Note:
               </Label>
               <Input type='textarea' rows='2' id='note' defaultValue={note} />
-            </FormGroup>
+            </div>
           </Col>
         </Row>
       </CardBody>

@@ -1,4 +1,14 @@
+// ** React Imports
 import { useState } from 'react'
+
+// ** Third Party Components
+import { ReactSortable } from 'react-sortablejs'
+import { Sortable, MultiDrag } from 'sortablejs'
+
+// ** Reactstrap Imports
+import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col, ListGroupItem } from 'reactstrap'
+
+// ** Images
 import img1 from '@src/assets/images/portrait/small/avatar-s-12.jpg'
 import img2 from '@src/assets/images/portrait/small/avatar-s-1.jpg'
 import img3 from '@src/assets/images/portrait/small/avatar-s-2.jpg'
@@ -9,8 +19,6 @@ import img7 from '@src/assets/images/portrait/small/avatar-s-6.jpg'
 import img8 from '@src/assets/images/portrait/small/avatar-s-7.jpg'
 import img9 from '@src/assets/images/portrait/small/avatar-s-8.jpg'
 import img10 from '@src/assets/images/portrait/small/avatar-s-9.jpg'
-import { ReactSortable, Sortable, MultiDrag } from 'react-sortablejs'
-import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col, ListGroupItem, Media } from 'reactstrap'
 
 const array = {
   list1: [
@@ -79,8 +87,10 @@ const array = {
   ]
 }
 
-// Sortable.mount(new MultiDrag())
+Sortable.mount(new MultiDrag())
+
 const DndMultiDrag = () => {
+  // ** States
   const [listArr1, setListArr1] = useState(array.list1)
   const [listArr2, setListArr2] = useState(array.list2)
 
@@ -102,30 +112,29 @@ const DndMultiDrag = () => {
             <ReactSortable
               tag='ul'
               multiDrag
-              className='list-group list-group-flush sortable'
-              group='shared-multi-drag-group'
               list={listArr1}
               setList={setListArr1}
+              group='shared-multi-drag-group'
+              className='list-group list-group-flush sortable'
             >
               {listArr1.map(item => {
                 return (
                   <ListGroupItem className='draggable' key={item.id}>
-                    <Media>
-                      <Media left tag='div'>
-                        <Media
-                          object
-                          src={item.img}
-                          className='rounded-circle mr-2'
-                          alt='Generic placeholder image'
-                          height='50'
+                    <div className='d-flex align-items-center'>
+                      <div>
+                        <img
                           width='50'
+                          height='50'
+                          src={item.img}
+                          className='rounded-circle me-2'
+                          alt='Generic placeholder image'
                         />
-                      </Media>
-                      <Media body>
+                      </div>
+                      <div>
                         <h5 className='mt-0'>{item.name}</h5>
                         {item.content}
-                      </Media>
-                    </Media>
+                      </div>
+                    </div>
                   </ListGroupItem>
                 )
               })}
@@ -135,30 +144,29 @@ const DndMultiDrag = () => {
             <h4 className='my-1'>People Group 2</h4>
             <ReactSortable
               tag='ul'
-              className='list-group list-group-flush sortable'
-              group='shared-multi-drag-group'
               list={listArr2}
               setList={setListArr2}
+              group='shared-multi-drag-group'
+              className='list-group list-group-flush sortable'
             >
               {listArr2.map(item => {
                 return (
                   <ListGroupItem className='draggable' key={item.id}>
-                    <Media>
-                      <Media left tag='div'>
-                        <Media
-                          object
-                          src={item.img}
-                          className='rounded-circle mr-2'
-                          alt='Generic placeholder image'
-                          height='50'
+                    <div className='d-flex align-items-center'>
+                      <div>
+                        <img
                           width='50'
+                          height='50'
+                          src={item.img}
+                          className='rounded-circle me-2'
+                          alt='Generic placeholder image'
                         />
-                      </Media>
-                      <Media body>
+                      </div>
+                      <div>
                         <h5 className='mt-0'>{item.name}</h5>
                         {item.content}
-                      </Media>
-                    </Media>
+                      </div>
+                    </div>
                   </ListGroupItem>
                 )
               })}

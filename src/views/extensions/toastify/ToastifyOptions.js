@@ -1,7 +1,14 @@
+// ** React Imports
 import { Fragment } from 'react'
+
+// ** Custom Components
 import Avatar from '@components/avatar'
-import { X, Loader, Info } from 'react-feather'
+
+// ** Third Party Components
 import { toast } from 'react-toastify'
+import { X, Loader, Info } from 'react-feather'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardBody, CardTitle, Button } from 'reactstrap'
 
 const ErrorToast = () => (
@@ -9,7 +16,7 @@ const ErrorToast = () => (
     <div className='toastify-header'>
       <div className='title-wrapper'>
         <Avatar size='sm' color='danger' icon={<X size={12} />} />
-        <h6 className='text-danger ml-50 mb-0'>Delayed</h6>
+        <h6 className='text-danger ms-50 mb-0'>Delayed</h6>
       </div>
       <small className='text-muted'>11 Min Ago</small>
     </div>
@@ -24,7 +31,7 @@ const AutoCloseToast = () => (
     <div className='toastify-header'>
       <div className='title-wrapper'>
         <Avatar size='sm' color='primary' icon={<Loader size={12} />} />
-        <h6 className='text-primary ml-50 mb-0'>Auto Close</h6>
+        <h6 className='text-primary ms-50 mb-0'>Auto Close</h6>
       </div>
       <small className='text-muted'>11 Min Ago</small>
     </div>
@@ -39,7 +46,7 @@ const InfoToast = () => (
     <div className='toastify-header'>
       <div className='title-wrapper'>
         <Avatar size='sm' color='info' icon={<Info size={12} />} />
-        <h6 className='text-info ml-50 mb-0'>Sticky Toast!</h6>
+        <h6 className='text-info ms-50 mb-0'>Sticky Toast!</h6>
       </div>
       <small className='text-muted'>11 Min Ago</small>
     </div>
@@ -50,9 +57,11 @@ const InfoToast = () => (
 )
 
 const Toastr = () => {
-  const notifyDelay = () => toast.error(<ErrorToast />, { autoClose: 10000, hideProgressBar: true })
-  const notifyAutoClose = () => toast.success(<AutoCloseToast />, { autoClose: 3000, hideProgressBar: true })
-  const notifySticky = () => toast.info(<InfoToast />, { autoClose: false, hideProgressBar: true })
+  const notifyDelay = () => toast.error(<ErrorToast />, { icon: false, autoClose: 10000, hideProgressBar: true })
+  const notifySticky = () => toast.info(<InfoToast />, { icon: false, autoClose: false, hideProgressBar: true })
+  const notifyAutoClose = () => {
+    return toast.success(<AutoCloseToast />, { icon: false, autoClose: 3000, hideProgressBar: true })
+  }
 
   return (
     <Card>
@@ -61,17 +70,17 @@ const Toastr = () => {
       </CardHeader>
       <CardBody>
         <div className='demo-inline-spacing'>
-          <Button.Ripple color='primary' outline onClick={notifyDelay}>
+          <Button color='primary' outline onClick={notifyDelay}>
             Delay
-          </Button.Ripple>
+          </Button>
 
-          <Button.Ripple color='primary' outline onClick={notifyAutoClose}>
+          <Button color='primary' outline onClick={notifyAutoClose}>
             AutoClose
-          </Button.Ripple>
+          </Button>
 
-          <Button.Ripple color='primary' outline onClick={notifySticky}>
+          <Button color='primary' outline onClick={notifySticky}>
             Sticky
-          </Button.Ripple>
+          </Button>
         </div>
       </CardBody>
     </Card>

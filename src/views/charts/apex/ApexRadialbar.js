@@ -1,4 +1,7 @@
+// ** Third Party Components
 import Chart from 'react-apexcharts'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 
 const ApexRadialbar = () => {
@@ -10,6 +13,7 @@ const ApexRadialbar = () => {
     series5: '#FFA1A1'
   }
 
+  // ** Chart Options
   const options = {
     colors: [donutColors.series1, donutColors.series2, donutColors.series4],
     plotOptions: {
@@ -34,7 +38,7 @@ const ApexRadialbar = () => {
             show: true,
             fontSize: '1rem',
             label: 'Comments',
-            formatter(w) {
+            formatter() {
               return '80%'
             }
           }

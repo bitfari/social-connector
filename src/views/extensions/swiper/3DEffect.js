@@ -1,6 +1,10 @@
-import SwiperCore, { EffectCube, Pagination } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
+// ** Third Party Components
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Images
 import img1 from '@src/assets/images/banner/banner-21.jpg'
 import img2 from '@src/assets/images/banner/banner-22.jpg'
 import img3 from '@src/assets/images/banner/banner-23.jpg'
@@ -8,13 +12,16 @@ import img4 from '@src/assets/images/banner/banner-24.jpg'
 
 const params = {
   effect: 'cube',
-  className: 'swiper-cube-effect',
   pagination: {
     clickable: true
+  },
+  cubeEffect: {
+    shadow: true,
+    shadowOffset: 20,
+    shadowScale: 0.94,
+    slideShadows: true
   }
 }
-
-SwiperCore.use([EffectCube, Pagination])
 
 const SwiperThreeD = ({ isRtl }) => {
   return (
@@ -23,7 +30,7 @@ const SwiperThreeD = ({ isRtl }) => {
         <CardTitle tag='h4'>3D Cube Effect</CardTitle>
       </CardHeader>
       <CardBody>
-        <Swiper dir={isRtl ? 'rtl' : 'ltr'} {...params}>
+        <Swiper {...params} dir={isRtl ? 'rtl' : 'ltr'}>
           <SwiperSlide>
             <img src={img1} alt='swiper 1' className='img-fluid' />
           </SwiperSlide>

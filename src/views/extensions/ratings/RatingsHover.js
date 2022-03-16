@@ -1,8 +1,12 @@
+// ** React Imports
 import { useState, Fragment } from 'react'
+
+// ** Third Party Components
 import Rating from 'react-rating'
 import { Star } from 'react-feather'
 
 const RatingsHover = ({ filledColor, dir }) => {
+  // ** State
   const [value, setValue] = useState(0)
 
   const onHover = rate => {
@@ -14,16 +18,16 @@ const RatingsHover = ({ filledColor, dir }) => {
   return (
     <Fragment>
       <Rating
-        initialRating={value}
+        direction={dir}
         id='ratings-hover'
-        emptySymbol={<Star size={32} fill='#babfc7' stroke='#babfc7' />}
-        fullSymbol={<Star size={32} fill={filledColor} stroke={filledColor} />}
+        initialRating={value}
         onHover={rate => onHover(rate)}
         onChange={rate => setValue(rate)}
-        direction={dir}
+        emptySymbol={<Star size={32} fill='#babfc7' stroke='#babfc7' />}
+        fullSymbol={<Star size={32} fill={filledColor} stroke={filledColor} />}
       />
       <div className='counter-wrapper mt-1'>
-        <span className='font-weight-bold'>Ratings: {value}</span>
+        <span className='fw-bold'>Ratings: {value}</span>
       </div>
     </Fragment>
   )

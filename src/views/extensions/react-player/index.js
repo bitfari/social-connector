@@ -1,8 +1,15 @@
+// ** React Imports
 import { Fragment } from 'react'
+
+// ** Reactstrap Imports
 import { Row, Col } from 'reactstrap'
+
+// ** Demo Components
 import MediaPlayerVideo from './MediaPlayerVideo'
 import MediaPlayerAudio from './MediaPlayerAudio'
 import MediaPlayerControlled from './MediaPlayerControlled'
+
+// ** Custom Components
 import ExtensionsHeader from '@components/extensions-header'
 
 const ReactPlayer = () => {

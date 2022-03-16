@@ -1,9 +1,14 @@
-import { useState, useEffect, useRef } from 'react'
+// ** React Imports
 import { findDOMNode } from 'react-dom'
-import { Card, CardTitle, CardHeader, CardBody, Row, Col, Table, Button, Progress, CustomInput } from 'reactstrap'
+import { useState, useEffect, useRef } from 'react'
+
+// ** Reactstrap Imports
+import { Card, CardTitle, CardHeader, CardBody, Row, Col, Table, Button, Progress, Input } from 'reactstrap'
+
+// ** Third Party Components
 import Prism from 'prismjs'
-import ReactPlayer from 'react-player'
 import screenfull from 'screenfull'
+import ReactPlayer from 'react-player'
 
 const pad = string => {
   return `0${string}`.slice(-2)
@@ -20,24 +25,28 @@ const format = seconds => {
 }
 
 const MediaPlayerControlledVideo = () => {
+  // ** Ref
+  const videoRef = useRef(null)
+
+  // ** Vars
+  const urlLink = 'http://youtube.com/watch?v=FCPdIvXo2rU'
+
+  // ** States
+  const [url, setUrl] = useState(urlLink)
+  const [played, setPlayed] = useState(0)
+  const [loaded, setLoaded] = useState(0)
+  const [loop, setLoop] = useState(false)
+  const [muted, setMuted] = useState(false)
+  const [volume, setVolume] = useState(0.75)
+  const [duration, setDuration] = useState(0)
+  const [seeking, setSeeking] = useState(null)
+  const [playing, setPlaying] = useState(false)
+  const [controls, setControls] = useState(false)
+  const [playbackRate, setPlaybackRate] = useState(1.0)
+
   useEffect(() => {
     Prism.highlightAll()
   })
-
-  const videoRef = useRef(null)
-
-  const urlLink = 'http://youtube.com/watch?v=FCPdIvXo2rU'
-  const [url, setUrl] = useState(urlLink)
-  const [playing, setPlaying] = useState(false)
-  const [controls, setControls] = useState(false)
-  const [volume, setVolume] = useState(0.75)
-  const [muted, setMuted] = useState(false)
-  const [played, setPlayed] = useState(0)
-  const [loaded, setLoaded] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [playbackRate, setPlaybackRate] = useState(1.0)
-  const [loop, setLoop] = useState(false)
-  const [seeking, setSeeking] = useState(null)
 
   const load = url => {
     setUrl(url)
@@ -134,12 +143,12 @@ const MediaPlayerControlledVideo = () => {
       <Table borderless>
         <tbody>
           <tr>
-            <td className='text-right'>Controls</td>
+            <td className='text-end'>Controls</td>
             <td>
-              <Button color='primary' outline onClick={handleStop} className='my-25 mr-50'>
+              <Button color='primary' outline onClick={handleStop} className='my-25 me-50'>
                 Stop
               </Button>
-              <Button color='primary' outline onClick={handlePlayPause} className='my-25 mr-50'>
+              <Button color='primary' outline onClick={handlePlayPause} className='my-25 me-50'>
                 {playing ? 'Pause' : 'Play'}
               </Button>
               <Button color='primary' outline onClick={handleFullscreen} className='my-25'>
@@ -148,14 +157,14 @@ const MediaPlayerControlledVideo = () => {
             </td>
           </tr>
           <tr>
-            <td className='text-right'>Speed</td>
+            <td className='text-end'>Speed</td>
             <td>
               <Button
                 color='primary'
                 outline
                 onClick={handlePlaybackRate}
                 value={1}
-                className='my-25 mr-50'
+                className='my-25 me-50'
                 active={playbackRate === 1}
               >
                 1x
@@ -165,7 +174,7 @@ const MediaPlayerControlledVideo = () => {
                 outline
                 onClick={handlePlaybackRate}
                 value={1.5}
-                className='my-25 mr-50'
+                className='my-25 me-50'
                 active={playbackRate === 1.5}
               >
                 1.5x
@@ -176,7 +185,7 @@ const MediaPlayerControlledVideo = () => {
             </td>
           </tr>
           <tr>
-            <td className='text-right'>Seek</td>
+            <td className='text-end'>Seek</td>
             <td>
               <input
                 type='range'
@@ -191,37 +200,43 @@ const MediaPlayerControlledVideo = () => {
             </td>
           </tr>
           <tr>
-            <td className='text-right'>Volume</td>
+            <td className='text-end'>Volume</td>
             <td>
               <input type='range' min={0} max={1} step='any' value={volume} onChange={handleVolumeChange} />
             </td>
           </tr>
           <tr>
-            <td className='text-right'>Controls</td>
+            <td className='text-end'>Controls</td>
             <td>
-              <CustomInput type='checkbox' id='videoControls' checked={controls} onChange={handleToggleControls} />
+              <div className='form-check'>
+                <Input type='checkbox' id='videoControls' checked={controls} onChange={handleToggleControls} />
+              </div>
             </td>
           </tr>
           <tr>
-            <td className='text-right'>Muted</td>
+            <td className='text-end'>Muted</td>
             <td>
-              <CustomInput type='checkbox' id='videoMuted' checked={muted} onChange={handleToggleMuted} />
+              <div className='form-check'>
+                <Input type='checkbox' id='videoMuted' checked={muted} onChange={handleToggleMuted} />
+              </div>
             </td>
           </tr>
           <tr>
-            <td className='text-right'>Loop</td>
+            <td className='text-end'>Loop</td>
             <td>
-              <CustomInput type='checkbox' id='videoLoop' checked={loop} onChange={handleToggleLoop} />
+              <div className='form-check'>
+                <Input type='checkbox' id='videoLoop' checked={loop} onChange={handleToggleLoop} />
+              </div>
             </td>
           </tr>
           <tr>
-            <td className='text-right'>Played</td>
+            <td className='text-end'>Played</td>
             <td>
               <Progress value={played} max={1} />
             </td>
           </tr>
           <tr>
-            <td className='text-right'>Loaded</td>
+            <td className='text-end'>Loaded</td>
             <td>
               <Progress value={loaded} max={1} />
             </td>

@@ -1,10 +1,17 @@
+// ** React Imports
 import { useState } from 'react'
+
+// ** Third Party Components
 import Chart from 'react-apexcharts'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, ButtonGroup, Button } from 'reactstrap'
 
 const ApexScatterCharts = ({ direction, warning, primary, success }) => {
+  // ** States
   const [active, setActive] = useState('daily')
 
+  // ** Chart Options
   const options = {
     chart: {
       zoom: {
@@ -42,6 +49,7 @@ const ApexScatterCharts = ({ direction, warning, primary, success }) => {
     }
   }
 
+  // ** Chart Series
   const series = [
     {
       name: 'Angular',

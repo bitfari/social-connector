@@ -1,5 +1,10 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
+// ** Third Party Components
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Images
 import img1 from '@src/assets/images/banner/banner-35.jpg'
 import img2 from '@src/assets/images/banner/banner-39.jpg'
 import img3 from '@src/assets/images/banner/banner-38.jpg'
@@ -12,7 +17,6 @@ import img9 from '@src/assets/images/banner/banner-31.jpg'
 
 const params = {
   effect: 'coverflow',
-  className: 'swiper-coverflow',
   slidesPerView: 'auto',
   centeredSlides: true,
   pagination: {

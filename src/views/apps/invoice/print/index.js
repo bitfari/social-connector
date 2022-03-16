@@ -1,7 +1,7 @@
 // ** React Imports
 import { useEffect } from 'react'
 
-// ** Third Party Components
+// ** Reactstrap Imports
 import { Row, Col, Table } from 'reactstrap'
 
 // ** Styles
@@ -9,7 +9,9 @@ import '@styles/base/pages/app-invoice-print.scss'
 
 const Print = () => {
   // ** Print on mount
-  useEffect(() => window.print(), [])
+  useEffect(() => {
+    setTimeout(() => window.print(), 50)
+  }, [])
 
   return (
     <div className='invoice-print p-3'>
@@ -65,21 +67,21 @@ const Print = () => {
                 </g>
               </g>
             </svg>
-            <h3 className='text-primary font-weight-bold ml-1'>Vuexy</h3>
+            <h3 className='text-primary fw-bold ms-1'>Bitfari</h3>
           </div>
           <p className='mb-25'>Office 149, 450 South Brand Brooklyn</p>
           <p className='mb-25'>San Diego County, CA 91905, USA</p>
           <p className='mb-0'>+1 (123) 456 7891, +44 (876) 543 2198</p>
         </div>
         <div className='mt-md-0 mt-2'>
-          <h4 className='font-weight-bold text-right mb-1'>INVOICE #3492</h4>
+          <h4 className='fw-bold text-end mb-1'>INVOICE #3492</h4>
           <div className='invoice-date-wrapper mb-50'>
             <span className='invoice-date-title'>Date Issued:</span>
-            <span className='font-weight-bold'> 25/08/2020</span>
+            <span className='fw-bold'> 25/08/2020</span>
           </div>
           <div className='invoice-date-wrapper'>
             <span className='invoice-date-title'>Due Date:</span>
-            <span className='font-weight-bold'>29/08/2020</span>
+            <span className='fw-bold'>29/08/2020</span>
           </div>
         </div>
       </div>
@@ -100,25 +102,25 @@ const Print = () => {
           <table>
             <tbody>
               <tr>
-                <td className='pr-1'>Total Due:</td>
+                <td className='pe-1'>Total Due:</td>
                 <td>
                   <strong>$12,110.55</strong>
                 </td>
               </tr>
               <tr>
-                <td className='pr-1'>Bank name:</td>
+                <td className='pe-1'>Bank name:</td>
                 <td>American Bank</td>
               </tr>
               <tr>
-                <td className='pr-1'>Country:</td>
+                <td className='pe-1'>Country:</td>
                 <td>United States</td>
               </tr>
               <tr>
-                <td className='pr-1'>IBAN:</td>
+                <td className='pe-1'>IBAN:</td>
                 <td>ETD95476213874685</td>
               </tr>
               <tr>
-                <td className='pr-1'>SWIFT code:</td>
+                <td className='pe-1'>SWIFT code:</td>
                 <td>BR91905</td>
               </tr>
             </tbody>
@@ -129,7 +131,7 @@ const Print = () => {
       <Table className='mt-2 mb-0' responsive>
         <thead>
           <tr>
-            <th className='py-1 pl-4'>Task description</th>
+            <th className='py-1 ps-4'>Task description</th>
             <th className='py-1'>Rate</th>
             <th className='py-1'>Hours</th>
             <th className='py-1'>Total</th>
@@ -137,8 +139,8 @@ const Print = () => {
         </thead>
         <tbody>
           <tr>
-            <td className='py-1 pl-4'>
-              <p className='font-weight-semibold mb-25'>Native App Development</p>
+            <td className='py-1 ps-4'>
+              <p className='fw-semibold mb-25'>Native App Development</p>
               <p className='text-muted text-nowrap'>
                 Developed a full stack native app using React Native, Bootstrap & Python
               </p>
@@ -154,8 +156,8 @@ const Print = () => {
             </td>
           </tr>
           <tr className='border-bottom'>
-            <td className='py-1 pl-4'>
-              <p className='font-weight-semibold mb-25'>Ui Kit Design</p>
+            <td className='py-1 ps-4'>
+              <p className='fw-semibold mb-25'>Ui Kit Design</p>
               <p className='text-muted text-nowrap'>Designed a UI kit for native app using Sketch, Figma & Adobe XD</p>
             </td>
             <td className='py-1'>
@@ -174,7 +176,7 @@ const Print = () => {
       <Row className='invoice-sales-total-wrapper mt-3'>
         <Col className='mt-md-0 mt-3' md='6' order={{ md: 1, lg: 2 }}>
           <p className='mb-0'>
-            <span className='font-weight-bold'>Salesperson:</span> <span className='ml-75'>Alfie Solomons</span>
+            <span className='fw-bold'>Salesperson:</span> <span className='ms-75'>Alfie Solomons</span>
           </p>
         </Col>
         <Col className='d-flex justify-content-end' md='6' order={{ md: 2, lg: 1 }}>
@@ -204,7 +206,7 @@ const Print = () => {
 
       <Row>
         <Col sm='12'>
-          <span className='font-weight-bold'>Note:</span>
+          <span className='fw-bold'>Note:</span>
           <span>
             It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance
             projects. Thank You!

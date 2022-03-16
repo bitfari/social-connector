@@ -1,14 +1,13 @@
 // ** React Imports
-import { Suspense, useContext, lazy } from 'react'
+import { Suspense, lazy, Fragment } from 'react'
 
 // ** Utils
-import { isUserLoggedIn } from '@utils'
 import { useLayout } from '@hooks/useLayout'
-import { AbilityContext } from '@src/utility/context/Can'
 import { useRouterTransition } from '@hooks/useRouterTransition'
 
+import { Session } from '../auth'
+
 // ** Custom Components
-// import Spinner from '@components/spinner/Loading-spinner' // Uncomment if your require content fallback
 import LayoutWrapper from '@layouts/components/layout-wrapper'
 
 // ** Router Components
@@ -24,11 +23,8 @@ import HorizontalLayout from '@src/layouts/HorizontalLayout'
 
 const Router = () => {
   // ** Hooks
-  const [layout, setLayout] = useLayout()
-  const [transition, setTransition] = useRouterTransition()
-
-  // ** ACL Ability Context
-  const ability = useContext(AbilityContext)
+  const { layout, setLayout, setLastLayout } = useLayout()
+  const { transition, setTransition } = useRouterTransition()
 
   // ** Default Layout
   const DefaultLayout = layout === 'horizontal' ? 'HorizontalLayout' : 'VerticalLayout'
@@ -57,8 +53,6 @@ const Router = () => {
     return { LayoutRoutes, LayoutPaths }
   }
 
-  const NotAuthorized = lazy(() => import('@src/views/pages/misc/NotAuthorized'))
-
   // ** Init Error Component
   const Error = lazy(() => import('@src/views/pages/misc/Error'))
 
@@ -67,17 +61,21 @@ const Router = () => {
    */
   const FinalRoute = props => {
     const route = props.route
-    let action, resource
 
-    // ** Assign vars based on route meta
-    if (route.meta) {
-      action = route.meta.action ? route.meta.action : null
-      resource = route.meta.resource ? route.meta.resource : null
-    }
+    if ( 
+      (!Session.isUserSignedIn() && route.meta === undefined) ||
+      (!Session.isUserSignedIn() && route.meta && !route.meta.publicRoute)
+    ) {
+      /**
+       ** If user is not Logged in & route meta is undefined
+       ** OR
+       ** If user is not Logged in & route.meta.authRoute, !route.meta.publicRoute are undefined
+       ** Then redirect user to login
+       */
 
-
-    if (route.meta) {
-      // ** If route has meta then redirect user to home page (DefaultRoute)
+      return <Redirect to='/' />
+    } else if (route.meta && Session.isUserSignedIn()) {
+      // ** If route has meta and authRole and user is Logged in then redirect user to home page (DefaultRoute)
       return <Redirect to='/' />
     } else {
       // ** If none of the above render component
@@ -107,10 +105,11 @@ const Router = () => {
       return (
         <Route path={LayoutPaths} key={index}>
           <LayoutTag
-            routerProps={routerProps}
             layout={layout}
             setLayout={setLayout}
             transition={transition}
+            routerProps={routerProps}
+            setLastLayout={setLastLayout}
             setTransition={setTransition}
             currentActiveItem={currentActiveItem}
           >
@@ -129,34 +128,43 @@ const Router = () => {
                       })
 
                       return (
-                        <Suspense fallback={null}>
+                        <Fragment>
                           {/* Layout Wrapper to add classes based on route's layout, appLayout and className */}
-                          <LayoutWrapper
-                            layout={DefaultLayout}
-                            transition={transition}
-                            setTransition={setTransition}
-                            /* Conditional props */
-                            /*eslint-disable */
-                            {...(route.appLayout
-                              ? {
-                                  appLayout: route.appLayout
-                                }
-                              : {})}
-                            {...(route.meta
-                              ? {
-                                  routeMeta: route.meta
-                                }
-                              : {})}
-                            {...(route.className
-                              ? {
-                                  wrapperClass: route.className
-                                }
-                              : {})}
-                            /*eslint-enable */
-                          >
-                            <FinalRoute route={route} {...props} />
-                          </LayoutWrapper>
-                        </Suspense>
+
+                          {route.layout === 'BlankLayout' ? (
+                            <Fragment>
+                              <FinalRoute route={route} {...props} />
+                            </Fragment>
+                          ) : (
+                            <LayoutWrapper
+                              layout={DefaultLayout}
+                              transition={transition}
+                              setTransition={setTransition}
+                              /* Conditional props */
+                              /*eslint-disable */
+                              {...(route.appLayout
+                                ? {
+                                    appLayout: route.appLayout
+                                  }
+                                : {})}
+                              {...(route.meta
+                                ? {
+                                    routeMeta: route.meta
+                                  }
+                                : {})}
+                              {...(route.className
+                                ? {
+                                    wrapperClass: route.className
+                                  }
+                                : {})}
+                              /*eslint-enable */
+                            >
+                              <Suspense fallback={null}>
+                                <FinalRoute route={route} {...props} />
+                              </Suspense>
+                            </LayoutWrapper>
+                          )}
+                        </Fragment>
                       )
                     }}
                   />
@@ -172,13 +180,23 @@ const Router = () => {
   return (
     <AppRouter basename={process.env.REACT_APP_BASENAME}>
       <Switch>
-        {/* If user is logged in Redirect user to DefaultRoute */}
+        {/* If user is logged in Redirect user to DefaultRoute else to login */}
         <Route
           exact
           path='/'
           render={() => {
-            return  <Redirect to={DefaultRoute} /> 
+            return Session.isUserSignedIn() ? <Redirect to={DefaultRoute} /> : <Redirect to='/' />
           }}
+        />
+        {/* Not Auth Route */}
+        <Route
+          exact
+          path='/misc/not-authorized'
+          render={() => (
+            <Layouts.BlankLayout>
+              <NotAuthorized />
+            </Layouts.BlankLayout>
+          )}
         />
         {ResolveRoutes()}
 

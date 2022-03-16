@@ -58,12 +58,8 @@ const FormRoutes = [
     component: lazy(() => import('../../views/forms/wizard'))
   },
   {
-    path: '/forms/react-hook-form',
-    component: lazy(() => import('../../views/forms/validations/react-hook-form'))
-  },
-  {
-    path: '/forms/reactstrap-validation',
-    component: lazy(() => import('../../views/forms/validations/reactstrap'))
+    path: '/forms/form-validation',
+    component: lazy(() => import('../../views/forms/validation'))
   },
   {
     path: '/forms/form-repeater',

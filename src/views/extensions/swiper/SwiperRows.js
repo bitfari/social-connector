@@ -1,5 +1,10 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
+// ** Third Party Components
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Images
 import img1 from '@src/assets/images/banner/banner-26.jpg'
 import img2 from '@src/assets/images/banner/banner-39.jpg'
 import img3 from '@src/assets/images/banner/banner-28.jpg'
@@ -13,9 +18,11 @@ import img10 from '@src/assets/images/banner/banner-35.jpg'
 
 const params = {
   slidesPerView: 3,
-  slidesPerColumn: 2,
+  grid: {
+    rows: 2,
+    fill: 'row'
+  },
   spaceBetween: 30,
-  slidesPerColumnFill: 'row',
   pagination: {
     clickable: true
   }

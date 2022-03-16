@@ -1,3 +1,4 @@
+// ** Icons Import
 import { Home, Circle } from 'react-feather'
 
 export default [
@@ -9,16 +10,16 @@ export default [
     badgeText: '2',
     children: [
       {
-        id: 'analyticsDash',
-        title: 'Analytics',
-        icon: <Circle size={12} />,
-        navLink: '/dashboard/analytics'
-      },
-      {
         id: 'eCommerceDash',
-        title: 'eCommerce',
+        title: 'Network',
         icon: <Circle size={12} />,
         navLink: '/dashboard/ecommerce'
+      },
+      {
+        id: 'analyticsDash',
+        title: 'Development',
+        icon: <Circle size={12} />,
+        navLink: '/dashboard/analytics'
       }
     ]
   }

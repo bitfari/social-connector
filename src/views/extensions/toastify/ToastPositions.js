@@ -1,7 +1,14 @@
+// ** React Imports
 import { Fragment } from 'react'
+
+// ** Third Party Components
 import { Info } from 'react-feather'
 import { toast } from 'react-toastify'
+
+// ** Custom Components
 import Avatar from '@components/avatar'
+
+// ** Reactstrap Imports
 import { Card, CardHeader, CardBody, CardTitle, Button, Row, Col } from 'reactstrap'
 
 const InfoToast = ({ title }) => (
@@ -9,7 +16,7 @@ const InfoToast = ({ title }) => (
     <div className='toastify-header'>
       <div className='title-wrapper'>
         <Avatar size='sm' color='info' icon={<Info size={12} />} />
-        <h6 className='text-info ml-50 mb-0'>{title}</h6>
+        <h6 className='text-info ms-50 mb-0'>{title}</h6>
       </div>
       <small className='text-muted'>11 Min Ago</small>
     </div>
@@ -20,31 +27,49 @@ const InfoToast = ({ title }) => (
 )
 
 const ToastPositions = () => {
-  const notifyTopLeft = () => toast.info(<InfoToast title='Top Left!' />, {
-    position: toast.POSITION.TOP_LEFT,
-    hideProgressBar: true
-  })
-  const notifyTopCenter = () => toast.info(<InfoToast title='Top Center!' />, {
-    position: toast.POSITION.TOP_CENTER,
-    hideProgressBar: true
-  })
-  const notifyTopRight = () => toast.info(<InfoToast title='This Right!' />, {
-    position: toast.POSITION.TOP_RIGHT,
-    hideProgressBar: true
-  })
+  const notifyTopLeft = () => {
+    return toast.info(<InfoToast title='Top Left!' />, {
+      icon: false,
+      hideProgressBar: true,
+      position: toast.POSITION.TOP_LEFT
+    })
+  }
+  const notifyTopCenter = () => {
+    return toast.info(<InfoToast title='Top Center!' />, {
+      icon: false,
+      hideProgressBar: true,
+      position: toast.POSITION.TOP_CENTER
+    })
+  }
+  const notifyTopRight = () => {
+    return toast.info(<InfoToast title='This Right!' />, {
+      icon: false,
+      hideProgressBar: true,
+      position: toast.POSITION.TOP_RIGHT
+    })
+  }
 
-  const notifyBottomLeft = () => toast.info(<InfoToast title='Bottom Left!' />, {
-    position: toast.POSITION.BOTTOM_LEFT,
-    hideProgressBar: true
-  })
-  const notifyBottomCenter = () => toast.info(<InfoToast title='Bottom Center!' />, {
-    position: toast.POSITION.BOTTOM_CENTER,
-    hideProgressBar: true
-  })
-  const notifyBottomRight = () => toast.info(<InfoToast title='This Right!' />, {
-    position: toast.POSITION.BOTTOM_RIGHT,
-    hideProgressBar: true
-  })
+  const notifyBottomLeft = () => {
+    return toast.info(<InfoToast title='Bottom Left!' />, {
+      icon: false,
+      hideProgressBar: true,
+      position: toast.POSITION.BOTTOM_LEFT
+    })
+  }
+  const notifyBottomCenter = () => {
+    return toast.info(<InfoToast title='Bottom Center!' />, {
+      icon: false,
+      hideProgressBar: true,
+      position: toast.POSITION.BOTTOM_CENTER
+    })
+  }
+  const notifyBottomRight = () => {
+    return toast.info(<InfoToast title='This Right!' />, {
+      icon: false,
+      hideProgressBar: true,
+      position: toast.POSITION.BOTTOM_RIGHT
+    })
+  }
 
   return (
     <Card>
@@ -56,31 +81,31 @@ const ToastPositions = () => {
           <Col sm='12'>
             <h5 className='mb-0'>Top Positions</h5>
             <div className='demo-inline-spacing'>
-              <Button.Ripple color='primary' outline onClick={notifyTopLeft}>
+              <Button color='primary' outline onClick={notifyTopLeft}>
                 Top Left
-              </Button.Ripple>
-              <Button.Ripple color='primary' outline onClick={notifyTopCenter}>
+              </Button>
+              <Button color='primary' outline onClick={notifyTopCenter}>
                 Top Center
-              </Button.Ripple>
-              <Button.Ripple color='primary' outline onClick={notifyTopRight}>
+              </Button>
+              <Button color='primary' outline onClick={notifyTopRight}>
                 Top Right
-              </Button.Ripple>
+              </Button>
             </div>
           </Col>
           <Col sm='12'>
             <h5 className='mt-2 mb-0'>Bottom Positions</h5>
             <div className='demo-inline-spacing'>
-              <Button.Ripple color='primary' outline onClick={notifyBottomLeft}>
+              <Button color='primary' outline onClick={notifyBottomLeft}>
                 Bottom Left
-              </Button.Ripple>
+              </Button>
 
-              <Button.Ripple color='primary' outline onClick={notifyBottomCenter}>
+              <Button color='primary' outline onClick={notifyBottomCenter}>
                 Bottom Center
-              </Button.Ripple>
+              </Button>
 
-              <Button.Ripple color='primary' outline onClick={notifyBottomRight}>
+              <Button color='primary' outline onClick={notifyBottomRight}>
                 Bottom Right
-              </Button.Ripple>
+              </Button>
             </div>
           </Col>
         </Row>

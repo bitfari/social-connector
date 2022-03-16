@@ -1,8 +1,12 @@
-import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+// ** Third Party Components
 import { Calendar } from 'react-feather'
 import Flatpickr from 'react-flatpickr'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
+// ** Reactstrap Imports
+import { Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+
+// ** Chart Data
 const data = [
   {
     name: '7/12',
@@ -88,19 +92,19 @@ const CustomTooltip = data => {
   if (data.active && data.payload) {
     return (
       <div className='recharts-custom-tooltip'>
-        <p className='font-weight-bold mb-0'>{data.label}</p>
+        <p className='fw-bold mb-0'>{data.label}</p>
         <hr />
         <div className='active'>
           {data.payload.map(i => {
             return (
               <div className='d-flex align-items-center' key={i.dataKey}>
                 <span
-                  className='bullet bullet-sm bullet-bordered mr-50'
+                  className='bullet bullet-sm bullet-bordered me-50'
                   style={{
                     backgroundColor: i.fill
                   }}
                 ></span>
-                <span className='align-middle text-capitalize mr-75'>
+                <span className='align-middle text-capitalize me-75'>
                   {i.dataKey} : {i.payload[i.dataKey]}
                 </span>
               </div>
@@ -114,7 +118,7 @@ const CustomTooltip = data => {
   return null
 }
 
-const SimpleAreaChart = ({ primary }) => {
+const SimpleAreaChart = () => {
   return (
     <Card>
       <CardHeader className='flex-sm-row flex-column justify-content-sm-between justify-content-center align-items-sm-center align-items-start'>
@@ -122,31 +126,32 @@ const SimpleAreaChart = ({ primary }) => {
         <div className='d-flex align-items-center'>
           <Calendar size={15} />
           <Flatpickr
+            className='form-control flat-picker bg-transparent border-0 shadow-none'
             options={{
               mode: 'range',
-              defaultDate: ['2019-05-01', '2019-05-10']
+              // eslint-disable-next-line no-mixed-operators
+              defaultDate: [new Date(), new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000)]
             }}
-            className='form-control flat-picker bg-transparent border-0 shadow-none'
           />
         </div>
       </CardHeader>
 
       <CardBody>
         <div className='d-flex align-items-center mb-2'>
-          <div className='mr-2'>
-            <span className='bullet bullet-sm bullet-primary bullet-bordered mr-50'></span>
+          <div className='me-2'>
+            <span className='bullet bullet-sm bullet-primary bullet-bordered me-50'></span>
             <span className='align-middle'>Clicks</span>
           </div>
-          <div className='mr-2'>
+          <div className='me-2'>
             <span
-              className='bullet bullet-sm bullet-bordered mr-50'
+              className='bullet bullet-sm bullet-bordered me-50'
               style={{ backgroundColor: 'rgba(115, 103, 240, .5)' }}
             ></span>
-            <span className='align-middle mr-75'>Sales</span>
+            <span className='align-middle me-75'>Sales</span>
           </div>
           <div>
             <span
-              className='bullet bullet-sm bullet-bordered mr-50'
+              className='bullet bullet-sm bullet-bordered me-50'
               style={{ backgroundColor: 'rgba(115, 103, 240, .2)' }}
             ></span>
             <span className='align-middle'>Visits</span>
