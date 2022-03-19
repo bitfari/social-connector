@@ -14,7 +14,7 @@ export default [
         navLink: '/pages/pricing'
       },
       {
-        id: 'publish',
+        id: 'paypublish',
         title: 'Pay and Publish',
         icon: <DollarSign />,
         navLink: '/pages/payment'

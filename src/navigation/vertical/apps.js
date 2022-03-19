@@ -28,18 +28,5 @@ export default [
     title: 'Book Ads',
     icon: <Calendar size={20} />,
     navLink: '/apps/book'
-  },
-  {
-    id: 'publish',
-    title: 'Publish',
-    icon: <ShoppingCart size={20} />,
-    children: [
-      {
-        id: 'publish',
-        title: 'Pay and Publish',
-        icon: <Circle size={12} />,
-        navLink: '/apps/ecommerce/publish'
-      }
-    ]
   }
 ]

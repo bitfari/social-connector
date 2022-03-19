@@ -4,16 +4,16 @@ import { useState, useEffect, Fragment } from 'react'
 // ** Third Party Components
 import axios from 'axios'
 
-// ** Demo Components
-import PricingFaqs from './PricingFaqs'
-import PricingCards from './PricingCards'
-import PricingTrial from './PricingTrial'
-import PricingHeader from './PricingHeader'
+// ** Payment Components
+import PaymentHeader from './PaymentHeader'
+import PaymentFaqs from './PaymentFaqs'
+import PaymentInfo from './PaymentInfo'
+import PaymentTrial from './PaymentTrial'
 
 // ** Styles
 import '@styles/base/pages/page-pricing.scss'
 
-const Pricing = () => {
+const Payment = () => {
   // ** States
   const [data, setData] = useState(null),
     [faq, setFaq] = useState(null),
@@ -38,16 +38,19 @@ const Pricing = () => {
 
   return (
     <div id='pricing-table'>
-      <PricingHeader duration={duration} setDuration={setDuration} />
+      
+      <PaymentHeader duration={duration} setDuration={setDuration} />
       {data !== null && faq !== null ? (
         <Fragment>
-          <PricingCards data={data} duration={duration} />
-          <PricingTrial />
-          <PricingFaqs data={faq} />
+          <PaymentInfo data={data} duration={duration} />
+          <hr/>
+          <PaymentTrial />
+          <br/>     <br/>    <br/>     <br/> 
+          <PaymentFaqs data={faq} />
         </Fragment>
       ) : null}
     </div>
   )
 }
 
-export default Pricing
+export default Payment

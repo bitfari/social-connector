@@ -49,7 +49,7 @@
     "nouislider": "15.5.0",
     "nouislider-react": "3.3.8",
     "postcss-rtl": "1.5.0",
-    "prismjs": "1.19.0",
+    "prismjs": ">=1.27.0",
     "prop-types": "15.7.2",
     "rc-input-number": "7.3.3",
     "react": "17.0.2",
@@ -60,7 +60,7 @@
     "react-country-flag": "2.0.1",
     "react-data-table-component": "7.4.5",
     "react-dom": "17.0.2",
-    "react-draft-wysiwyg": "1.14.5",
+    "react-draft-wysiwyg": ">=1.14.6",
     "react-dropzone": "11.4.2",
     "react-feather": "~2.0.3",
     "react-flatpickr": "3.9.1",
@@ -94,7 +94,7 @@
     "uuid": "^8.3.2",
     "wnumb": "1.2.0",
     "xlsx": "0.17.3",
-    "yarn": "1.21.1",
+    "yarn": ">=1.22.0",
     "yup": "0.32.8"
   },
   "scripts": {
@@ -112,7 +112,10 @@
     "@types/sortablejs": "1.10.6",
     "eslint": "7.11.0",
     "eslint-plugin-import": "2.22.0",
-    "sass-loader": "8.0.2"
+    "sass-loader": "8.0.2",
+    "yarn": ">=1.22.0",
+    "prismjs": ">=1.27.0",
+    "react-draft-wysiwyg": ">=1.14.6"
   },
   "browserslist": {
     "production": [
