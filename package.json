@@ -43,6 +43,7 @@
     "i18next": "21.4.0",
     "i18next-browser-languagedetector": "6.1.2",
     "i18next-xhr-backend": "3.2.2",
+    "immer": "^9.0.6",
     "jquery": "3.5.1",
     "jsonwebtoken": "8.5.1",
     "moment": "2.29.1",
@@ -112,10 +113,10 @@
     "@types/sortablejs": "1.10.6",
     "eslint": "7.11.0",
     "eslint-plugin-import": "2.22.0",
-    "sass-loader": "8.0.2",
-    "yarn": ">=1.22.0",
     "prismjs": ">=1.27.0",
-    "react-draft-wysiwyg": ">=1.14.6"
+    "react-draft-wysiwyg": ">=1.14.6",
+    "sass-loader": "8.0.2",
+    "yarn": ">=1.22.0"
   },
   "browserslist": {
     "production": [
@@ -123,7 +124,7 @@
       "not ie <= 99",
       "not android <= 4.4.4",
       "not dead",
-      "not op_mini all" 
+      "not op_mini all"
     ],
     "development": [
       "last 1 chrome version",
