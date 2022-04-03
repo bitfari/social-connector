@@ -2,8 +2,8 @@ import mock from '../mock'
 
 const data = {
   orders_bar_chart: {
-    title: 'Network Screens',
-    statistics: '53217',
+    title: 'Real + Virtual Screens',
+    statistics: '53,217',
     series: [
       {
         name: '2021',
@@ -13,7 +13,7 @@ const data = {
   },
   profit_line_chart: {
     title: 'Ads Booked',
-    statistics: '8238',
+    statistics: '8,238',
     series: [
       {
         data: [0, 20, 5, 30, 15, 45]
@@ -91,19 +91,11 @@ const data = {
 }
 
 mock.onGet('/card/card-network/orders-bar-chart').reply(() => [200, data.orders_bar_chart])
-
 mock.onGet('/card/card-network/profit-line-chart').reply(() => [200, data.profit_line_chart])
-
 mock.onGet('/card/card-network/subscribers').reply(() => [200, data.subscribers_gained])
-
 mock.onGet('/card/card-network/revenue').reply(() => [200, data.revenueGenerated])
-
 mock.onGet('/card/card-network/sales').reply(() => [200, data.quarterlySales])
-
 mock.onGet('/card/card-network/orders').reply(() => [200, data.ordersRecevied])
-
 mock.onGet('/card/card-network/site-traffic').reply(() => [200, data.siteTraffic])
-
 mock.onGet('/card/card-network/active-users').reply(() => [200, data.activeUsers])
-
 mock.onGet('/card/card-network/newsletter').reply(() => [200, data.newsletter])

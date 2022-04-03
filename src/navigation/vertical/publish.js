@@ -21,7 +21,7 @@ export default [
       },
       {
         id: 'realnet',
-        title: 'See Ads on Realnet',
+        title: 'Preview Ads',
         icon: <Send />,
         externalLink: true,
         newTab: true,

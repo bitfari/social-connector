@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
+// Sign out
+import { Header } from '../../components/Header'
+
 // ** Store & Actions
 import { useSelector, useDispatch } from 'react-redux'
 import { handleMenuHidden, handleContentWidth } from '@store/layout'
@@ -185,6 +188,7 @@ const HorizontalLayout = props => {
                 currentActiveItem={currentActiveItem}
               />
             )}
+            <Header />
           </Navbar>
         </div>
       ) : null}

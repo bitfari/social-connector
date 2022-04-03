@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
+// Sign out
+import { Header } from '../../components/Header'
+
 // ** Store & Actions
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -192,6 +195,7 @@ const VerticalLayout = props => {
             />
           )}
         </div>
+        <Header />
       </Navbar>
       {children}
 

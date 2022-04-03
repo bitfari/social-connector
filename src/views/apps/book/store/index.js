@@ -21,24 +21,6 @@ export const updateEvent = createAsyncThunk('appCalendar/updateEvent', async (ev
   return event
 })
 
-export const updateFilter = createAsyncThunk('appCalendar/updateFilter', async (filter, { dispatch, getState }) => {
-  if (getState().calendar.selectedCalendars.includes(filter)) {
-    await dispatch(fetchEvents(getState().calendar.selectedCalendars.filter(i => i !== filter)))
-  } else {
-    await dispatch(fetchEvents([...getState().calendar.selectedCalendars, filter]))
-  }
-  return filter
-})
-
-export const updateAllFilters = createAsyncThunk('appCalendar/updateAllFilters', async (value, { dispatch }) => {
-  if (value === true) {
-    await dispatch(fetchEvents(['Personal', 'Business', 'Family', 'Holiday', 'ETC']))
-  } else {
-    await dispatch(fetchEvents([]))
-  }
-  return value
-})
-
 export const removeEvent = createAsyncThunk('appCalendar/removeEvent', async id => {
   await axios.delete('/apps/book/remove-event', { id })
   return id
@@ -49,7 +31,12 @@ export const appCalendarSlice = createSlice({
   initialState: {
     events: [],
     selectedEvent: {},
-    selectedCalendars: ['Personal', 'Business', 'Family', 'Holiday', 'ETC']
+    selectedCalendars: [
+    'Billboards.btc', 'Times2.btc', 'Screens.btc', 'Agency.btc', 
+    'Advertising.btc', 'Direct Mail.btc', 'Panorama.btc', 'Office.btc', 'Malls.btc',  'Say.btc', 'Stadium.btc',
+    'Gyms.btc', 'Classifieds.btc', 'CPA.btc', 'Desktop.btc', 'Uncensored.btc', 'KidSafe.btc', 'HighSchool.btc' 
+  ]
+
   },
   reducers: {
     selectEvent: (state, action) => {
@@ -60,23 +47,6 @@ export const appCalendarSlice = createSlice({
     builder
       .addCase(fetchEvents.fulfilled, (state, action) => {
         state.events = action.payload
-      })
-      .addCase(updateFilter.fulfilled, (state, action) => {
-        if (state.selectedCalendars.includes(action.payload)) {
-          state.selectedCalendars.splice(state.selectedCalendars.indexOf(action.payload), 1)
-        } else {
-          state.selectedCalendars.push(action.payload)
-        }
-      })
-      .addCase(updateAllFilters.fulfilled, (state, action) => {
-        const value = action.payload
-        let selected = []
-        if (value === true) {
-          selected = ['Personal', 'Business', 'Family', 'Holiday', 'ETC']
-        } else {
-          selected = []
-        }
-        state.selectedCalendars = selected
       })
   }
 })

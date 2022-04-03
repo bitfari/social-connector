@@ -6,18 +6,6 @@ export default [
     header: 'Apps & Pages'
   },
   {
-    id: 'tell',
-    title: 'Tellfari',
-    icon: <Mail size={20} />,
-    navLink: '/apps/tellfari'
-  },
-  {
-    id: 'friend',
-    title: 'Instafriend',
-    icon: <MessageSquare size={20} />,
-    navLink: '/apps/instafriend'
-  },
-  {
     id: 'focus',
     title: 'Focus',
     icon: <CheckSquare size={20} />,

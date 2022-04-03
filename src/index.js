@@ -2,7 +2,6 @@
 import React, { Suspense} from 'react'
 import ReactDOM from 'react-dom'
 import { Signin } from './components/Signin'
-import { Header } from './components/Header'
 import { Session } from './auth'
  
 // ** Router Import
@@ -60,7 +59,6 @@ import * as serviceWorker from './serviceWorker'
     <Suspense fallback={<Spinner />}>
           <ThemeContext>
           <Display isLoggedIn = {Session.isUserSignedIn()}/>
-          <Header />
           <ToastContainer newestOnTop />
         </ThemeContext>
     </Suspense>
@@ -68,3 +66,4 @@ import * as serviceWorker from './serviceWorker'
   document.getElementById('root')
 )
 serviceWorker.unregister()
+ 

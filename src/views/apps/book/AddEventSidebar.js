@@ -74,23 +74,39 @@ const AddEventSidebar = props => {
   const [location, setLocation] = useState('')
   const [endPicker, setEndPicker] = useState(new Date())
   const [startPicker, setStartPicker] = useState(new Date())
-  const [calendarLabel, setCalendarLabel] = useState([{ value: 'Billboards', label: 'Billboards.btc', color: 'primary' }])
+  const [calendarLabel, setCalendarLabel] = useState(
+    [     
+      { value: 'Billboards.btc', label: 'Billboards.btc', color: 'success', className: 'form-check-danger mb-1' },
+      { value: 'Times2.btc', label: 'Times2.btc', color: 'success', className: 'form-check-info' },
+      { value: 'Screens.btc', label: 'Screens.btc', color: 'primary', className: 'form-check-primary mb-1' },
+      { value: 'Agency.btc', label: 'Agency.btc', color: 'primary', className: 'form-check-info' },
+      { value: 'Advertising.btc', label: 'Advertising.btc', color: 'primary', className: 'form-check-info' },
+      { value: 'Direct Mail.btc', label: 'Direct Mail.btc', color: 'info', className: 'form-check-info' },
+      { value: 'Panorama.btc', label: 'Panorama.btc', color: 'primary', className: 'form-check-info' },
+      { value: 'Office.btc', label: 'Office.btc', color: 'primary', className: 'form-check-warning mb-1' },
+      { value: 'Malls.btc', label: 'Malls.btc', color: 'success', className: 'form-check-success mb-1' },
+      { value: 'Say.btc', label: 'Say.btc', color: 'success', className: 'form-check-primary mb-1' },
+      { value: 'Stadium.btc', label: 'Stadium.btc', color: 'info', className: 'form-check-info' },
+      { value: 'Gyms.btc', label: 'Gyms.btc', color: 'info', className: 'form-check-info' },
+      { value: 'Classifieds.btc', label: 'Classifieds.btc', color: 'primary', className: 'form-check-info' }
+
+  ])
 
   // ** Select Options
   const options = [
-    { value: 'Billboards', label: 'Billboards.btc', color: 'success', className: 'form-check-danger mb-1' },
-    { value: 'Times Sq', label: 'Times2.btc', color: 'success', className: 'form-check-info' },
-    { value: 'Screens', label: 'Screens.btc', color: 'primary', className: 'form-check-primary mb-1' },
-    { value: 'Agency', label: 'Agency.btc', color: 'primary', className: 'form-check-info' },
-    { value: 'Advertising', label: 'Advertising.btc', color: 'primary', className: 'form-check-info' },
-    { value: 'Direct Mail', label: 'Direct Mail.btc', color: 'info', className: 'form-check-info' },
-    { value: 'Panorama', label: 'Panorama.btc', color: 'primary', className: 'form-check-info' },
-    { value: 'Office', label: 'Office.btc', color: 'primary', className: 'form-check-warning mb-1' },
-    { value: 'Malls', label: 'Malls.btc', color: 'success', className: 'form-check-success mb-1' },
-    { value: 'Say', label: 'Say.btc', color: 'success', className: 'form-check-primary mb-1' },
-    { value: 'Stadium', label: 'Stadium.btc', color: 'info', className: 'form-check-info' },
-    { value: 'Gyms', label: 'Gyms.btc', color: 'info', className: 'form-check-info' },
-    { value: 'Classifieds', label: 'Classifieds.btc', color: 'primary', className: 'form-check-info' }
+    { value: 'Billboards.btc', label: 'Billboards.btc', color: 'success', className: 'form-check-danger mb-1' },
+    { value: 'Times2.btc', label: 'Times2.btc', color: 'success', className: 'form-check-info' },
+    { value: 'Screens.btc', label: 'Screens.btc', color: 'primary', className: 'form-check-primary mb-1' },
+    { value: 'Agency.btc', label: 'Agency.btc', color: 'primary', className: 'form-check-info' },
+    { value: 'Advertising.btc', label: 'Advertising.btc', color: 'primary', className: 'form-check-info' },
+    { value: 'Direct Mail.btc', label: 'Direct Mail.btc', color: 'info', className: 'form-check-info' },
+    { value: 'Panorama.btc', label: 'Panorama.btc', color: 'primary', className: 'form-check-info' },
+    { value: 'Office.btc', label: 'Office.btc', color: 'primary', className: 'form-check-warning mb-1' },
+    { value: 'Malls.btc', label: 'Malls.btc', color: 'success', className: 'form-check-success mb-1' },
+    { value: 'Say.btc', label: 'Say.btc', color: 'success', className: 'form-check-primary mb-1' },
+    { value: 'Stadium.btc', label: 'Stadium.btc', color: 'info', className: 'form-check-info' },
+    { value: 'Gyms.btc', label: 'Gyms.btc', color: 'info', className: 'form-check-info' },
+    { value: 'Classifieds.btc', label: 'Classifieds.btc', color: 'primary', className: 'form-check-info' }
   ]
 
   const guestsOptions = [
@@ -155,7 +171,22 @@ const AddEventSidebar = props => {
     setLocation('')
     setDesc('')
     setGuests({})
-    setCalendarLabel([{ value: 'Billboards', label: 'Billboards.btc', color: 'primary' }])
+    setCalendarLabel([
+    { value: 'Billboards.btc', label: 'Billboards.btc', color: 'success', className: 'form-check-danger mb-1' },
+    { value: 'Times2.btc', label: 'Times2.btc', color: 'success', className: 'form-check-info' },
+    { value: 'Screens.btc', label: 'Screens.btc', color: 'primary', className: 'form-check-primary mb-1' },
+    { value: 'Agency.btc', label: 'Agency.btc', color: 'primary', className: 'form-check-info' },
+    { value: 'Advertising.btc', label: 'Advertising.btc', color: 'primary', className: 'form-check-info' },
+    { value: 'Direct Mail.btc', label: 'Direct Mail.btc', color: 'info', className: 'form-check-info' },
+    { value: 'Panorama.btc', label: 'Panorama.btc', color: 'primary', className: 'form-check-info' },
+    { value: 'Office.btc', label: 'Office.btc', color: 'primary', className: 'form-check-warning mb-1' },
+    { value: 'Malls.btc', label: 'Malls.btc', color: 'success', className: 'form-check-success mb-1' },
+    { value: 'Say.btc', label: 'Say.btc', color: 'success', className: 'form-check-primary mb-1' },
+    { value: 'Stadium.btc', label: 'Stadium.btc', color: 'info', className: 'form-check-info' },
+    { value: 'Gyms.btc', label: 'Gyms.btc', color: 'info', className: 'form-check-info' },
+    { value: 'Classifieds.btc', label: 'Classifieds.btc', color: 'primary', className: 'form-check-info' }
+    
+    ])
     setStartPicker(new Date())
     setEndPicker(new Date())
   }
@@ -169,7 +200,7 @@ const AddEventSidebar = props => {
         if (calendar.length) {
           return { label: calendar, value: calendar, color: calendarsColor[calendar] }
         } else {
-          return { value: 'Billboards', label: 'Billboards.btc', color: 'primary' }
+          return { value: 'Billboards.btc', label: 'Billboards.btc', color: 'primary' }
         }
       }
       setValue('title', selectedEvent.title || getValues('title'))
@@ -461,7 +492,7 @@ const AddEventSidebar = props => {
                 rows='3'
                 value={desc}
                 onChange={e => setDesc(e.target.value)}
-                placeholder='Place your Copy here'
+                placeholder='Place your ad copy here'
               />
             </div>
             <div className='d-flex mb-1'>

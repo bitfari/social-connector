@@ -12,29 +12,29 @@ import illustration from '@src/assets/images/pages/calendar-illustration.png'
 
 // ** Filters Checkbox Array
 const filters = [
-  { label: 'Billboards.btc', color: 'Billboards', className: 'form-check-danger mb-1' },
-  { label: 'Times2.btc', color: 'success', className: 'form-check-info' },
-  { label: 'Screens.btc', color: 'primary', className: 'form-check-primary mb-1' },
-  { label: 'Agency.btc', color: 'primary', className: 'form-check-info' },
-  { label: 'Advertising.btc', color: 'primary', className: 'form-check-info' },
-  { label: 'Direct Mail.btc', color: 'info', className: 'form-check-info' },
-  { label: 'Panorama.btc', color: 'primary', className: 'form-check-info' },
-  { label: 'Office.btc', color: 'primary', className: 'form-check-warning mb-1' },
-  { label: 'Malls.btc', color: 'success', className: 'form-check-success mb-1' },
-  { label: 'Say.btc', color: 'success', className: 'form-check-primary mb-1' },
-  { label: 'Stadium.btc', color: 'info', className: 'form-check-info' },
-  { label: 'Gyms.btc', color: 'info', className: 'form-check-info' },
-  { label: 'Classifieds.btc', color: 'primary', className: 'form-check-info' },
-  { label: 'CPA.btc', color: 'primary', className: 'form-check-info' },
-  { label: 'Desktop.btc', color: 'primary', className: 'form-check-info' },
-  { label: 'Uncensored.btc', color: 'info', className: 'form-check-info' },
-  { label: 'KidSafe.btc', color: 'success', className: 'form-check-info' },
-  { label: 'HighSchool.btc', color: 'success', className: 'form-check-info' }
+  { value: 'Billboards.btc', label: 'Billboards.btc', color: 'success', className: 'form-check-danger mb-1' },
+  { value: 'Times2.btc', label: 'Times2.btc', color: 'success', className: 'form-check-info' },
+  { value: 'Screens.btc', label: 'Screens.btc', color: 'primary', className: 'form-check-primary mb-1' },
+  { value: 'Agency.btc', label: 'Agency.btc', color: 'primary', className: 'form-check-info' },
+  { value: 'Advertising.btc', label: 'Advertising.btc', color: 'primary', className: 'form-check-info' },
+  { value: 'DirectMail.btc', label: 'Direct Mail.btc', color: 'info', className: 'form-check-info' },
+  { value: 'Panorama.btc', label: 'Panorama.btc', color: 'primary', className: 'form-check-info' },
+  { value: 'Office.btc', label: 'Office.btc', color: 'primary', className: 'form-check-warning mb-1' },
+  { value: 'Malls.btc', label: 'Malls.btc', color: 'success', className: 'form-check-success mb-1' },
+  { value: 'Say.btc', label: 'Say.btc', color: 'success', className: 'form-check-primary mb-1' },
+  { value: 'Stadium.btc', label: 'Stadium.btc', color: 'info', className: 'form-check-info' },
+  { value: 'Gyms.btc', label: 'Gyms.btc', color: 'info', className: 'form-check-info' },
+  { value: 'Classifieds.btc', label: 'Classifieds.btc', color: 'primary', className: 'form-check-info' },
+  { value: 'CPA.btc', label: 'CPA.btc', color: 'primary', className: 'form-check-info' },
+  { value: 'Desktop.btc', label: 'Desktop.btc', color: 'primary', className: 'form-check-info' },
+  { value: 'Uncensored.btc', label: 'Uncensored.btc', color: 'info', className: 'form-check-info' },
+  { value: 'KidSafe.btc', label: 'KidSafe.btc', color: 'success', className: 'form-check-info' },
+  { value: 'HighSchool.btc', label: 'HighSchool.btc', color: 'success', className: 'form-check-info' }
 ]
 
 const SidebarLeft = props => {
   // ** Props
-  const { handleAddEventSidebar, toggleSidebar, updateFilter, updateAllFilters, store, dispatch } = props
+  const { handleAddEventSidebar, toggleSidebar } = props
 
   // ** Function to handle Add Event Click
   const handleAddEventClick = () => {
@@ -52,21 +52,8 @@ const SidebarLeft = props => {
         </CardBody>
         <CardBody>
           <h5 className='section-label mb-1'>
-            <span className='align-middle'>Filter</span>
+            <span className='align-middle'>NETWORKS</span>
           </h5>
-          <div className='form-check mb-1'>
-            <Input
-              id='view-all'
-              type='checkbox'
-              label='View All'
-              className='select-all'
-              checked={store.selectedCalendars.length === filters.length}
-              onChange={e => dispatch(updateAllFilters(e.target.checked))}
-            />
-            <Label className='form-check-label' for='view-all'>
-              View All
-            </Label>
-          </div>
           <div className='calendar-events-filter'>
             {filters.length &&
               filters.map(filter => {
@@ -77,17 +64,6 @@ const SidebarLeft = props => {
                       [filter.className]: filter.className
                     })}
                   >
-                    <Input
-                      type='checkbox'
-                      key={filter.label}
-                      label={filter.label}
-                      className='input-filter'
-                      id={`${filter.label}-event`}
-                      checked={store.selectedCalendars.includes(filter.label)}
-                      onChange={() => {
-                        dispatch(updateFilter(filter.label))
-                      }}
-                    />
                     <Label className='form-check-label' for={`${filter.label}-event`}>
                       {filter.label}
                     </Label>

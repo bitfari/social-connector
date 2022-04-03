@@ -14,7 +14,12 @@ const PaymentTrial = () => {
               <h3 className='text-primary'>Buy FARI and Save!</h3>
               <h5>Get up to 90% savings compared to traditional ads. </h5>
               <div className='mt-2 mt-lg-3'>
-                <Button color='primary'>Buy FARI</Button>
+              <Button
+            type = 'button' color = 'primary'
+            onClick = {(e) => {
+              e.preventDefault()
+              window.open('https://app.stackswap.org/v2/swap', '_blank')
+              }}> Buy the FARI Token</Button>
               </div>
             </div>
             <img

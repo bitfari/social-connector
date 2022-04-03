@@ -2,7 +2,7 @@
 //Template config options
 const themeConfig = {
   app: {
-    appName: 'Bitfari Social Connector',
+    appName: 'Bitfari SC',
     appLogoImage: require('@src/assets/images/logo/logo.png').default
   },
   layout: {

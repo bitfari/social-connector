@@ -136,7 +136,14 @@ const RevenueReport = props => {
             <span>{data.budget}</span>
           </div>
           <Chart id='budget-chart' type='line' height='80' options={budgetOptions} series={budgetSeries} />
-          <Button color='primary'>Buy the FARI Token</Button>
+          
+          <Button
+            type = 'button' color = 'primary'
+            onClick = {(e) => {
+              e.preventDefault()
+              window.open('https://app.stackswap.org/v2/swap', '_blank')
+              }}> Buy the FARI Token</Button>
+ 
         </Col>
       </Row>
     </Card>

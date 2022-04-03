@@ -15,24 +15,32 @@ import { useRTL } from '@hooks/useRTL'
 
 // ** Store & Actions
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchEvents, selectEvent, updateEvent, updateFilter, updateAllFilters, addEvent, removeEvent } from './store'
+import { fetchEvents, selectEvent, updateEvent, addEvent, removeEvent } from './store'
 
 // ** Styles
 import '@styles/react/apps/app-book.scss'
 
 // ** CalendarColors
 const calendarsColor = {
-  Billboards: 'primary',
-  Screens: 'success',
-  Office: 'danger',
-  Panorama: 'warning',
-  Malls: 'info'
+  'Billboards.btc': 'success',  
+   'Times2.btc': 'success', 
+  'Screens.btc': 'primary', 
+   'Agency.btc': 'primary', 
+   'Advertising.btc': 'primary', 
+   'Direct Mail.btc': 'info', 
+   'Panorama.btc': 'primary', 
+   'Office.btc': 'primary', 
+   'Malls.btc': 'success', 
+   'Say.btc': 'success', 
+   'Stadium.btc': 'info', 
+   'Gyms.btc': 'info', 
+   'Classifieds.btc': 'primary' 
 }
 
 const CalendarComponent = () => {
   // ** Variables
   const dispatch = useDispatch()
-  const store = useSelector(state => state.book)
+  const store = useSelector(state => state.book) 
 
   // ** states
   const [calendarApi, setCalendarApi] = useState(null)
@@ -65,9 +73,9 @@ const CalendarComponent = () => {
 
   // ** refetchEvents
   const refetchEvents = () => {
-    if (calendarApi !== null) {
+    //if (calendarApi !== null) {
       calendarApi.refetchEvents()
-    }
+   // }
   }
 
   // ** Fetch Events On Mount
@@ -88,9 +96,7 @@ const CalendarComponent = () => {
             <SidebarLeft
               store={store}
               dispatch={dispatch}
-              updateFilter={updateFilter}
               toggleSidebar={toggleSidebar}
-              updateAllFilters={updateAllFilters}
               handleAddEventSidebar={handleAddEventSidebar}
             />
           </Col>

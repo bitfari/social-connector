@@ -17,7 +17,7 @@ import './pages/knowledge-base'
 import './apps/permissionsList'
 import './cards/card-development'
 import './cards/card-network'
-import './pages/account-settings'
+import './pages/account-details'
 import './autoComplete/autoComplete'
 
 mock.onAny().passThrough()

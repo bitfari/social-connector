@@ -4,22 +4,22 @@ const data = {
   support_tracker: {
     title: 'Support Tracker',
     last_days: ['Last 28 Days', 'Last Month', 'Last Year'],
-    totalTicket: 721,
+    totalTicket: 2613,
     newTicket: 1,
-    openTicket: 73,
+    openTicket: 22,
     responseTime: 1
   },
   avg_sessions: {
     sessions: 2,
     last_days: ['Last 28 Days', 'Last Month', 'Last Year'],
     growth: '+1.2%',
-    goal: 10000,
-    users: 10000,
+    goal: 6000000,
+    users: 11400,
     retention: 10,
     duration: 1
   },
   revenue_report: {
-    years: ['2021', '2022', '2023'],
+    years: ['2021', '2022'],
     price: '0.70',
     cap: '70,000,000'
   },

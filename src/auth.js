@@ -1,8 +1,7 @@
-import { AppConfig, UserSession, showConnect } from '@stacks/connect'
+import { AppConfig, UserSession, showConnect } from '@stacks/connect-react'
 import { Person } from '@stacks/profile'
 
 const appConfig = new AppConfig(['store_write', 'publish_data'])
-
 export const Session = new UserSession({ appConfig })
 
 export function authenticate() {

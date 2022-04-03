@@ -35,8 +35,8 @@ const PagesRoutes = [
     }
   },
   {
-    path: '/pages/account-settings',
-    component: lazy(() => import('../../views/pages/account-settings'))
+    path: '/pages/account-details',
+    component: lazy(() => import('../../views/pages/account-details'))
   },
   {
     path: '/pages/api-key',

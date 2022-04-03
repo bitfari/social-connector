@@ -1,2 +1,0 @@
-import { PrismTheme } from 'prism-react-renderer';
-export declare const theme: PrismTheme;
